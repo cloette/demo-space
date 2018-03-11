@@ -2,12 +2,14 @@ import { json, urlencoded } from "body-parser";
 import * as compression from "compression";
 import * as express from "express";
 import * as path from "path";
+import * as mongoose from "mongoose";
 
 import { feedRouter } from "./routes/feed";
 import { loginRouter } from "./routes/login";
 import { protectedRouter } from "./routes/protected";
 import { publicRouter } from "./routes/public";
 import { userRouter } from "./routes/user";
+import { formRouter } from "./routes/form";
 
 const app: express.Application = express();
 
@@ -23,6 +25,16 @@ app.use("/api/login", loginRouter);
 app.use("/api/public", publicRouter);
 app.use("/api/feed", feedRouter);
 app.use("/api/user", userRouter);
+app.use("/api/form", formRouter);
+
+// connecting to database
+mongoose.connect(process.env.MONGOLAB_URI);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+  console.log("connected to database");
+});
 
 if (app.get("env") === "production") {
 
