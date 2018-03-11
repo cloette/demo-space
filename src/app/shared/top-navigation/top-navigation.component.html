@@ -1,12 +1,31 @@
 <ul class="topnav" #topnav>
-  <li *ngIf="auth.isAuthenticated()"><a routerLink="/rankings" routerLinkActive="active">Rankings</a></li>
-  <li *ngIf="auth.isAuthenticated()"><a routerLink="/newitem" routerLinkActive="active">New Item</a></li>
-  <li *ngIf="auth.isAuthenticated()"><a routerLink="/form" routerLinkActive="active">Form</a></li>
-  <li *ngIf="!auth.isAuthenticated()"><a class="btn btn-primary btn-margin"
-    (click)="auth.login()">Login</a></li>
-  <li *ngIf="auth.isAuthenticated()"><a class="btn btn-primary btn-margin"
-    (click)="auth.logout()">
-      Logout</a></li>
+  <li>
+    <a routerLink="/" routerLinkActive="active" title="Home" class="logobox">
+      <img src="./assets/logo.png" alt="Logo" class="logo" />
+    </a>
+  </li>
+  <li *ngIf="auth.isAuthenticated()">
+    <a routerLink="/rankings" routerLinkActive="active" title="Rankings">
+      <mat-icon>reorder</mat-icon>
+    </a>
+  </li>
+  <li *ngIf="auth.isAuthenticated()">
+    <a routerLink="/newitem" routerLinkActive="active" title="New Item">
+      <mat-icon>add</mat-icon>
+    </a>
+  </li>
+  <li *ngIf="auth.isAuthenticated()">
+    <a routerLink="/form" routerLinkActive="active" title="Form">
+      <mat-icon>settings</mat-icon>
+    </a>
+  </li>
+  <li *ngIf="!auth.isAuthenticated()">
+    <a class="btn btn-primary btn-margin" (click)="auth.login()">Login</a>
+  </li>
+  <li *ngIf="auth.isAuthenticated()">
+    <a class="btn btn-primary btn-margin" (click)="auth.logout()">
+      Logout</a>
+  </li>
   <li class="icon" *ngIf="auth.isAuthenticated()">
     <a (click)="toggle()">&#9776;</a>
   </li>

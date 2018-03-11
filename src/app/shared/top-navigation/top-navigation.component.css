@@ -18,10 +18,19 @@ ul.topnav li a {
   font-size: 17px;
 }
 
+.logo{
+  width:40px;
+}
+.logobox{
+  background-color:transparent !important;
+  padding: 6px 18px !important;
+}
+
 ul.topnav li a:hover {background-color: #555;}
 ul.topnav li a.active {background-color: #555;}
 ul.topnav li.icon {display: none;}
 
+/* Traditional Hamburger Menu
 @media screen and (max-width:680px) {
   ul.topnav li:not(:first-child) {display: none;}
   ul.topnav li.icon {
@@ -45,4 +54,4 @@ ul.topnav li.icon {display: none;}
     display: block;
     text-align: left;
   }
-}
+}*/

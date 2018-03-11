@@ -1,5 +1,15 @@
 import { NgModule } from '@angular/core';
 
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatIconModule,
+  MatInputModule,
+  MatProgressSpinnerModule,
+  MatDialogModule,
+  MatCheckboxModule
+} from '@angular/material';
+
 import { ModalComponent, ModalDirectivesDirective } from './modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { TopNavigationComponent } from './top-navigation/top-navigation.component';
@@ -28,7 +38,14 @@ import { AuthService } from './../auth/auth.service';
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatCheckboxModule
   ],
   providers: [AuthService],
   exports: [
@@ -39,7 +56,14 @@ import { AuthService } from './../auth/auth.service';
     CardComponent,
     ButtonComponent,
     InputComponent,
-    NotesComponent
+    NotesComponent,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatCheckboxModule
   ]
 })
 export class SharedModule {}
