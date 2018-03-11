@@ -1,0 +1,23 @@
+{
+    formName: '',
+    fields: [
+        {
+            order: #,
+            id: '',
+            type: 'slider, textbox, boolean, radio, checkbox',
+            multiplier: #,
+            maxValue: #,
+        },
+    ],
+    items: [
+        {
+            name: '',
+            score: #,
+            ... [fields]
+        }
+    ]
+}
+
+Items are the rows, 
+fields are the columns.
+Score determines order on leaderboard.

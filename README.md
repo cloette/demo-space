@@ -22,6 +22,13 @@ Ex.2 - I no longer want to weigh price as 3x as important. I should be able to s
 ## Contributing
 Feel free to pitch in! Just give me a heads up.
 
+## Scripts
+npm run start
+npm run build
+npm run test
+npm run lint
+npm run e2e
+
 ## Licensing
 Just don't try to sell it. If that's not your goal, you're good to copy away.
 

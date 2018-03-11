@@ -1,0 +1,11 @@
+<app-ui-top-navigation></app-ui-top-navigation>
+
+<div *ngIf="!auth.isAuthenticated()">
+  <app-home></app-home>
+</div>
+
+<div class="main" *ngIf="auth.isAuthenticated()">
+  <router-outlet></router-outlet>
+</div>
+
+<router-outlet name='modal'></router-outlet>
