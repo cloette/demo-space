@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
 import * as uuid from "uuid";
 
-import { Option, Field, Form, Item } from "../models/model.js";
+import { Option, Field, Form, Item } from "./../models/model";
 
 const formRouter: Router = Router();
 
@@ -120,6 +120,7 @@ formRouter.get("/form", (request:Request, response: Response) => {
   return response.json(res);
 });
 
+// Updates an item
 formRouter.put("/item/:addressid", (request:Request, response: Response) => {
 
   let item = new Item({});
@@ -132,6 +133,20 @@ formRouter.put("/item/:addressid", (request:Request, response: Response) => {
   item.save(function (err) {
     if (err) return console.error(err);
     response.render("Success! Item updated.")
+  });
+
+});
+
+// Updates a form
+formRouter.put("/form", (request:Request, response: Response) => {
+
+  let form = new Form({});
+
+  form = request.params.form;
+
+  form.save(function (err) {
+    if (err) return console.error(err);
+    response.render("Success! Form updated.")
   });
 
 });

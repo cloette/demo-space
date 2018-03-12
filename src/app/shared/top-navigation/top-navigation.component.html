@@ -22,7 +22,7 @@
   <li *ngIf="!auth.isAuthenticated()">
     <a class="btn btn-primary btn-margin" (click)="auth.login()">Login</a>
   </li>
-  <li *ngIf="auth.isAuthenticated()">
+  <li *ngIf="auth.isAuthenticated()" style="margin: 4px 0;">
     <a class="btn btn-primary btn-margin" (click)="auth.logout()">
       Logout</a>
   </li>

@@ -4,11 +4,6 @@ import * as express from "express";
 import * as path from "path";
 import * as mongoose from "mongoose";
 
-import { feedRouter } from "./routes/feed";
-import { loginRouter } from "./routes/login";
-import { protectedRouter } from "./routes/protected";
-import { publicRouter } from "./routes/public";
-import { userRouter } from "./routes/user";
 import { formRouter } from "./routes/form";
 
 const app: express.Application = express();
@@ -20,11 +15,6 @@ app.use(compression());
 app.use(urlencoded({ extended: true }));
 
 // api routes
-app.use("/api/secure", protectedRouter);
-app.use("/api/login", loginRouter);
-app.use("/api/public", publicRouter);
-app.use("/api/feed", feedRouter);
-app.use("/api/user", userRouter);
 app.use("/api/form", formRouter);
 
 // connecting to database
