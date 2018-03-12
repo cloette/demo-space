@@ -15,7 +15,7 @@ app.use(compression());
 app.use(urlencoded({ extended: true }));
 
 // api routes
-app.use("/api/form", formRouter);
+app.use("/api", formRouter);
 
 // connecting to database
 mongoose.connect(process.env.MONGOLAB_URI);
