@@ -39,6 +39,7 @@ formRouter.post("/field", (request: Request, response: Response) => {
     question: request.body.question,
     options: request.body.options,
     multiplier: request.body.multiplier,
+    value: request.body.value,
     maxValue: request.body.maxValue,
     disabled: false
   });

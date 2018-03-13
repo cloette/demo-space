@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { FormComponent } from './form/form.component';
+import { ItemComponent } from './item/item.component';
 import { routes } from './app.router';
 import { metaReducers, reducers } from './store';
 import { SharedModule } from './shared/shared.module';
@@ -22,7 +24,9 @@ import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    FormComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
