@@ -5,6 +5,7 @@ export interface IFieldResponse {
   type: string,
   question: string,
   options: Array<IOptionResponse>,
+  value: number,
   multiplier: number,
   maxValue: number,
   disabled: boolean

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { IFormResponse } from './../shared/interfaces/form.interface';
+import { IFieldResponse } from './../shared/interfaces/field.interface';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -19,6 +20,7 @@ export class FormComponent implements OnInit {
   public dataReady: boolean = false;
   public formID: string = '';
   public form: Observable<IFormResponse>;
+  public fields: Array<IFieldResponse>;
 
   constructor() { }
 
@@ -32,8 +34,26 @@ export class FormComponent implements OnInit {
     thing = !thing;
   }
 
+  getTypeIcon(fieldType:string){
+    if (fieldType === "text"){
+      return 'text format';
+    }
+    else if (fieldType === "radio"){
+      return 'radio button checked';
+    }
+    else if (fieldType === "checkbox"){
+      return 'check box';
+    }
+    else if (fieldType === "switch"){
+      return 'toll';
+    }
+    else {
+      return 'error';
+    }
+  }
+
   makeBlankForm(id: string): void {
-    // Post to /api/form/:id with supplied id 
+    // Post to /api/form/:id with supplied id
     // or the user's id (in sessionStorage)
     if (id === ""){
       let user = sessionStorage.getItem('user');

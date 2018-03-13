@@ -7,7 +7,10 @@ import {
   MatInputModule,
   MatProgressSpinnerModule,
   MatDialogModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatRadioButton,
+  MatRadioGroup,
+  MatSlideToggle
 } from '@angular/material';
 
 import { ModalComponent, ModalDirectivesDirective } from './modal/modal.component';
