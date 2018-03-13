@@ -1,9 +1,9 @@
 import { Route } from '@angular/router';
-import { DashboardComponent } from './dashboard.component';
+import { FormComponent } from './form.component';
 
 export const routes: Route[] = [
   {
     path: '',
-    component: DashboardComponent
+    component: FormComponent
   }
 ];

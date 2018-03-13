@@ -1,0 +1,22 @@
+<h2>LeaderBoard</h2>
+
+<div *ngIf="!dataReady">
+  <app-ui-loader [visible]="true"></app-ui-loader>
+</div>
+
+<div *ngIf="dataReady">
+  <mat-list *ngFor="let item of items">
+    <!-- Item address and item score -->
+        <mat-list-item>
+          <button mat-mini-fab>{{ item.score }}</button>
+          {{ item.address }}
+          <mat-icon mat-list-icon [routerLink]="[{{ '/item', item.addressid }}]" routerLinkActive="active">edit</mat-icon>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+    </mat-list>
+</div>
+
+<br />
+<button mat-raised-button color="primary" (click)="getItems()">
+  Refresh
+</button>

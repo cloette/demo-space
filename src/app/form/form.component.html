@@ -1,4 +1,4 @@
-<div *ngIf="firstVisit" style="text-align:center">
+<div *ngIf="firstVisit">
   <button mat-raised-button color="primary" (click)="makeBlankForm(formID)">
     Create a form
   </button>
@@ -7,7 +7,7 @@
     Load a form
   </button>
   <br />
-  <div *ngIf="showFormIDField" style="text-align:center">
+  <div *ngIf="showFormIDField">
     <form class="form" onsubmit="updateFormID(formID)">
       <mat-form-field>
         <input matInput placeholder="Form ID" value="formID">
@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<div *ngIf="!firstVisit" style="text-align:center">
+<div *ngIf="!firstVisit">
   <div *ngIf="dataReady">
     <div class="floating-button">
       <button mat-fab>
@@ -26,7 +26,7 @@
     </div>
     <!-- Form options displayed and editable -->
     <form class="form" onsubmit="updateFormID(formID)">
-      <div *ngFor="let field of fields">
+      <div *ngFor="let field of form.fields">
         <button mat-fab>
           <!-- Launches add/edit field modal -->
           <mat-icon aria-label="Add Field">edit</mat-icon>

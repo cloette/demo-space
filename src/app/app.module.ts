@@ -12,14 +12,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { FormComponent } from './form/form.component';
 import { ItemComponent } from './item/item.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { routes } from './app.router';
 import { metaReducers, reducers } from './store';
 import { SharedModule } from './shared/shared.module';
-import { WeatherService } from './weather/weather.service';
-import { WeatherEffects } from './store/weather/weather.effects';
-import { FeedEffects } from './store/feed/feed.effects';
-import { ProfileEffects } from './store/profile/profile.effects';
+import { FormEffects } from './store/form/form.effects';
 import { environment } from '../environments/environment';
+
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -36,9 +36,7 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([
-      ProfileEffects,
-      FeedEffects,
-      WeatherEffects
+      FormEffects
     ]),
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : [],
     RouterModule.forRoot(
@@ -49,7 +47,7 @@ import { environment } from '../environments/environment';
     )
   ],
   providers: [
-    WeatherService
+    AuthService
   ],
   bootstrap: [
     AppComponent
