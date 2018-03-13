@@ -19,16 +19,19 @@ import 'rxjs/add/operator/map';
 export class ItemComponent implements OnInit {
 
   public dataReady: boolean = false;
-  public itemID: string = '';
+  public itemID: string;
   public item: Observable<IItemResponse>;
   public form: any;
 
   constructor(private route: ActivatedRoute, store: Store<IAppState>) {
+    this.route.params.subscribe(params => {
+      this.itemID = params['addressid'];
+    });
     this.form = store.select('form');
    }
 
   getItem(id: string): void {
-    // Get request /api/item/:addressid with this.item.addressid
+    // Get request /api/item/:addressid with itemID
     // this.item = response; this.form = this.item.form;
     this.dataReady = true;
   }

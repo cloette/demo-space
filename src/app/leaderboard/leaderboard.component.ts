@@ -20,7 +20,7 @@ export class LeaderboardComponent implements OnInit {
   public dataReady: boolean = false;
   public descending: boolean = true;
   public items: Array<IItemResponse>;
-  public form: Observable<IFormResponse>;
+  public form;//: Observable<IFormResponse>;
 
   constructor( store: Store<IAppState>) { 
     this.form = store.select('form');

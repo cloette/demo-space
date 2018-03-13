@@ -4,11 +4,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
-import { WeatherComponent } from './weather.component';
-import { routes } from './weather.router';
-import { AirQualityComponent } from './air/air.component';
-import { CityComponent } from './city/city.component';
-import { ForecastComponent } from './forecast/forecast.component';
+import { ItemComponent } from './item.component';
+import { routes } from './item.router';
 
 @NgModule({
   imports: [
@@ -19,13 +16,10 @@ import { ForecastComponent } from './forecast/forecast.component';
     ReactiveFormsModule
   ],
   declarations: [
-    WeatherComponent,
-    ForecastComponent,
-    CityComponent,
-    AirQualityComponent
+    ItemComponent
   ],
   bootstrap: [
-    WeatherComponent
+    ItemComponent
   ]
 })
-export class WeatherModule {}
+export class ItemModule {}

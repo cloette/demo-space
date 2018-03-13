@@ -1,24 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ProfileComponent } from './profile.component';
-import { routes } from './profile.router';
-import { EditComponent } from './edit/edit.component';
 import { SharedModule } from '../shared/shared.module';
+import { LeaderboardComponent } from './leaderboard.component';
+import { routes } from './leaderboard.router';
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(routes),
-    SharedModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
-    ProfileComponent,
-    EditComponent
+    LeaderboardComponent
   ],
   bootstrap: [
-    ProfileComponent
+    LeaderboardComponent
   ]
 })
-export class ProfileModule {}
+export class FormModule {}
