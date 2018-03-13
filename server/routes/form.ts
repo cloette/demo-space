@@ -25,7 +25,7 @@ formRouter.post("/option", (request: Request, response: Response) => {
 
   option.save(function (err) {
     if (err) return console.error(err);
-    response.render("Success! Option added.")
+    response.json({ message: "Success!" });
   });
 
 });
@@ -46,7 +46,7 @@ formRouter.post("/field", (request: Request, response: Response) => {
 
   field.save(function (err) {
     if (err) return console.error(err);
-    response.render("Success! Field added.")
+    response.json({ message: "Success!" });
   });
 
 });
@@ -62,7 +62,7 @@ formRouter.post("/form/:id", (request: Request, response: Response) => {
 
   form.save(function (err) {
     if (err) return console.error(err);
-    response.render("Success! Form added.")
+    response.json({ message: "Success!" });
   });
 
 });
@@ -81,7 +81,7 @@ formRouter.post("/item", (request: Request, response: Response) => {
 
   item.save(function (err) {
     if (err) return console.error(err);
-    response.render("Success! Item added.")
+    response.json({ message: "Success!" });
   });
 
 });
@@ -119,7 +119,7 @@ formRouter.get("/form/:id", (request:Request, response: Response) => {
 
   Form.find({ id: request.params.id }, function (err, items){
     if (err) return console.error(err);
-    res = items;
+    res = items[0];
   });
 
   return response.json(res);
@@ -137,7 +137,7 @@ formRouter.put("/item/:addressid", (request:Request, response: Response) => {
 
   item.save(function (err) {
     if (err) return console.error(err);
-    response.render("Success! Item updated.")
+    response.json({ message: "Success!" });
   });
 
 });
@@ -151,7 +151,7 @@ formRouter.put("/form/:id", (request:Request, response: Response) => {
 
   form.save(function (err) {
     if (err) return console.error(err);
-    response.render("Success! Form updated.")
+    response.json({ message: "Success!" });
   });
 
 });

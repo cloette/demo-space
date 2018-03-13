@@ -2,13 +2,13 @@
   <app-ui-loader [visible]="true"></app-ui-loader>
 </div>
 
-<div *ngIf="dataReady" style="text-align:center">
+<div *ngIf="dataReady">
   <form class="form" onsubmit="saveItem()">
     <mat-form-field>
       <input matInput [placeholder]="'Address:'" value="item.address">
     </mat-form-field>
     <button mat-fab>{{ item.score || '0' }}</button>
-    <div *ngFor="let field of form.fields">
+    <div *ngFor="let field of item.form.fields">
       <div *ngIf="field.type === 'text' && field.enabled">
         <p>{{ field.question }}</p>
         <mat-form-field>

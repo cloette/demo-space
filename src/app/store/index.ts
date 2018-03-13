@@ -1,21 +1,22 @@
 import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { storeFreeze } from 'ngrx-store-freeze';
 
-import { feedReducer, IFeed } from './feed/feed.reducer';
+import { IFormResponse } from './../shared/interfaces/form.interface';
+import { formReducer } from './form/form.reducer';
 import { profileReducer, IProfile } from './profile/profile.reducer';
 import { IWeather, weatherReducer } from './weather/weather.reducer';
 import { environment } from '../../environments/environment';
 
 // all new reducers should be define here
 export interface IAppState {
-  feed: IFeed[];
+  form: IFormResponse[];
   profile: IProfile;
   weather: IWeather;
 }
 
 // all new reducers should be define here
 export const reducers: ActionReducerMap<IAppState> = {
-  feed: feedReducer,
+  form: formReducer,
   profile: profileReducer,
   weather: weatherReducer
 };

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForOf } from '@angular/common';
 import { Store } from '@ngrx/store';
+import { IAppState } from '../store/index';
 
 import { ActivatedRoute } from '@angular/router';
 
@@ -21,9 +21,11 @@ export class ItemComponent implements OnInit {
   public dataReady: boolean = false;
   public itemID: string = '';
   public item: Observable<IItemResponse>;
-  public form: Observable<IFormResponse>;
+  public form: any;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, store: Store<IAppState>) {
+    this.form = store.select('form');
+   }
 
   getItem(id: string): void {
     // Get request /api/item/:addressid with this.item.addressid
