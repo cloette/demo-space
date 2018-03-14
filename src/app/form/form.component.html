@@ -25,7 +25,7 @@
       </button>
     </div>
     <!-- Form options displayed and editable -->
-    <form class="form" onsubmit="updateFormID(formID)">
+    <form *ngIf="form.fields" class="form" onsubmit="updateFormID(formID)">
       <div *ngFor="let field of form.fields">
         <button mat-fab>
           <!-- Launches add/edit field modal -->
