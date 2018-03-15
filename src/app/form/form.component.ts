@@ -18,6 +18,8 @@ import 'rxjs/add/operator/map';
 })
 export class FormComponent implements OnInit {
 
+  // TODO: Add accordions as the question editor. Keep it simple.
+
   public firstVisit: boolean = true;
   public showFormIDField: boolean = false;
   public dataReady: boolean = false;

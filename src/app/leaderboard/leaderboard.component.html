@@ -1,11 +1,17 @@
 <h2>LeaderBoard</h2>
 
+<br />
+<button mat-raised-button color="primary" (click)="getItems()">
+  Refresh
+</button>
+<br />
+
 <div *ngIf="!dataReady">
   <app-ui-loader [visible]="true"></app-ui-loader>
 </div>
 
 <div *ngIf="dataReady">
-  <mat-list *ngFor="let item of items">
+  <mat-list *ngFor="let item of (items | async)?">
     <!-- Item address and item score -->
         <mat-list-item>
           <button mat-mini-fab>{{ item.score }}</button>
@@ -15,8 +21,3 @@
         <mat-divider></mat-divider>
     </mat-list>
 </div>
-
-<br />
-<button mat-raised-button color="primary" (click)="getItems()">
-  Refresh
-</button>
