@@ -46,6 +46,9 @@ import { AuthService } from './../auth/auth.service';
     MatCardModule,
     MatIconModule,
     MatInputModule,
+    MatRadioButton,
+    MatRadioGroup,
+    MatSlideToggle,
     MatProgressSpinnerModule,
     MatDialogModule,
     MatCheckboxModule

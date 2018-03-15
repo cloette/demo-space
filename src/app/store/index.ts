@@ -2,17 +2,21 @@ import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { storeFreeze } from 'ngrx-store-freeze';
 
 import { IFormResponse } from './../shared/interfaces/form.interface';
+import { IItemResponse } from './../shared/interfaces/item.interface';
 import { formReducer } from './form/form.reducer';
+import { itemReducer } from './item/item.reducer';
 import { environment } from '../../environments/environment';
 
 // all new reducers should be define here
 export interface IAppState {
   form: IFormResponse[];
+  item: IItemResponse[];
 }
 
 // all new reducers should be define here
 export const reducers: ActionReducerMap<IAppState> = {
   form: formReducer,
+  item: itemReducer
 };
 
 // console.log all actions
