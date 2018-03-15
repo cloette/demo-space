@@ -6,7 +6,7 @@ import {
   Actions
 } from './item.actions';
 
-import { IItemResponse } from './../../shared/interfaces/Item.interface';
+import { IItemResponse } from './../../shared/interfaces/item.interface';
 
 /* Revisit this later and compare */
 

@@ -1,41 +1,40 @@
 import { NgModule } from '@angular/core';
 
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatIconModule,
-  MatInputModule,
-  MatProgressSpinnerModule,
-  MatDialogModule,
-  MatCheckboxModule,
-  MatRadioButton,
-  MatRadioGroup,
-  MatSlideToggle
-} from '@angular/material';
-
-import { ModalComponent, ModalDirectivesDirective } from './modal/modal.component';
 import { CommonModule } from '@angular/common';
 import { TopNavigationComponent } from './top-navigation/top-navigation.component';
 import { RouterModule } from '@angular/router';
-import { NotesComponent } from './notes/notes.component';
-import { ButtonComponent } from './button/button.component';
-import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { CardComponent } from './card/card.component';
 import { LoaderComponent } from './loader/loader.component';
 
 import { AuthService } from './../auth/auth.service';
 
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatInputModule,
+  MatDialogModule,
+  MatCheckboxModule,
+  MatRadioModule,
+  MatSlideToggleModule,
+  MatDividerModule,
+  MatButton,
+  MatIcon,
+  MatInput,
+  MatDialog,
+  MatSlideToggle,
+  MatCheckbox,
+  MatRadioGroup,
+  MatRadioButton,
+  MatDivider,
+  MatAccordion,
+  MatList,
+  MatListItem
+} from '@angular/material';
+
 @NgModule({
   declarations: [
-    ModalComponent,
     TopNavigationComponent,
-    ModalDirectivesDirective,
-    CardComponent,
-    ButtonComponent,
-    LoaderComponent,
-    InputComponent,
-    NotesComponent
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -43,33 +42,50 @@ import { AuthService } from './../auth/auth.service';
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatCardModule,
     MatIconModule,
     MatInputModule,
-    MatRadioButton,
-    MatRadioGroup,
-    MatSlideToggle,
-    MatProgressSpinnerModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatRadioModule,
+    MatSlideToggleModule,
+    MatDividerModule,
+    MatButton,
+    MatIcon,
+    MatInput,
+    MatDialog,
+    MatSlideToggle,
+    MatCheckbox,
+    MatRadioGroup,
+    MatRadioButton,
+    MatDivider,
+    MatAccordion,
+    MatList,
+    MatListItem
   ],
   providers: [AuthService],
   exports: [
-    ModalComponent,
-    ModalDirectivesDirective,
     TopNavigationComponent,
     LoaderComponent,
-    CardComponent,
-    ButtonComponent,
-    InputComponent,
-    NotesComponent,
     MatButtonModule,
-    MatCardModule,
     MatIconModule,
     MatInputModule,
-    MatProgressSpinnerModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatRadioModule,
+    MatSlideToggleModule,
+    MatDividerModule,
+    MatButton,
+    MatIcon,
+    MatInput,
+    MatDialog,
+    MatSlideToggle,
+    MatCheckbox,
+    MatRadioGroup,
+    MatRadioButton,
+    MatDivider,
+    MatAccordion,
+    MatList,
+    MatListItem
   ]
 })
 export class SharedModule {}

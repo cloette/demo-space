@@ -26,7 +26,8 @@ import { AuthService } from './auth/auth.service';
     AppComponent,
     HomeComponent,
     FormComponent,
-    ItemComponent
+    ItemComponent,
+    LeaderboardComponent,
   ],
   imports: [
     BrowserModule,

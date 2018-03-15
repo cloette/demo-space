@@ -18,7 +18,7 @@
       <div *ngIf="field.type === 'radio' && field.enabled">
         <p>{{ field.question }}</p>
         <mat-radio-group *ngFor="let optionR of field.options" class="column-layout">
-          <mat-radio [value]="optionR.value" (onclick)="field.value = optionR.value">{{ optionR.helperText }}</mat-radio>
+          <mat-radio-button [value]="optionR.value" (onclick)="field.value = optionR.value">{{ optionR.helperText }}</mat-radio-button>
         </mat-radio-group>
       </div>
       <div *ngIf="field.type === 'checkbox' && field.enabled">
