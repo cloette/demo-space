@@ -156,4 +156,23 @@ formRouter.put("/form/:id", (request:Request, response: Response) => {
 
 });
 
+// Deletes an item
+formRouter.delete("/item/:addressid", (request:Request, response: Response) => {
+
+  let item = new Item({});
+
+  Item.find({ addressID: request.params.addressid }, function (err, items){
+    if (err) return console.error(err);
+    item = items[0];
+  });
+
+  item.dropCollection(function (err) {
+    if (err) return console.error(err);
+    response.json({ message: "Success!" });
+  });
+
+});
+
+// Eventually: delete a form
+
 export { formRouter };

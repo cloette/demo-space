@@ -7,10 +7,11 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
 
 import {
-  ITEM_ADD, ITEM_GET, ITEM_EDIT,
+  ITEM_ADD, ITEM_GET, ITEM_EDIT, ITEM_REMOVE,
   ItemAdd, ItemAddFail, ItemAddSuccess,
   ItemEdit, ItemEditFail, ItemEditSuccess,
   ItemGet, ItemGetFail, ItemGetSuccess,
+  ItemRemove, ItemRemoveFail, ItemRemoveSuccess
 } from './item.actions';
 import { IItemResponse } from '../../shared/interfaces/item.interface';
 
@@ -46,17 +47,17 @@ export class ItemEffects {
         .catch((error) => Observable.of(new ItemGetFail(error)))
         .map((response: IItemResponse) => new ItemGetSuccess(response));
     });
-/*
+    
   @Effect()
   removeItem$ = this.actions$
     .ofType(ITEM_REMOVE)
     .switchMap((action: ItemRemove) => {
 
-      return this.http.delete<IItemResponse>('/api/Item/${action.payload}', action.payload)
+      return this.http.delete<IItemResponse>('/api/Item/${action.payload.addressid}')
         .catch((error) => Observable.of(new ItemRemoveFail(error)))
         .map((response: any) => new ItemRemoveSuccess(response));
 
-    });*/
+    });
 
   constructor(private actions$: Actions, private http: HttpClient) {}
 }

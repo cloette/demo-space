@@ -13,10 +13,9 @@ export const ITEM_GET = '[Item] get';
 export const ITEM_GET_FAIL = '[Item] get fail';
 export const ITEM_GET_SUCCESS = '[Item] get success';
 
-/*
 export const ITEM_REMOVE = '[Item] remove';
 export const ITEM_REMOVE_FAIL = '[Item] remove fail';
-export const ITEM_REMOVE_SUCCESS = '[Item] remove success';*/
+export const ITEM_REMOVE_SUCCESS = '[Item] remove success';
 
 /* ITEM Add */
 export class ItemAdd implements Action {
@@ -75,7 +74,7 @@ export class ItemGetFail implements Action {
   constructor(public payload: string) {}
 }
 
-/* Item Remove
+/* Item Remove */
 export class ItemRemove implements Action {
   readonly type = ITEM_REMOVE;
 
@@ -92,7 +91,7 @@ export class ItemRemoveFail implements Action {
   readonly type = ITEM_REMOVE_FAIL;
 
   constructor(public payload: string) {}
-}*/
+}
 
 export type Actions =
   | ItemAdd
@@ -104,3 +103,6 @@ export type Actions =
   | ItemGet
   | ItemGetSuccess
   | ItemGetFail
+  | ItemRemove
+  | ItemRemoveSuccess
+  | ItemRemoveFail

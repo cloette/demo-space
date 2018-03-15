@@ -2,6 +2,7 @@ import {
   ITEM_EDIT_SUCCESS,
   ITEM_GET_SUCCESS,
   ITEM_ADD_SUCCESS,
+  ITEM_REMOVE_SUCCESS,
   Actions
 } from './item.actions';
 
@@ -31,10 +32,10 @@ export function itemReducer(state: IItemResponse[] = [], action: Actions): IItem
         item: action.payload
       });
 
-    /*case ITEM_REMOVE_SUCCESS:
+    case ITEM_REMOVE_SUCCESS:
 
-      return state.filter((itemToRemove: IItemResponse) => action.payload !== itemToRemove.id);
-*/
+      return Object.assign({}, state);
+
     default:
       return state;
   }

@@ -7,7 +7,7 @@
     <mat-form-field>
       <input matInput [placeholder]="'Address:'" value="item.address">
     </mat-form-field>
-    <button mat-fab>{{ item.score || '0' }}</button>
+    <button mat-fab>{{ item.score || '0' }}%</button>
     <div *ngFor="let field of item.form.fields">
       <div *ngIf="field.type === 'text' && field.enabled">
         <p>{{ field.question }}</p>
@@ -36,6 +36,9 @@
 </div>
 
 <br />
+<button mat-raised-button color="warning" (click)="deleteItem()">
+  Delete
+</button>
 <button mat-raised-button color="primary" (click)="saveItem()">
   Save Changes
 </button>
