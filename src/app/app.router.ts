@@ -1,14 +1,13 @@
 import { Route } from '@angular/router';
 
-import { FormComponent } from './form/form.component';
-import { ItemComponent } from './item/item.component';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Route[] = [
-  { path: '', pathMatch: 'full', redirectTo: 'form'},
-  { path: 'form', component: FormComponent },
-  { path: 'item', component: ItemComponent },
-  { path: 'item/:addressid', component: ItemComponent },
-  { path: 'leaderboard', component: FormComponent },
-  { path: 'callback', redirectTo: 'form' }
+  { path: '', pathMatch: 'full', redirectTo: 'home'},
+  { path: 'home', component: HomeComponent },
+  { loadChildren: 'form/form.module#FormModule', path: 'form' },
+  { loadChildren: 'item/item.module#ItemModule', path: 'item' },
+  { loadChildren: 'leaderboard/leaderboard.module#LeaderboardModule', path: 'leaderboard' },
+  { path: 'callback', component: HomeComponent },
+  { path: '**', redirectTo: 'home' }
 ];

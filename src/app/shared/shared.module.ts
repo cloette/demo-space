@@ -10,6 +10,7 @@ import { AuthService } from './../auth/auth.service';
 
 import {
   MatButtonModule,
+  MatRipple,
   MatIconModule,
   MatInputModule,
   MatDialogModule,
@@ -17,6 +18,9 @@ import {
   MatRadioModule,
   MatSlideToggleModule,
   MatDividerModule,
+  MatFormFieldModule,
+  MatFormField,
+  MatIconRegistry,
   MatButton,
   MatIcon,
   MatInput,
@@ -28,64 +32,48 @@ import {
   MatDivider,
   MatAccordion,
   MatList,
-  MatListItem
+  MatListItem,
+  MatSelectModule,
 } from '@angular/material';
 
 @NgModule({
   declarations: [
     TopNavigationComponent,
-    LoaderComponent
+    LoaderComponent,
+    MatRipple,
+    MatButton,
+    MatIcon,
+    MatFormField,
+    MatInput,
+    MatSlideToggle,
+    MatCheckbox,
+    MatRadioGroup,
+    MatRadioButton,
+    MatDivider,
+    MatList,
+    MatListItem
   ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatDialogModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatSlideToggleModule,
-    MatDividerModule,
-    MatButton,
-    MatIcon,
-    MatInput,
-    MatDialog,
-    MatSlideToggle,
-    MatCheckbox,
-    MatRadioGroup,
-    MatRadioButton,
-    MatDivider,
-    MatAccordion,
-    MatList,
-    MatListItem
   ],
-  providers: [AuthService],
+  providers: [AuthService, MatIconRegistry],
   exports: [
     TopNavigationComponent,
     LoaderComponent,
-    MatButtonModule,
-    MatIconModule,
-    MatInputModule,
-    MatDialogModule,
-    MatCheckboxModule,
-    MatRadioModule,
-    MatSlideToggleModule,
-    MatDividerModule,
     MatButton,
     MatIcon,
+    MatFormField,
     MatInput,
-    MatDialog,
     MatSlideToggle,
     MatCheckbox,
     MatRadioGroup,
     MatRadioButton,
     MatDivider,
-    MatAccordion,
     MatList,
     MatListItem
   ]
 })
-export class SharedModule {}
+export class SharedModule { }

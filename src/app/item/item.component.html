@@ -29,7 +29,7 @@
       </div>
       <div *ngIf="field.type === 'switch' && field.enabled">
         <p>{{ field.question }}</p>
-        <mat-slide-toggle [(ngModel)]="field.value"></mat-slide-toggle>
+        <mat-slide-toggle (ngModel)="field.value"></mat-slide-toggle>
       </div>
     </div>
   </form>
