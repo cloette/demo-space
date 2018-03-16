@@ -34,14 +34,13 @@ import {
   MatList,
   MatListItem,
   MatSelectModule,
+  MatRippleModule,
 } from '@angular/material';
 
 @NgModule({
   declarations: [
     TopNavigationComponent,
     LoaderComponent,
-    MatRipple,
-    MatButton,
     MatIcon,
     MatFormField,
     MatInput,
@@ -58,12 +57,13 @@ import {
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    MatRippleModule,
+    MatButtonModule
   ],
   providers: [AuthService, MatIconRegistry],
   exports: [
     TopNavigationComponent,
     LoaderComponent,
-    MatButton,
     MatIcon,
     MatFormField,
     MatInput,
