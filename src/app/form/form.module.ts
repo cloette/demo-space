@@ -7,19 +7,37 @@ import { SharedModule } from '../shared/shared.module';
 import { FormComponent } from './form.component';
 import { routes } from './form.router';
 
+import {
+  MatIconModule,
+  MatIconRegistry,
+  MatButtonModule,
+  MatRippleModule,
+  MatInputModule,
+  MatFormFieldModule,
+  MatFormFieldControl,
+  MatSlideToggleModule,
+} from '@angular/material';
+
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatRippleModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSlideToggleModule,
   ],
   declarations: [
     FormComponent
   ],
+  providers: [MatIconRegistry],
   bootstrap: [
     FormComponent
   ]
 })
-export class FormModule {}
+export class FormModule { }

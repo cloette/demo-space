@@ -27,7 +27,7 @@ export class LeaderboardComponent implements OnInit {
   public form;//: Observable<IFormResponse>;
   private payload;
 
-  constructor( private http: HttpClient, private store: Store<IAppState>) { 
+  constructor( private http: HttpClient, private store: Store<IAppState>) {
     this.form = store.select('form');
   }
 
@@ -39,20 +39,20 @@ export class LeaderboardComponent implements OnInit {
       form: this.form
     }
     this.items = this.http.get<IItemResponse[]>('/api/item', this.payload);
-    this.sort();
+    this.sortItems();
     this.dataReady = true;
   }
 
-  sort(): void{
+  sortItems(): void{
     this.form = this.store.select('item');
     if (this.descending){
       this.descending = !this.descending;
-      this.items.sort(function(a, b) {
+      this.items.slice.call(this.items).sort(function(a, b) {
         return a.score - b.score;
       });
     }
     else{
-      this.items.sort(function(a, b) {
+      this.items.slice.call(this.items).sort(function(a, b) {
         return b.score - a.score;
       });
     }

@@ -7,7 +7,7 @@ export const routes: Route[] = [
     component: ItemComponent
   },
   {
-    path: '/:addressid',
+    path: ':addressid',
     component: ItemComponent
   },
 ];

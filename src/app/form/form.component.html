@@ -1,18 +1,20 @@
+<h2>Form</h2>
+
 <div *ngIf="firstVisit">
-  <button mat-raised-button color="primary" (click)="makeBlankForm(formID)">
+  <button mat-raised-button color="primary" (click)="makeBlankForm()">
     Create a form
   </button>
   or
-  <button mat-raised-button color="primary" (click)="toggle('showFormIDField')">
+  <button mat-raised-button (click)="toggle()">
     Load a form
   </button>
-  <br />
   <div *ngIf="showFormIDField">
-    <form class="form" onsubmit="updateFormID(formID)">
-      <mat-form-field>
-        <input matInput placeholder="Form ID" value="formID">
+      <br />
+      <br />
+    <mat-form-field>
+        <input matInput placeholder="Form ID" [(ngModel)]="formID">
       </mat-form-field>
-    </form>
+    <button mat-raised-button (click)="updateFormID(formID)">Fetch form</button>
   </div>
 </div>
 
@@ -25,8 +27,8 @@
       </button>
     </div>
     <!-- Form options displayed and editable -->
-    <form *ngIf="form.fields" class="form" onsubmit="updateFormID(formID)">
-      <div *ngFor="let field of form.fields">
+    <form *ngIf="form[0].fields" class="form" onsubmit="updateFormID(formID)">
+      <div *ngFor="let field of form[0].fields">
         <button mat-fab>
           <!-- Launches add/edit field modal -->
           <mat-icon aria-label="Add Field">edit</mat-icon>
@@ -50,7 +52,7 @@
     Cancel
   </button>
   <br />
-  <button mat-raised-button color="warn" (click)="makeBlankForm(formID)">
+  <button mat-raised-button color="warn" (click)="makeBlankForm()">
     Start Over (Blank Form)
   </button>
 </div>

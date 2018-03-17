@@ -1,3 +1,5 @@
+<h2>Item</h2>
+
 <div *ngIf="!dataReady">
   <app-ui-loader [visible]="true"></app-ui-loader>
 </div>
@@ -33,15 +35,14 @@
       </div>
     </div>
   </form>
+  <br />
+  <button mat-raised-button color="warning" (click)="deleteItem()">
+    Delete
+  </button>
+  <button mat-raised-button color="primary" (click)="saveItem()">
+    Save Changes
+  </button>
+  <button mat-raised-button>
+    Cancel
+  </button>
 </div>
-
-<br />
-<button mat-raised-button color="warning" (click)="deleteItem()">
-  Delete
-</button>
-<button mat-raised-button color="primary" (click)="saveItem()">
-  Save Changes
-</button>
-<button mat-raised-button>
-  Cancel
-</button>

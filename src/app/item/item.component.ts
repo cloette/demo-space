@@ -30,8 +30,10 @@ export class ItemComponent implements OnInit {
   constructor(private route: ActivatedRoute, private store: Store<IAppState>) {
     this.route.params.subscribe(params => {
       this.itemID = params['addressid'];
+      console.log(this.itemID);
     });
     this.form = store.select('form');
+    console.log(this.form);
   }
 
   getItem(id: string): void {
@@ -45,7 +47,7 @@ export class ItemComponent implements OnInit {
       type: ITEM_GET,
       payload: this.payload
     });
-    this.dataReady = true;
+    //this.dataReady = true;
   }
 
   saveItem(): void {
@@ -100,8 +102,7 @@ export class ItemComponent implements OnInit {
     }
     else {
       this.firstSave = true;
-      this.newItem();
-      this.dataReady = true;
+      //this.dataReady = true;
     }
   }
 

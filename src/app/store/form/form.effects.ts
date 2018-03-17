@@ -7,7 +7,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
 
 import {
-  FORM_ADD, FORM_GET, FORM_EDIT, 
+  FORM_ADD, FORM_GET, FORM_EDIT,
   FormAdd, FormAddFail, FormAddSuccess,
   FormEdit, FormEditFail, FormEditSuccess,
   FormGet, FormGetFail, FormGetSuccess,
@@ -22,7 +22,9 @@ export class FormEffects {
     .ofType(FORM_ADD)
     .switchMap((action: FormAdd) => {
 
-      return this.http.post<IFormResponse>('/api/form/${action.payload.id}', action.payload)
+      const url = "/api/form/".concat(action.payload);
+
+      return this.http.post<IFormResponse>(url, action.payload)
         .catch((error) => Observable.of(new FormAddFail(error)))
         .map((response: any) => new FormAddSuccess(response));
     });
@@ -32,7 +34,7 @@ export class FormEffects {
     .ofType(FORM_EDIT)
     .switchMap((action: FormEdit) => {
 
-      return this.http.put<IFormResponse>('/api/form/${action.payload.id}', action.payload)
+      return this.http.put<IFormResponse>("/api/form/${action.payload.id}", action.payload)
         .catch((error) => Observable.of(new FormEditFail(error)))
         .map((response: any) => new FormEditSuccess(response));
     });
@@ -42,7 +44,9 @@ export class FormEffects {
     .ofType(FORM_GET)
     .switchMap((action: FormGet) => {
 
-      return this.http.get<IFormResponse>('/api/form/${action.payload.id}')
+      const url = "/api/form/".concat(action.payload);
+
+      return this.http.get<IFormResponse>(url)
         .catch((error) => Observable.of(new FormGetFail(error)))
         .map((response: IFormResponse) => new FormGetSuccess(response));
     });

@@ -23,12 +23,14 @@ export class FormComponent implements OnInit {
   public firstVisit: boolean = true;
   public showFormIDField: boolean = false;
   public dataReady: boolean = false;
-  public formID: string = '';
-  public form;//: Observable<IFormResponse>;
+  public formID: string = undefined;
+  public form: Store<IFormResponse[]>;
   public fields: Array<IFieldResponse>;
   private payload;
+  private profile;
 
   constructor(public store: Store<IAppState>) {
+    this.profile = localStorage.getItem('profile');
   }
 
   updateFormID(id: string): void{
@@ -36,8 +38,8 @@ export class FormComponent implements OnInit {
     this.getForm(id);
   }
 
-  toggle(thing): void{
-    thing = !thing;
+  toggle(): void{
+    this.showFormIDField = !this.showFormIDField;
   }
 
   getTypeIcon(fieldType:string){
@@ -60,30 +62,24 @@ export class FormComponent implements OnInit {
 
   makeBlankForm(): void {
     // Post to /api/form/:id with supplied id
-    // or the user's id (in sessionStorage)
-    if (this.formID === ""){
-      let user = sessionStorage.getItem('user');
-      // post request with user.id
-      this.payload = { id: user, fields: [] };
+    // or the user's id
+    if (this.formID === undefined){
       this.store.dispatch({
         type: FORM_ADD,
-        payload: this.payload
+        payload: this.profile
       });
-      this.getForm("");
+      this.getForm(this.profile);
     }
     else {
       this.getForm(this.formID);
     }
   }
 
-  getForm(id:string): void {
-    if (id === ""){
-      let user = sessionStorage.getItem('user');
-      // get request with user.id
-      this.form.id = user;
+  getForm(id:any): void {
+    if (id === undefined){
       this.store.dispatch({
         type: FORM_GET,
-        payload: this.form
+        payload: this.profile
       });
     }
     else {
@@ -91,7 +87,7 @@ export class FormComponent implements OnInit {
       // get request with id
       this.store.dispatch({
         type: FORM_GET,
-        payload: this.form
+        payload: id
       });
     }
     this.form = this.store.select('form');
@@ -102,7 +98,7 @@ export class FormComponent implements OnInit {
     // Put to /api/form/:id with this.formID
     this.store.dispatch({
       type: FORM_EDIT,
-      payload: this.form
+      payload: this.form[0]
     })
   }
 

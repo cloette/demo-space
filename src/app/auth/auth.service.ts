@@ -15,26 +15,38 @@ export class AuthService {
     scope: 'openid'
   });
 
-  constructor(public router: Router) {}
+  constructor(public router: Router) { }
 
   public login(): void {
     this.auth0.authorize();
+  }
+
+  public getProfile(): any {
+    var accessToken = localStorage.getItem('access_token');
+
+    if (!accessToken) {
+      console.log('Access Token must exist to fetch profile');
+    }
+
+    this.auth0.client.userInfo(accessToken, function (err, profile) {
+      console.log("Access token exists");
+      if (profile) {
+        localStorage.setItem('profile', profile.sub);
+      }
+    });
   }
 
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        this.auth0.userInfo(authResult.accessToken, function(err, user) {
-          sessionStorage.setItem('user', user);
-        });
         this.router.navigate(['/home']);
       } else if (err) {
         this.router.navigate(['/home']);
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
-      
+
     });
   }
 
