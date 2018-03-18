@@ -1,9 +1,0 @@
-.floating-button{
-  position: fixed;
-  float: right bottom;
-  padding: 20px;
-}
-.column-layout{
-  display: inline-flex;
-  flex-direction: column;
-}

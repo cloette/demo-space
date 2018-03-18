@@ -19,8 +19,8 @@ formRouter.post("/", (request: Request, response: Response) => {
 formRouter.post("/option", (request: Request, response: Response) => {
 
   var option = new Option({
-    helperText:  request.body.helperText,
-    value:  request.body.value
+    helperText:  request.params.helperText,
+    value:  request.params.value
   });
 
   option.save(function (err) {
@@ -34,12 +34,12 @@ formRouter.post("/option", (request: Request, response: Response) => {
 formRouter.post("/field", (request: Request, response: Response) => {
 
   var field = new Field({
-    order: request.body.order,
-    type: request.body.type,
-    question: request.body.question,
-    options: request.body.options,
-    multiplier: request.body.multiplier,
-    maxValue: request.body.maxValue,
+    order: request.params.order,
+    type: request.params.type,
+    question: request.params.question,
+    options: request.params.options,
+    multiplier: request.params.multiplier,
+    maxValue: request.params.maxValue,
     disabled: false
   });
 
@@ -51,13 +51,9 @@ formRouter.post("/field", (request: Request, response: Response) => {
 });
 
 // Make the initial Form
-formRouter.post("/form/:id", (request: Request, response: Response) => {
+formRouter.post("/form", (request: Request, response: Response) => {
 
-  var form = new Form(
-    {
-      id: request.params.id
-    }
-  );
+  var form = new Form();
 
   form.save(function (err) {
     if (err) return console.error(err);
@@ -71,10 +67,10 @@ formRouter.post("/item", (request: Request, response: Response) => {
 
   var item = new Item(
     {
-      address: request.body.address,
-      addressId: encodeURI(request.body.address),
+      address: request.params.address,
+      addressId: encodeURI(request.params.question),
       score: 0,
-      form: request.body.form
+      form: request.params.form
     }
   );
 
@@ -103,7 +99,7 @@ formRouter.get("/item", (request:Request, response: Response) => {
 
   let res = {}
 
-  Item.find({ form: request.body.form }, function (err, items){
+  Item.find(function (err, items){
     if (err) return console.error(err);
     res = items;
   });
@@ -112,11 +108,11 @@ formRouter.get("/item", (request:Request, response: Response) => {
 });
 
 // Returns the form
-formRouter.get("/form/:id", (request:Request, response: Response) => {
+formRouter.get("/form", (request:Request, response: Response) => {
 
   let res = {}
 
-  Form.find({ id: request.params.id }, function (err, items){
+  Form.find(function (err, items){
     if (err) return console.error(err);
     res = items;
   });
@@ -142,11 +138,11 @@ formRouter.put("/item/:addressid", (request:Request, response: Response) => {
 });
 
 // Updates a form
-formRouter.put("/form/:id", (request:Request, response: Response) => {
+formRouter.put("/form", (request:Request, response: Response) => {
 
   let form = new Form({});
 
-  form = request.body.form;
+  form = request.params.form;
 
   form.save(function (err) {
     if (err) return console.error(err);
