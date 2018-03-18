@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 
 import {
   MatButtonModule,
-  MatCardModule,
   MatIconModule,
   MatInputModule,
-  MatProgressSpinnerModule,
   MatDialogModule,
   MatCheckboxModule
 } from '@angular/material';
@@ -40,10 +38,8 @@ import { AuthService } from './../auth/auth.service';
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatCardModule,
     MatIconModule,
     MatInputModule,
-    MatProgressSpinnerModule,
     MatDialogModule,
     MatCheckboxModule
   ],
@@ -56,14 +52,7 @@ import { AuthService } from './../auth/auth.service';
     CardComponent,
     ButtonComponent,
     InputComponent,
-    NotesComponent,
-    MatButtonModule,
-    MatCardModule,
-    MatIconModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    MatDialogModule,
-    MatCheckboxModule
+    NotesComponent
   ]
 })
 export class SharedModule {}

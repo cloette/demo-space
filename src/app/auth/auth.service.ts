@@ -42,6 +42,21 @@ export class AuthService {
     localStorage.setItem('expires_at', expiresAt);
   }
 
+  public getProfile(): any {
+    var accessToken = localStorage.getItem('access_token');
+
+    if (!accessToken) {
+      console.log('Access Token must exist to fetch profile');
+    }
+
+    this.auth0.client.userInfo(accessToken, function (err, profile) {
+      console.log("Access token exists");
+      if (profile) {
+        localStorage.setItem('profile', profile.sub);
+      }
+    });
+  }
+
   public logout(): void {
     // Remove tokens and expiry time from localStorage
     localStorage.removeItem('access_token');

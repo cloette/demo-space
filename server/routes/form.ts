@@ -19,13 +19,13 @@ formRouter.post("/", (request: Request, response: Response) => {
 formRouter.post("/option", (request: Request, response: Response) => {
 
   var option = new Option({
-    helperText:  request.params.helperText,
-    value:  request.params.value
+    helperText:  request.body.helperText,
+    value:  request.body.value
   });
 
   option.save(function (err) {
     if (err) return console.error(err);
-    response.render("Success! Option added.")
+    response.json({ message: "Success!" });
   });
 
 });
@@ -34,30 +34,35 @@ formRouter.post("/option", (request: Request, response: Response) => {
 formRouter.post("/field", (request: Request, response: Response) => {
 
   var field = new Field({
-    order: request.params.order,
-    type: request.params.type,
-    question: request.params.question,
-    options: request.params.options,
-    multiplier: request.params.multiplier,
-    maxValue: request.params.maxValue,
+    order: request.body.order,
+    type: request.body.type,
+    question: request.body.question,
+    options: request.body.options,
+    multiplier: request.body.multiplier,
+    value: request.body.value,
+    maxValue: request.body.maxValue,
     disabled: false
   });
 
   field.save(function (err) {
     if (err) return console.error(err);
-    response.render("Success! Field added.")
+    response.json({ message: "Success!" });
   });
 
 });
 
 // Make the initial Form
-formRouter.post("/form", (request: Request, response: Response) => {
+formRouter.post("/form/:id", (request: Request, response: Response) => {
 
-  var form = new Form();
+  var form = new Form(
+    {
+      id: request.params.id
+    }
+  );
 
   form.save(function (err) {
     if (err) return console.error(err);
-    response.render("Success! Form added.")
+    response.json({ message: "Success!" });
   });
 
 });
@@ -67,16 +72,16 @@ formRouter.post("/item", (request: Request, response: Response) => {
 
   var item = new Item(
     {
-      address: request.params.address,
-      addressId: encodeURI(request.params.question),
+      address: request.body.address,
+      addressId: encodeURI(request.body.address),
       score: 0,
-      form: request.params.form
+      form: request.body.form
     }
   );
 
   item.save(function (err) {
     if (err) return console.error(err);
-    response.render("Success! Item added.")
+    response.json({ message: "Success!" });
   });
 
 });
@@ -99,7 +104,7 @@ formRouter.get("/item", (request:Request, response: Response) => {
 
   let res = {}
 
-  Item.find(function (err, items){
+  Item.find({ form: request.body.form }, function (err, items){
     if (err) return console.error(err);
     res = items;
   });
@@ -108,13 +113,13 @@ formRouter.get("/item", (request:Request, response: Response) => {
 });
 
 // Returns the form
-formRouter.get("/form", (request:Request, response: Response) => {
+formRouter.get("/form/:id", (request:Request, response: Response) => {
 
   let res = {}
 
-  Form.find(function (err, items){
+  Form.find({ id: request.params.id }, function (err, items){
     if (err) return console.error(err);
-    res = items;
+    res = items[0];
   });
 
   return response.json(res);
@@ -132,23 +137,42 @@ formRouter.put("/item/:addressid", (request:Request, response: Response) => {
 
   item.save(function (err) {
     if (err) return console.error(err);
-    response.render("Success! Item updated.")
+    response.json({ message: "Success!" });
   });
 
 });
 
 // Updates a form
-formRouter.put("/form", (request:Request, response: Response) => {
+formRouter.put("/form/:id", (request:Request, response: Response) => {
 
   let form = new Form({});
 
-  form = request.params.form;
+  form = request.body.form;
 
   form.save(function (err) {
     if (err) return console.error(err);
-    response.render("Success! Form updated.")
+    response.json({ message: "Success!" });
   });
 
 });
+
+// Deletes an item
+formRouter.delete("/item/:addressid", (request:Request, response: Response) => {
+
+  let item = new Item({});
+
+  Item.find({ addressID: request.params.addressid }, function (err, items){
+    if (err) return console.error(err);
+    item = items[0];
+  });
+
+  item.dropCollection(function (err) {
+    if (err) return console.error(err);
+    response.json({ message: "Success!" });
+  });
+
+});
+
+// Eventually: delete a form
 
 export { formRouter };

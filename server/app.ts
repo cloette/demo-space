@@ -4,6 +4,8 @@ import * as express from "express";
 import * as path from "path";
 import * as mongoose from "mongoose";
 
+import { localMongo } from "./config";
+
 import { formRouter } from "./routes/form";
 
 const app: express.Application = express();
@@ -15,10 +17,10 @@ app.use(compression());
 app.use(urlencoded({ extended: true }));
 
 // api routes
-app.use("/api/form", formRouter);
+app.use("/api", formRouter);
 
 // connecting to database
-mongoose.connect(process.env.MONGOLAB_URI);
+mongoose.connect(process.env.MONGODB_URI || localMongo);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {

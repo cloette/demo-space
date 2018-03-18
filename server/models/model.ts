@@ -20,13 +20,15 @@ var fieldSchema = new Schema({
   type: { type: String, lowercase: true, required: true },
   question: { type: String, default: '' },
   options: [{ type: optionSchema }],
+  value: { type: Number, default: 0},
   multiplier: { type: Number, required: true, default: 0 },
   maxValue: { type: Number, required: true, default: 0},
   disabled: { type: Boolean, required: true, default: false}
 })
 
 var formSchema = new Schema({
-	fields: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Field'}]
+  id: { type: String, lowercase: true, required: true, unique: true, validate: [nameValidation, 'Name cannot be blank.'] },
+  fields: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Field'}]
 })
 
 var itemSchema = new Schema({
