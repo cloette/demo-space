@@ -9,10 +9,10 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ProfileComponent {
 
-  profile$: Observable<{}>;
+  //profile$: Observable<{}>;
 
   constructor(store: Store<IAppState>) {
 
-    this.profile$ = store.select('profile');
+    //this.profile$ = store.select('profile');
   }
 }

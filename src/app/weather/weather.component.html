@@ -1,9 +1,13 @@
 <h1 class="heading">Weather module</h1>
 
-<app-ui-loader [visible]="(weather$ | async)?.isFetching"></app-ui-loader>
+<!--app-ui-loader [visible]="(weather$ | async)?.isFetching"></app-ui-loader-->
 
 <p>Load city data by clicking on it. </p>
-<app-ui-city *ngFor="let city of cities" [image]="city.image" [name]="city.name" [longitude]="city.longitude" [latitude]="city.latitude" (select)="loadCity($event)"></app-ui-city>
+<!--
+  app-ui-city *ngFor="let city of cities"
+  [image]="city.image" [name]="city.name"
+  [longitude]="city.longitude" [latitude]="city.latitude"
+  (select)="loadCity($event)"></app-ui-city-->
 
 <h3>Form</h3>
 
@@ -14,7 +18,7 @@
   <button [disabled]="!form.valid"  text="Get Weather data" (click)="getWeather()"></button>
 </form>
 
-<br/>
+<!--br/>
 
 <app-ui-notes *ngIf="!(weather$ | async)" type="info" text="Click on Get Weather data button to fetch info."></app-ui-notes>
 
@@ -27,3 +31,4 @@
 
 <app-ui-forecast *ngIf="(weather$ | async)?.forecast" [forecast]="(weather$ | async)?.forecast?.query?.results?.channel?.item?.forecast"></app-ui-forecast>
 <app-ui-notes *ngIf="(weather$ | async)?.forecastError" type="danger" text="Error while fetching foreacast data"></app-ui-notes>
+-->

@@ -13,7 +13,6 @@ import { HomeComponent } from './home/home.component';
 import { routes } from './app.router';
 import { metaReducers, reducers } from './store';
 import { SharedModule } from './shared/shared.module';
-import { WeatherService } from './weather/weather.service';
 import { WeatherEffects } from './store/weather/weather.effects';
 import { FeedEffects } from './store/feed/feed.effects';
 import { ProfileEffects } from './store/profile/profile.effects';
@@ -43,9 +42,6 @@ import { environment } from '../environments/environment';
         useHash: true
       }
     )
-  ],
-  providers: [
-    WeatherService
   ],
   bootstrap: [
     AppComponent

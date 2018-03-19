@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { IAppState } from '../store/index';
-import { WEATHER_GET, SELECT_CITY } from '../store/weather/weather.actions';
-import { IWeather } from '../store/weather/weather.reducer';
+//import { WEATHER_GET, SELECT_CITY } from '../store/weather/weather.actions';
+//import { IWeather } from '../store/weather/weather.reducer';
 
 @Component({
   selector: 'app-weather',
@@ -14,7 +14,7 @@ import { IWeather } from '../store/weather/weather.reducer';
 })
 export class WeatherComponent implements OnInit {
   form: FormGroup;
-  weather$: Observable<IWeather>;
+  //weather$: Observable<IWeather>;
   cities: Array<{}>;
 
   constructor(public fb: FormBuilder, public store: Store<IAppState>) {}
@@ -26,7 +26,7 @@ export class WeatherComponent implements OnInit {
       'longitude': ['18.5683106', Validators.required]
     });
 
-    this.weather$ = this.store.select('weather');
+    //this.weather$ = this.store.select('weather');
 
     this.cities = [{
       name: 'Sarajevo',
@@ -53,22 +53,22 @@ export class WeatherComponent implements OnInit {
   }
 
   getWeather(): void {
-
+/*
     this.store.dispatch({
       type: WEATHER_GET,
       payload: {
         longitude: this.form.get('longitude').value,
         latitude: this.form.get('latitude').value
       }
-    });
+    });*/
   }
 
   loadCity(data: { longitude: number, latitude: number}): void {
     this.form.setValue(data);
 
-    this.store.dispatch({
+    /*this.store.dispatch({
       type: SELECT_CITY,
       payload: data
-    });
+    });*/
   }
 }

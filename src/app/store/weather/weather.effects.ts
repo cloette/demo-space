@@ -12,7 +12,6 @@ import {
   WeatherAirQuality, WeatherDataGet, WeatherAirQualitySuccess, WeatherAirQualityFail, WeatherGetSuccess, WeatherGetFail,
   WeatherDataGetSuccess, WeatherDataGetFail
 } from './weather.actions';
-import { WeatherService } from '../../weather/weather.service';
 
 @Injectable()
 export class WeatherEffects {
@@ -28,35 +27,5 @@ export class WeatherEffects {
       );
     });
 
-  @Effect()
-  airQualityGet$ = this.actions$
-    .ofType(AIR_QUALITY_GET)
-    .switchMap((action: WeatherAirQuality) => {
-
-      return this.weatherService.getAirQualityIndex(action.payload.longitude, action.payload.latitude)
-        .map((response: any) => new WeatherAirQualitySuccess(response))
-        .catch((error) => Observable.of(new WeatherAirQualityFail(error)));
-    });
-
-  @Effect()
-  weatherGet$ = this.actions$
-    .ofType(WEATHER_GET)
-    .switchMap((action: WeatherGet) => {
-
-      return this.weatherService.getCurrentWeather(action.payload.longitude, action.payload.latitude)
-        .map((response: any) => new WeatherGetSuccess(response))
-        .catch((error) => Observable.of(new WeatherGetFail(error)));
-    });
-
-  @Effect()
-  weatherDataGet$ = this.actions$
-    .ofType(WEATHER_DATA_GET)
-    .switchMap((action: WeatherDataGet) => {
-
-      return this.weatherService.getWeatherData(action.payload.longitude, action.payload.latitude)
-        .map((response: any) => new WeatherDataGetSuccess(response))
-        .catch((error) => Observable.of(new WeatherDataGetFail(error)));
-    });
-
-  constructor(private actions$: Actions, private weatherService: WeatherService) {}
+  constructor(private actions$: Actions) {}
 }
