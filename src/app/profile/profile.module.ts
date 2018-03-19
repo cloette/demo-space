@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 
 import { ProfileComponent } from './profile.component';
 import { routes } from './profile.router';
-import { EditComponent } from './edit/edit.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -14,8 +13,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule
   ],
   declarations: [
-    ProfileComponent,
-    EditComponent
+    ProfileComponent
   ],
   bootstrap: [
     ProfileComponent

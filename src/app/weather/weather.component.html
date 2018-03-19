@@ -11,7 +11,7 @@
   <app-ui-input label="Longitude" placeholder="Enter longitude...." [control]="form.get('longitude')"></app-ui-input>
   <app-ui-input label="Latitude" placeholder="Enter latitude...." [control]="form.get('latitude')"></app-ui-input>
 
-  <app-ui-button [disabled]="!form.valid"  text="Get Weather data" (click)="getWeather()"></app-ui-button>
+  <button [disabled]="!form.valid"  text="Get Weather data" (click)="getWeather()"></button>
 </form>
 
 <br/>

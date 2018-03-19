@@ -5,7 +5,8 @@ import {
   MatIconModule,
   MatInputModule,
   MatDialogModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatIconRegistry
 } from '@angular/material';
 
 import { ModalComponent, ModalDirectivesDirective } from './modal/modal.component';
@@ -13,7 +14,6 @@ import { CommonModule } from '@angular/common';
 import { TopNavigationComponent } from './top-navigation/top-navigation.component';
 import { RouterModule } from '@angular/router';
 import { NotesComponent } from './notes/notes.component';
-import { ButtonComponent } from './button/button.component';
 import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
@@ -27,7 +27,6 @@ import { AuthService } from './../auth/auth.service';
     TopNavigationComponent,
     ModalDirectivesDirective,
     CardComponent,
-    ButtonComponent,
     LoaderComponent,
     InputComponent,
     NotesComponent
@@ -43,14 +42,13 @@ import { AuthService } from './../auth/auth.service';
     MatDialogModule,
     MatCheckboxModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, MatIconRegistry],
   exports: [
     ModalComponent,
     ModalDirectivesDirective,
     TopNavigationComponent,
     LoaderComponent,
     CardComponent,
-    ButtonComponent,
     InputComponent,
     NotesComponent
   ]
