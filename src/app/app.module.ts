@@ -13,9 +13,9 @@ import { HomeComponent } from './home/home.component';
 import { routes } from './app.router';
 import { metaReducers, reducers } from './store';
 import { SharedModule } from './shared/shared.module';
-import { WeatherEffects } from './store/weather/weather.effects';
-import { FeedEffects } from './store/feed/feed.effects';
-import { ProfileEffects } from './store/profile/profile.effects';
+import { FormEffects } from './store/form/form.effects';
+import { ItemEffects } from './store/item/item.effects';
+import { ItemsEffects } from './store/items/items.effects';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -31,9 +31,9 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([
-      ProfileEffects,
-      FeedEffects,
-      WeatherEffects
+      FormEffects,
+      ItemEffects,
+      ItemsEffects
     ]),
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : [],
     RouterModule.forRoot(
