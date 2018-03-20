@@ -20,7 +20,7 @@ export class ItemsEffects {
     .ofType(ITEMS_GET)
     .switchMap((action: ItemsGet) => {
 
-      return this.http.get<IItemResponse[]>('/api/item/${action.payload.formid}')
+      return this.http.get<IItemResponse[]>('/api/item/all')
         .catch((error) => Observable.of(new ItemsGetFail(error)))
         .map((response: IItemResponse[]) => new ItemsGetSuccess(response));
     });
