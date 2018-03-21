@@ -97,11 +97,11 @@ formRouter.post("/item", (request: Request, response: Response) => {
 });
 
 // Returns all Items
-formRouter.get("/item/all", (request: Request, response: Response) => {
+formRouter.get("/item/all/:formid", (request: Request, response: Response) => {
 
   let res = {}
 
-  Item.find({ form: request.body.form }, function (err, items) {
+  Item.find({ form: request.params.formid }, function (err, items) {
     if (err) return console.error(err);
     res = items;
   });
@@ -110,11 +110,11 @@ formRouter.get("/item/all", (request: Request, response: Response) => {
 });
 
 // Returns the form
-formRouter.get("/form", (request: Request, response: Response) => {
+formRouter.get("/form/:id", (request: Request, response: Response) => {
 
   let res = {}
 
-  Form.find({ id: request.body.id }, function (err, items) {
+  Form.find({ id: request.params.id }, function (err, items) {
     if (err) return console.error(err);
     res = items[0];
   });
@@ -123,7 +123,7 @@ formRouter.get("/form", (request: Request, response: Response) => {
 });
 
 // Updates an item
-formRouter.put("/item", (request: Request, response: Response) => {
+formRouter.put("/item/:addressid", (request: Request, response: Response) => {
 
   let item = new Item({});
 
@@ -140,7 +140,7 @@ formRouter.put("/item", (request: Request, response: Response) => {
 });
 
 // Updates a form
-formRouter.put("/form", (request: Request, response: Response) => {
+formRouter.put("/form/:id", (request: Request, response: Response) => {
 
   let form = new Form({});
 
@@ -154,11 +154,11 @@ formRouter.put("/form", (request: Request, response: Response) => {
 });
 
 // Deletes an item
-formRouter.delete("/item", (request: Request, response: Response) => {
+formRouter.delete("/item/:addressid", (request: Request, response: Response) => {
 
   let item = new Item({});
 
-  Item.find({ addressID: request.body.addressid }, function (err, items) {
+  Item.find({ addressID: request.params.addressid }, function (err, items) {
     if (err) return console.error(err);
     item = items[0];
   });

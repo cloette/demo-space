@@ -32,7 +32,7 @@ export class FormEffects {
     .ofType(FORM_EDIT)
     .switchMap((action: FormEdit) => {
 
-      return this.http.put<IFormResponse>('/api/form', action.payload)
+      return this.http.put<IFormResponse>('/api/form/${action.payload.id}', action.payload)
         .catch((error) => Observable.of(new FormEditFail(error)))
         .map((response: any) => new FormEditSuccess(response));
     });
@@ -42,7 +42,11 @@ export class FormEffects {
     .ofType(FORM_GET)
     .switchMap((action: FormGet) => {
 
-      return this.http.get<IFormResponse>('/api/form')
+      return this.http.get<IFormResponse>('/api/form', {
+        params: {
+          id: action.payload
+        }
+      })
         .catch((error) => Observable.of(new FormGetFail(error)))
         .map((response: IFormResponse) => new FormGetSuccess(response));
     });
@@ -52,7 +56,7 @@ export class FormEffects {
     .ofType(FORM_REMOVE)
     .switchMap((action: FormRemove) => {
 
-      return this.http.delete<IFormResponse>('/api/form/${action.payload}', action.payload)
+      return this.http.delete<IFormResponse>('/api/form/${action.payload.id}', action.payload)
         .catch((error) => Observable.of(new FormRemoveFail(error)))
         .map((response: any) => new FormRemoveSuccess(response));
 

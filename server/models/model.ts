@@ -27,7 +27,7 @@ var fieldSchema = new Schema({
 })
 
 var formSchema = new Schema({
-  id: { type: String, lowercase: true, required: true, unique: true, validate: [nameValidation, 'Name cannot be blank.'] },
+  id: { type: String, required: true, unique: true, validate: [nameValidation, 'Name cannot be blank.'] },
   fields: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Field'}]
 })
 
