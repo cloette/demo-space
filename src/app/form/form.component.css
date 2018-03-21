@@ -1,0 +1,15 @@
+.floating-button{
+  position: fixed;
+  float: right bottom;
+  padding: 20px;
+}
+.column-layout{
+  display: inline-flex;
+  flex-direction: column;
+}
+.formTable{
+  width: 100%;
+}
+.formIconColumn{
+  width:30px;
+}

@@ -1,0 +1,68 @@
+<h2>Form</h2>
+
+<div *ngIf="firstVisit">
+  <button mat-raised-button color="primary" (click)="makeBlankForm()">
+    Create a form
+  </button>
+  or
+  <button mat-raised-button (click)="toggle()">
+    Load a form
+  </button>
+  <div *ngIf="showFormIDField">
+    <br />
+    <br />
+    <form class="form" [formGroup]="formIDform">
+      <mat-form-field>
+        <app-ui-input label="Form ID" placeholder="Enter a form id...." [control]="formIDform.get('id')"></app-ui-input>
+        <p>This field defaults to your profile ID if left blank.</p>
+      </mat-form-field>
+      <button mat-raised-button (click)="updateFormID()">Fetch form</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="!firstVisit">
+  <div *ngIf="dataReady">
+    <div class="floating-button">
+      <button mat-fab (click)="openDialog(newField,9,true)">
+        <!-- Displays add field form -->
+        <mat-icon aria-label="Add Field">add</mat-icon>
+      </button>
+    </div>
+    <!-- Form fields displayed as list-->
+    <table *ngIf="fields" class="formTable">
+      <div *ngFor="let field of fields; index as i">
+        <tr>
+          <td class="formIconColumn">
+            <mat-icon aria-label="Delete" aria-hidden="true" (click)="removeField(i)">trash</mat-icon>
+          </td>
+          <td class="formIconColumn">
+            <mat-icon aria-label="Field Type" aria-hidden="true" [svgIcon]="getTypeIcon(field.type)"></mat-icon>
+          </td>
+          <td>{{ field.question }}</td>
+          <td class="formIconColumn">
+            <mat-icon
+              aria-label="Edit"
+              aria-hidden="true"
+              (click)="openDialog(field,i,false)">
+            edit</mat-icon>
+          </td>
+      </tr>
+      </div>
+    </table>
+  </div>
+  <div *ngIf="!dataReady">
+    <app-ui-loader [visible]="true"></app-ui-loader>
+  </div>
+  <br />
+  <button mat-raised-button color="primary" (click)="saveForm()">
+    Save Changes
+  </button>
+  <button mat-raised-button>
+    Cancel
+  </button>
+  <br />
+  <button mat-raised-button color="warn" (click)="makeBlankForm()">
+    Start Over (Blank Form)
+  </button>
+</div>
