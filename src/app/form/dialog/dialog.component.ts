@@ -37,6 +37,7 @@ export class Dialog {
   }
 
   addOption(): void {
+    this.newOption.value = parseInt(this.newOption.value);
     this.data.options.push(this.newOption);
   }
 

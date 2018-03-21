@@ -148,10 +148,17 @@ export class FormComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!newField){
-        this.replaceField(result, index);
+        let formattedResult = result;
+        formattedResult.maxValue = parseInt(formattedResult.maxValue);
+        formattedResult.multiplier = parseInt(formattedResult.multiplier);
+        formattedResult.order = parseInt(formattedResult.order);
+        this.replaceField(formattedResult, index);
       }
       else {
         this.newField = result;
+        this.newField.maxValue = parseInt(result.maxValue);
+        this.newField.multiplier = parseInt(result.multiplier);
+        this.newField.order = parseInt(result.order);
         this.addField();
       }
     });
