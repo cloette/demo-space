@@ -6,6 +6,7 @@ export const routes: Route[] = [
   { loadChildren: 'app/weather/weather.module#WeatherModule', path: 'weather' },
   { loadChildren: 'app/form/form.module#FormModule', path: 'form' },
   { loadChildren: 'app/item/item.module#ItemModule', path: 'item' },
+  { loadChildren: 'app/leaderboard/leaderboard.module#LeaderboardModule', path: 'leaderboard' },
   { path: 'callback', redirectTo: 'weather' },
   { path: '**', redirectTo: 'weather' }
 ];

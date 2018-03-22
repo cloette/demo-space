@@ -1,0 +1,36 @@
+<h2>Leaderboard</h2>
+
+<div *ngIf="!formReady">
+  <mat-list>
+    <mat-list-item>
+      <mat-icon style="color: #f49500" mat-list-icon>warning</mat-icon>
+      <h4 style="font-weight:bold" mat-line>No form found.</h4>
+      <p mat-line>Uh-oh! Looks like you haven't made a form yet.
+        <a style="color: green" routerLink="/form" routerLinkActive="active">Make a form here.</a>
+      </p>
+    </mat-list-item>
+  </mat-list>
+</div>
+
+<div *ngIf="formReady">
+  <button mat-raised-button color="primary" (click)="getItems()">
+    Refresh
+  </button>
+  <button mat-mini-fab (click)="sortItems()">
+    <mat-icon aria-label="Sort descending/ascending">sort</mat-icon>
+  </button>
+  <div *ngIf="!dataReady">
+    <app-ui-loader [visible]="true"></app-ui-loader>
+  </div>
+  <div *ngIf="dataReady">
+    <mat-list *ngFor="let item of items">
+      <!-- Item address and item score -->
+      <mat-list-item>
+        <button mat-mini-fab>{{ item.score }}</button>
+        {{ item.address }}
+        <mat-icon mat-list-icon routerLink="'/item', item.addressid" routerLinkActive="active">edit</mat-icon>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </div>
+</div>
