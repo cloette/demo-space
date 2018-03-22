@@ -12,7 +12,7 @@ var nameValidation = function(val) {
 
 var optionSchema = new Schema({
   helperText: { type: String },
-  value: { type: Number },
+  value: { required: false },
 })
 
 var fieldSchema = new Schema({

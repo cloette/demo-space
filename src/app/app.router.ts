@@ -5,6 +5,7 @@ export const routes: Route[] = [
   { loadChildren: 'app/profile/profile.module#ProfileModule', path: 'profile' },
   { loadChildren: 'app/weather/weather.module#WeatherModule', path: 'weather' },
   { loadChildren: 'app/form/form.module#FormModule', path: 'form' },
+  { loadChildren: 'app/item/item.module#ItemModule', path: 'item' },
   { path: 'callback', redirectTo: 'weather' },
   { path: '**', redirectTo: 'weather' }
 ];

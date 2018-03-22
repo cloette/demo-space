@@ -1,0 +1,77 @@
+<h2>Item</h2>
+
+<div *ngIf="!formReady">
+  <mat-list>
+    <mat-list-item>
+      <mat-icon style="color: #f49500" mat-list-icon>warning</mat-icon>
+      <h4 style="font-weight:bold" mat-line>No form found.</h4>
+      <p mat-line>Uh-oh! Looks like you haven't made a form yet.
+        <a style="color: green" routerLink="/form" routerLinkActive="active">Make a form here.</a>
+      </p>
+    </mat-list-item>
+  </mat-list>
+</div>
+
+<!-- tie this to async later -
+<div *ngIf="!dataReady">
+  <app-ui-loader [visible]="true"></app-ui-loader>
+</div> -->
+
+<div *ngIf="dataReady && formReady">
+  <form class="form" onsubmit="saveItem()">
+    <mat-form-field>
+      <input matInput [placeholder]="'Address:'" [(ngModel)]="item.address">
+    </mat-form-field>
+    <button mat-fab title="Item score updates on save">{{ item.score || '0' }}%</button>
+    <div *ngFor="let field of item.form.fields">
+      <div *ngIf="field.type === 'text' && field.enabled">
+        <p>{{ field.question }}</p>
+        <mat-form-field>
+          <input matInput [placeholder]="field.value" [(ngModel)]="field.value">
+        </mat-form-field>
+      </div>
+      <div *ngIf="field.type === 'radio' && field.enabled">
+        <p>{{ field.question }}</p>
+        <mat-form-field>
+          <mat-radio-group *ngFor="let optionR of field.options" class="column-layout" [(ngModel)]="field.value">
+            <mat-radio-button [value]="optionR.value">{{ optionR.helperText }}</mat-radio-button>
+          </mat-radio-group>
+        </mat-form-field>
+      </div>
+      <div *ngIf="field.type === 'checkbox' && field.enabled">
+        <p>{{ field.question }}</p>
+        <mat-form-field>
+          <div *ngFor="let optionC of field.options" class="column-layout">
+            <mat-checkbox [(ngModel)]="optionC.value">{{ optionC.helperText }}</mat-checkbox>
+          </div>
+        </mat-form-field>
+      </div>
+      <div *ngIf="field.type === 'switch' && field.enabled">
+        <p>{{ field.question }}</p>
+        <mat-form-field>
+          <mat-slide-toggle [(ngModel)]="field.value"></mat-slide-toggle>
+        </mat-form-field>
+      </div>
+      <div *ngIf="field.type === 'select' && field.enabled">
+        <p>{{ field.question }}</p>
+        <mat-form-field>
+          <mat-select placeholder="Click to select..." [(value)]="field.value">
+            <mat-option *ngFor="let option of field.options" [value]="option.value">
+              {{ option.helperText }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+  <br />
+  <button mat-raised-button color="warning" (click)="deleteItem()">
+    Delete
+  </button>
+  <button mat-raised-button color="primary" (click)="saveItem()">
+    Save Changes
+  </button>
+  <button mat-raised-button>
+    Cancel
+  </button>
+</div>
