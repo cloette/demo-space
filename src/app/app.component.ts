@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 
 import { HttpClient } from '@angular/common/http';
@@ -20,19 +20,10 @@ import { IOptionResponse } from './shared/interfaces/option.interface';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-
-  observable1$: Observable<IFormResponse>;
-  observable2$: Observable<IItemResponse>;
-  observable3$: Observable<IItemResponse[]>;
+export class AppComponent {
   public profile;
 
   constructor(public auth: AuthService, private store: Store<IAppState>, private http: HttpClient) {
     this.profile = localStorage.getItem('profile');
-  }
-
-  ngOnInit() {
-    this.observable1$ = this.http.post<IFormResponse>('/api/form', { id: this.profile } );
-    console.log("App component fired");
   }
 }
