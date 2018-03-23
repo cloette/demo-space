@@ -6,9 +6,4 @@ describe('Angular2-express-starter App', () => {
   beforeEach(() => {
     page = new AppPage();
   });
-
-  it('should display title Weather module', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Weather module');
-  });
 });

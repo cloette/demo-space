@@ -39,7 +39,7 @@ import { environment } from '../environments/environment';
     RouterModule.forRoot(
       routes,
       {
-        useHash: true
+        useHash: false
       }
     )
   ],

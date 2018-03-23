@@ -24,6 +24,7 @@ export class AppComponent {
   public profile;
 
   constructor(public auth: AuthService, private store: Store<IAppState>, private http: HttpClient) {
+    auth.handleAuthentication();
     this.profile = localStorage.getItem('profile');
   }
 }
