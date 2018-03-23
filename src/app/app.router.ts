@@ -8,5 +8,5 @@ export const routes: Route[] = [
   { loadChildren: 'app/item/item.module#ItemModule', path: 'item' },
   { loadChildren: 'app/leaderboard/leaderboard.module#LeaderboardModule', path: 'leaderboard' },
   { path: 'callback', component: CallbackComponent },
-  { path: '**', redirectTo: 'form' }
+  { path: '**', redirectTo: '' }
 ];
