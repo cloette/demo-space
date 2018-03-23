@@ -5,6 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -32,6 +33,7 @@ import { AuthService } from './auth/auth.service';
     SharedModule,
     FormsModule,
     HttpClientModule,
+    HttpModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([
       FormEffects,

@@ -45,6 +45,7 @@ export class FormComponent implements OnInit {
     public dialog: MatDialog,
   ) {
     this.profile = localStorage.getItem('profile');
+    console.log("Profile: ",this.profile);
   }
 
   updateFormID(): void{

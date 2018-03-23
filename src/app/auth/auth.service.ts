@@ -25,9 +25,10 @@ export class AuthService {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        this.router.navigate(['/form']);
+        this.getProfile();
+        this.router.navigate(['/']);
       } else if (err) {
-        this.router.navigate(['/form']);
+        this.router.navigate(['/']);
         console.log(err);
       }
     });
@@ -61,6 +62,7 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('profile');
     // Go back to the home route
     this.router.navigate(['/']);
   }
