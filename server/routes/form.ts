@@ -5,16 +5,6 @@ import { Option, Field, Form, Item } from "./../models/model";
 
 const formRouter: Router = Router();
 
-formRouter.post("/", (request: Request, response: Response) => {
-
-  response.json({
-    id: uuid.v4(),
-    name: request.body.name,
-    text: request.body.text,
-  });
-
-});
-
 // Make a new option
 formRouter.post("/option", (request: Request, response: Response) => {
 

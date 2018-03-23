@@ -16,9 +16,6 @@ app.use(json());
 app.use(compression());
 app.use(urlencoded({ extended: true }));
 
-// api routes
-app.use("/api", formRouter);
-
 // connecting to database
 mongoose.connect(process.env.MONGODB_URI || localMongo);
 var db = mongoose.connection;
@@ -33,6 +30,9 @@ if (app.get("env") === "production") {
   // in production mode run application from dist folder
   app.use(express.static(path.join(__dirname, "/../client")));
 }
+
+// api routes
+app.use("/api", formRouter);
 
 // catch 404 and forward to error handler
 app.use((req: express.Request, res: express.Response, next) => {
