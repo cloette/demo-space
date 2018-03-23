@@ -25,9 +25,9 @@ export class AuthService {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
-        this.router.navigate(['/callback']);
+        this.router.navigate(['/form']);
       } else if (err) {
-        this.router.navigate(['/callback']);
+        this.router.navigate(['/form']);
         console.log(err);
       }
     });

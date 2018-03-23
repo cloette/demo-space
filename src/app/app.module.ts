@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { CallbackComponent } from './callback/callback.component';
 import { routes } from './app.router';
 import { metaReducers, reducers } from './store';
 import { SharedModule } from './shared/shared.module';
@@ -17,11 +18,13 @@ import { FormEffects } from './store/form/form.effects';
 import { ItemEffects } from './store/item/item.effects';
 import { ItemsEffects } from './store/items/items.effects';
 import { environment } from '../environments/environment';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { environment } from '../environments/environment';
       }
     )
   ],
+  providers: [AuthService],
   bootstrap: [
     AppComponent
   ]
