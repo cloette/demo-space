@@ -44,7 +44,7 @@ import { AuthService } from './auth/auth.service';
     RouterModule.forRoot(
       routes,
       {
-        useHash: false
+        useHash: true
       }
     )
   ],

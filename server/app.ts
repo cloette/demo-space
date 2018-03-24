@@ -34,10 +34,11 @@ if (app.get("env") === "production") {
 // api routes
 app.use("/api", formRouter);
 
-// catch 404 and forward to error handler
+var indexPath = __dirname + "/../client" + '/index.html';
+
+// catch 404 and forward to index
 app.use((req: express.Request, res: express.Response, next) => {
-  const err = new Error("Not Found");
-  next(err);
+  res.sendFile(indexPath);
 });
 
 // production error handler
