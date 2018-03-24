@@ -46,7 +46,7 @@ formRouter.post("/form", (request: Request, response: Response) => {
 
   var form = new Form(
     {
-      id: request.body,
+      id: request.body.toString(),
       fields: []
     }
   );

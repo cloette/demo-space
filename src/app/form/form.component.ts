@@ -2,16 +2,16 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { IAppState } from '../store/index';
 import { Store } from '@ngrx/store';
 
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material';
 
-import {Dialog} from './dialog/dialog.component';
+import { Dialog } from './dialog/dialog.component';
 
 import { IFormResponse } from './../shared/interfaces/form.interface';
 import { IFieldResponse } from './../shared/interfaces/field.interface';
 
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { FORM_ADD, FORM_EDIT, FORM_GET} from '../store/form/form.actions';
+import { FORM_ADD, FORM_EDIT, FORM_GET } from '../store/form/form.actions';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -45,32 +45,32 @@ export class FormComponent implements OnInit {
     public dialog: MatDialog,
   ) {
     this.profile = localStorage.getItem('profile');
-    console.log("Profile: ",this.profile);
+    console.log("Profile: ", this.profile);
   }
 
-  updateFormID(): void{
+  updateFormID(): void {
     this.firstVisit = false;
     this.getForm(this.formIDform.get('id').value);
   }
 
-  toggle(): void{
+  toggle(): void {
     this.showFormIDField = !this.showFormIDField;
   }
 
-  getTypeIcon(fieldType:string){
-    if (fieldType === "text"){
+  getTypeIcon(fieldType: string) {
+    if (fieldType === "text") {
       return 'text format';
     }
-    else if (fieldType === "radio"){
+    else if (fieldType === "radio") {
       return 'radio button checked';
     }
-    else if (fieldType === "checkbox"){
+    else if (fieldType === "checkbox") {
       return 'check box';
     }
-    else if (fieldType === "switch"){
+    else if (fieldType === "switch") {
       return 'toll';
     }
-    else if (fieldType === "select"){
+    else if (fieldType === "select") {
       return 'mat select arrow';
     }
     else {
@@ -81,7 +81,9 @@ export class FormComponent implements OnInit {
   makeBlankForm(): void {
     // Post to /api/form/:id with supplied id
     // or the user's id
-    if (this.formID === undefined){
+    if (this.formID === undefined) {
+      console.log("Form new payload:");
+      console.log(this.profile);
       this.store.dispatch({
         type: FORM_ADD,
         payload: this.profile
@@ -93,8 +95,10 @@ export class FormComponent implements OnInit {
     }
   }
 
-  getForm(id:any): void {
-    if (id === undefined || id === ''){
+  getForm(id: any): void {
+    console.log("Form get payload");
+    if (id === undefined || id === '') {
+      console.log(this.profile);
       this.store.dispatch({
         type: FORM_GET,
         payload: this.profile
@@ -103,6 +107,7 @@ export class FormComponent implements OnInit {
     else {
       this.formID = id;
       // get request with id
+      console.log(this.formID);
       this.store.dispatch({
         type: FORM_GET,
         payload: id
@@ -114,22 +119,24 @@ export class FormComponent implements OnInit {
 
   saveForm(): void {
     // Put to /api/form/:id with this.form (contains id)
+    console.log("Form save payload:");
+    console.log(this.form);
     this.store.dispatch({
       type: FORM_EDIT,
       payload: this.form
     })
   }
 
-  removeField(index:number): void {
+  removeField(index: number): void {
     this.fields.splice(index, 1);
   }
 
-  replaceField(someField: IFieldResponse, index:number): void {
+  replaceField(someField: IFieldResponse, index: number): void {
     this.fields[index] = someField;
   }
 
   addField(): void {
-    if (this.form){
+    if (this.form) {
       this.fields.push(this.newField);
     }
   }
@@ -148,7 +155,7 @@ export class FormComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (!newField){
+      if (!newField) {
         let formattedResult = result;
         formattedResult.maxValue = parseInt(formattedResult.maxValue);
         formattedResult.multiplier = parseInt(formattedResult.multiplier);

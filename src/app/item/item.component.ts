@@ -59,6 +59,8 @@ export class ItemComponent implements OnInit {
       addressid: id,
       form: this.form
     }
+    console.log("Item get payload:");
+    console.log(this.payload);
     this.store.dispatch({
       type: ITEM_GET,
       payload: this.payload
@@ -70,6 +72,8 @@ export class ItemComponent implements OnInit {
   saveItem(): void {
     // PUT request /api/item with this.item.addressid
     this.calculateScore();
+    console.log("Item Put payload:");
+    console.log(this.item);
     this.store.dispatch({
       type: ITEM_EDIT,
       payload: this.item
@@ -79,6 +83,8 @@ export class ItemComponent implements OnInit {
   newItem(): void {
     this.item.addressID = encodeURI(this.item.address);
     this.calculateScore();
+    console.log("Item post payload:");
+    console.log(this.item);
     this.store.dispatch({
       type: ITEM_ADD,
       payload: this.item
@@ -87,6 +93,8 @@ export class ItemComponent implements OnInit {
   }
 
   deleteItem(): void {
+    console.log("Item remove payload:");
+    console.log(this.item);
     this.store.dispatch({
       type: ITEM_REMOVE,
       payload: this.item

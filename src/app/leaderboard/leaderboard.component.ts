@@ -45,6 +45,8 @@ export class LeaderboardComponent implements OnInit {
   getItems(): void {
     // Get request /api/item/all with this.form.id
     // sort the response in descending order, flippable
+    console.log("Items get payload:");
+    console.log(this.form.id);
     this.store.dispatch({
       type: ITEMS_GET,
       payload: this.form.id
