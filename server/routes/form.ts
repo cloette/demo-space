@@ -46,17 +46,8 @@ formRouter.post("/form", (request: Request, response: Response) => {
 
   var form = new Form(
     {
-      id: request.body.id,
-      fields: [{
-        order: 1,
-        type: 'radio',
-        question: 'Enter a question here.',
-        options: [{ helperText: 'Option 1', value: 1}, { helperText: 'Option 2', value: 2}],
-        value: 1,
-        multiplier: 0,
-        maxValue: 2,
-        disabled: false
-      }]
+      id: request.body,
+      fields: []
     }
   );
 
