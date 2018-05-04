@@ -42,11 +42,11 @@ formRouter.post("/field", (request: Request, response: Response) => {
 });
 
 // Make the initial Form
-formRouter.post("/form", (request: Request, response: Response) => {
+formRouter.post("/form/:formid", (request: Request, response: Response) => {
 
   var form = new Form(
     {
-      id: request.body.toString(),
+      id: request.params.formid(),
       fields: []
     }
   );
