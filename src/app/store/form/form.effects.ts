@@ -22,7 +22,7 @@ export class FormEffects {
     .ofType(FORM_ADD)
     .switchMap((action: FormAdd) => {
 
-      return this.http.post<IFormResponse>('/api/form', action.payload)
+      return this.http.post<IFormResponse>('/api/form/${action.payload.id}', action.payload)
         .catch((error) => Observable.of(new FormAddFail(error)))
         .map((response: any) => new FormAddSuccess(response));
     });
