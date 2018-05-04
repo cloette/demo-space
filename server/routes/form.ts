@@ -46,7 +46,7 @@ formRouter.post("/form/:formid", (request: Request, response: Response) => {
 
   var form = new Form(
     {
-      id: request.params.formid(),
+      id: request.params.formid,
       fields: []
     }
   );
