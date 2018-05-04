@@ -46,7 +46,7 @@ formRouter.post("/form/:formid", (request: Request, response: Response) => {
 
   var form = new Form(
     {
-      id: request.params.formid,
+      id: request.params.formid(),
       fields: []
     }
   );
@@ -82,7 +82,7 @@ formRouter.get("/item/all/:formid", (request: Request, response: Response) => {
 
   let res = {}
 
-  Item.find({ form: encodeURI(request.params.formid) }, function (err, items) {
+  Item.find({ form: request.params.formid() }, function (err, items) {
     if (err) return console.error(err);
     res = items;
   });
