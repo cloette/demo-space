@@ -43,10 +43,11 @@ formRouter.post("/field", (request: Request, response: Response) => {
 
 // Make the initial Form
 formRouter.post("/form/:formid", (request: Request, response: Response) => {
-
+  let formid = request.params.formid;
+  formid = encodeURI(formid);
   var form = new Form(
     {
-      id: encodeURI(request.params.formid),
+      id: formid,
       fields: []
     }
   );
@@ -92,12 +93,13 @@ formRouter.get("/item/all/:formid", (request: Request, response: Response) => {
 
 // Returns the form
 formRouter.get("/form/:id", (request: Request, response: Response) => {
-
+  let formid = request.params.formid;
+  formid = encodeURI(formid);
   let res = {}
 
-  Form.find({ id: request.params.id }, function (err, items) {
+  Form.find({ id: formid }, function (err, items) {
     if (err) return console.error(err);
-    res = items[0];
+    res = items;
   });
 
   return response.json(res);
