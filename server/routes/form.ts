@@ -44,11 +44,11 @@ formRouter.post("/field", (request: Request, response: Response) => {
 // Make the initial Form
 formRouter.post("/form/:formid", (request: Request, response: Response) => {
 
-  console.log("POST form " + JSON.stringify(request.body.json));
+  console.log("POST form " + JSON.stringify(request.params.formid));
 
   var form = new Form(
     {
-      id: request.params.formid(),
+      id: request.params.formid,
       fields: []
     }
   );
@@ -82,9 +82,9 @@ formRouter.post("/item", (request: Request, response: Response) => {
 // Returns all Items
 formRouter.get("/item/all/:formid", (request: Request, response: Response) => {
 
-  let res = {}
+  let res;
 
-  Item.find({ form: request.params.formid() }, function (err, items) {
+  Item.find({ form: request.params.formid }, function (err, items) {
     if (err) return console.error(err);
     res = items;
   });
@@ -110,7 +110,7 @@ formRouter.get("/form/:id", (request: Request, response: Response) => {
 // Updates an item
 formRouter.put("/item/:addressid", (request: Request, response: Response) => {
 
-  let item = new Item({});
+  let item = new Item();
 
   Item.find({ addressID: request.params.addressid }, function (err, items) {
     if (err) return console.error(err);
@@ -125,15 +125,15 @@ formRouter.put("/item/:addressid", (request: Request, response: Response) => {
 });
 
 // Updates a form
-formRouter.put("/form/:id", (request: Request, response: Response) => {
+formRouter.put("/form", (request: Request, response: Response) => {
 
   console.log("PUT form " + JSON.stringify(request.body.json));
 
   let form = new Form();
 
-  form = request.body.form;
+  form = request.body;
 
-  Form.update({ id: request.params.id}, { $set: { fields: request.body.fields} }, function (err) {
+  Form.update({ id: request.body.id}, { $set: { fields: request.body.fields} }, function (err) {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });
@@ -143,7 +143,7 @@ formRouter.put("/form/:id", (request: Request, response: Response) => {
 // Deletes an item
 formRouter.delete("/item/:addressid", (request: Request, response: Response) => {
 
-  let item = new Item({});
+  let item = new Item();
 
   Item.find({ addressID: request.params.addressid }, function (err, items) {
     if (err) return console.error(err);
