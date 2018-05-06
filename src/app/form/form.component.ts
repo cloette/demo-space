@@ -72,17 +72,6 @@ export class FormComponent implements OnInit {
     this.makeBlankForm();
   }
 
-  checkStore(): void {
-    if (this.store.select('form')) {
-      this.form = this.store.select('form');
-      this.dataReady = true;
-      this.firstVisit = false;
-    }
-    else {
-      console.log("Nope.");
-    }
-  }
-
   getTypeIcon(fieldType: string) {
     if (fieldType === "text") {
       return 'text format';
@@ -140,6 +129,8 @@ export class FormComponent implements OnInit {
       });
     }
     this.firstVisit = false;
+    this.form = this.store.select('form');
+    this.dataReady = true;
   }
 
   saveForm(): void {
