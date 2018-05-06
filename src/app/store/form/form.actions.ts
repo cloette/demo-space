@@ -75,7 +75,7 @@ export class FormGetFail implements Action {
   constructor(public payload: string) {}
 }
 
-/* Form Remove 
+/* Form Remove
 export class FormRemove implements Action {
   readonly type = FORM_REMOVE;
 

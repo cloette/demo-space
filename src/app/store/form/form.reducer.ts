@@ -27,6 +27,8 @@ export function formReducer(state: IFormResponse, action: Actions): IFormRespons
 
     case FORM_GET_SUCCESS:
 
+      console.log("FORM_GET_SUCCESS " + action.payload);
+
       return Object.assign({}, state, {
         form: action.payload
       });

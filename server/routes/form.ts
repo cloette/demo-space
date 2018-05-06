@@ -95,13 +95,13 @@ formRouter.get("/item/all/:formid", (request: Request, response: Response) => {
 // Returns the form
 formRouter.get("/form/:id", (request: Request, response: Response) => {
 
-  console.log("GET form " + JSON.stringify(request.body.json));
+  console.log("GET form " + JSON.stringify(request.params.id));
 
   let res;
 
   Form.find({ id: request.params.id }, function (err, items) {
     if (err) return console.error(err);
-    res = items[0];
+    res = items;
   });
 
   return response.json(res);
