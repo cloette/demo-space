@@ -16,23 +16,23 @@ var optionSchema = new Schema({
 })
 
 var fieldSchema = new Schema({
-  order: { type: Number, required: true },
-  type: { type: String, lowercase: true, required: true },
+  order: { type: Number },
+  type: { type: String },
   question: { type: String, default: '' },
-  options: [{ type: optionSchema }],
+  options: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Option' }],
   value: { type: Number, default: 0},
-  multiplier: { type: Number, required: true, default: 0 },
-  maxValue: { type: Number, required: true, default: 0},
-  disabled: { type: Boolean, required: true, default: false}
+  multiplier: { type: Number, default: 0 },
+  maxValue: { type: Number, default: 0},
+  disabled: { type: Boolean, default: false}
 })
 
 var formSchema = new Schema({
-  id: { type: String, required: true, unique: true, validate: [nameValidation, 'Name cannot be blank.'] },
+  id: { type: String, unique: true, validate: [nameValidation, 'Name cannot be blank.'] },
   fields: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Field'}]
 })
 
 var itemSchema = new Schema({
-  address: { type: String, required: true, unique: true, validate: [nameValidation, 'Name cannot be blank.']},
+  address: { type: String, unique: true, validate: [nameValidation, 'Name cannot be blank.']},
   addressID: {type: String, unique: true },
   score: { type: Number, default: 0 },
   form: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Form'}]
