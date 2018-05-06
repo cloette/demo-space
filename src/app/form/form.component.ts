@@ -73,11 +73,12 @@ export class FormComponent implements OnInit {
   }
 
   checkStore(): void {
-    if(this.store.select('form')){
+    if (this.store.select('form')) {
       this.form = this.store.select('form');
       this.dataReady = true;
+      this.firstVisit = false;
     }
-    else{
+    else {
       console.log("Nope.");
     }
   }
@@ -138,8 +139,7 @@ export class FormComponent implements OnInit {
         payload: id
       });
     }
-    this.showFormIDField,
-    this.showSpecificFormField = false;
+    this.firstVisit = false;
   }
 
   saveForm(): void {
