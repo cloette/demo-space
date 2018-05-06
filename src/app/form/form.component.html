@@ -13,7 +13,7 @@
     <br />
     <form class="form" [formGroup]="formIDform">
       <mat-form-field>
-        <app-ui-input label="Form ID" placeholder="Enter a form id...." [control]="formIDform.get('id')"></app-ui-input>
+        <app-ui-input label="Form ID" [placeholder]="profile" [control]="formIDform.get('id')"></app-ui-input>
         <p>This field defaults to your profile ID if left blank.</p>
       </mat-form-field>
       <button mat-raised-button (click)="updateFormID()">Fetch form</button>

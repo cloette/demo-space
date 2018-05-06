@@ -33,7 +33,7 @@ export class FormComponent implements OnInit {
   public form: Store<IFormResponse>;
   public fields: Array<IFieldResponse>;
   private payload;
-  private profile;
+  public profile;
   public newField: IFieldResponse;
 
   public formIDform: FormGroup;
@@ -49,8 +49,8 @@ export class FormComponent implements OnInit {
   }
 
   updateFormID(): void {
-    this.firstVisit = false;
     this.getForm(this.formIDform.get('id').value);
+    this.firstVisit = false;
   }
 
   toggle(): void {

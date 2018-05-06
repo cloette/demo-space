@@ -5,6 +5,15 @@ import { Option, Field, Form, Item } from "./../models/model";
 
 const formRouter: Router = Router();
 
+const check = {
+  message: "Hello World! Great to see you!"
+};
+
+formRouter.get("/hello", (request: Request, response: Response) => {
+
+  response.json(check);
+});
+
 // Make a new option
 formRouter.post("/option", (request: Request, response: Response) => {
 
@@ -97,15 +106,11 @@ formRouter.get("/form/:id", (request: Request, response: Response) => {
 
   console.log("GET form " + JSON.stringify(request.params.id));
 
-  let res;
-
   Form.find({ id: request.params.id }, function (err, items) {
     if (err) return console.error(err);
     console.log("items returned: " + JSON.stringify(items));
-    res = items[0];
+    response.json(items[0]);
   });
-
-  return response.json(res);
 });
 
 // Updates an item
