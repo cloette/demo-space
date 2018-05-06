@@ -1,14 +1,14 @@
 <h2>Form</h2>
 
 <div *ngIf="firstVisit">
-  <button mat-raised-button color="primary" (click)="makeBlankForm()">
-    Create a form (recommended)
+  <button mat-raised-button class="green" (click)="makeBlankForm()">
+    Create a form
   </button>
-  , <button mat-raised-button color="primary" (click)="toggle2()">
+  ,<br/><br/><button mat-raised-button (click)="toggle2()">
     Create a form by keyword
-  </button>,
+  </button>,<br/><br/>
   or
-  <button mat-raised-button (click)="toggle1()">
+  <button mat-raised-button class="lightgreen" (click)="toggle1()">
     Load a form
   </button>
   <div *ngIf="showFormIDField">

@@ -125,9 +125,11 @@ export class FormComponent implements OnInit {
         payload: id
       });
     }
-    console.log("Store: " + JSON.stringify(this.store));
+    console.log(this.store);
     this.form = this.store.select('form');
     this.dataReady = true;
+    this.showFormIDField,
+      this.showSpecificFormField = false;
   }
 
   saveForm(): void {

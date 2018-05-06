@@ -4,5 +4,11 @@
   margin: 0 auto;
 }
 .mobile-container{
-  padding:15px !important;
+  padding:15px;
+}
+.green{
+  background-color: #008171 !important;
+}
+.lightgreen{
+  background-color: #94b777 !important;
 }
