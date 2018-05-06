@@ -62,6 +62,16 @@ export class FormComponent implements OnInit {
     this.showSpecificFormField = !this.showSpecificFormField;
   }
 
+  checkStore(): void {
+    if(this.store.select('form')){
+      this.form = this.store.select('form');
+      this.dataReady = true;
+    }
+    else{
+      console.log("Nope.");
+    }
+  }
+
   getTypeIcon(fieldType: string) {
     if (fieldType === "text") {
       return 'text format';
@@ -125,11 +135,8 @@ export class FormComponent implements OnInit {
         payload: id
       });
     }
-    console.log(this.store);
-    this.form = this.store.select('form');
-    this.dataReady = true;
     this.showFormIDField,
-      this.showSpecificFormField = false;
+    this.showSpecificFormField = false;
   }
 
   saveForm(): void {
