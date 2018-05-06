@@ -29,13 +29,13 @@ export class FormAdd implements Action {
 export class FormAddSuccess implements Action {
   readonly type = FORM_ADD_SUCCESS;
 
-  constructor(public payload: IFormResponse) {}
+  constructor(public payload: any) {}
 }
 
 export class FormAddFail implements Action {
   readonly type = FORM_ADD_FAIL;
 
-  constructor(public payload: Jsonp) {}
+  constructor(public payload: any) {}
 }
 
 /* Form Edit */
@@ -48,13 +48,13 @@ export class FormEdit implements Action {
 export class FormEditSuccess implements Action {
   readonly type = FORM_EDIT_SUCCESS;
 
-  constructor(public payload: Jsonp) {}
+  constructor(public payload: any) {}
 }
 
 export class FormEditFail implements Action {
   readonly type = FORM_EDIT_FAIL;
 
-  constructor(public payload: Jsonp) {}
+  constructor(public payload: any) {}
 }
 
 /* Form Get */
@@ -67,13 +67,13 @@ export class FormGet implements Action {
 export class FormGetSuccess implements Action {
   readonly type = FORM_GET_SUCCESS;
 
-  constructor(public payload: Jsonp) {}
+  constructor(public payload: any) {}
 }
 
 export class FormGetFail implements Action {
   readonly type = FORM_GET_FAIL;
 
-  constructor(public payload: Jsonp) {}
+  constructor(public payload: any) {}
 }
 
 /* Form Remove
