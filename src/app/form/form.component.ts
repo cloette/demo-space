@@ -31,7 +31,7 @@ export class FormComponent implements OnInit {
   public showSpecificFormField: boolean = false;
   public dataReady: boolean = false;
   public formID: string = undefined;
-  public form: Store<IFormResponse>;
+  public form: Observable<IFormResponse>;
   public fields: Array<IFieldResponse>;
   private payload;
   public profile;
@@ -48,11 +48,10 @@ export class FormComponent implements OnInit {
   ) {
     this.profile = localStorage.getItem('profile');
     console.log("Profile: ", this.profile);
-  }
+    this.formIDform, this.specificForm = this.fb.group({
+      'id': ['Enter an ID here'],
+    });
 
-  updateFormID(): void {
-    this.getForm(this.formIDform.get('id').value);
-    this.firstVisit = false;
   }
 
   toggle1(): void {
@@ -62,11 +61,21 @@ export class FormComponent implements OnInit {
     this.showSpecificFormField = !this.showSpecificFormField;
   }
 
+  updateFormID(): void {
+    this.getForm(this.formIDform.get('id').value);
+    this.firstVisit = false;
+  }
+  makeSpecificForm(): void {
+    // Post to /api/form/:id with supplied id
+    // or the user's id
+    this.formID = this.specificForm.get('id').value;
+    this.makeBlankForm();
+  }
+
   checkStore(): void {
     if(this.store.select('form')){
       this.form = this.store.select('form');
       this.dataReady = true;
-      console.log(JSON.stringify(this.form));
     }
     else{
       console.log("Nope.");
@@ -109,13 +118,6 @@ export class FormComponent implements OnInit {
     else {
       this.getForm(this.formID);
     }
-  }
-
-  makeSpecificForm(): void {
-    // Post to /api/form/:id with supplied id
-    // or the user's id
-    this.formID = this.specificForm.get('id').value;
-    this.getForm(this.formID);
   }
 
   getForm(id: any): void {

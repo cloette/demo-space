@@ -3,34 +3,42 @@
 <div *ngIf="firstVisit">
   <button mat-raised-button color="primary" class="green" (click)="makeBlankForm()">
     Create a form
-  </button>,<br/><br/>
+  </button>,
+  <br/>
+  <br/>
   <button mat-raised-button (click)="toggle2()">
     Create a form by keyword
-  </button>,<br/><br/>
-  or
+  </button>,
+  <br/>
+  <br/> or
   <button mat-raised-button color="primary" class="lightgreen" (click)="toggle1()">
     Load a form
-  </button><br/><br/><br/><br/><button (click)="checkStore()">Check Store</button>
+  </button>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <button (click)="checkStore()">Check Store</button>
+  <br />
+  <br />
   <div *ngIf="showFormIDField">
-    <br />
-    <br />
     <form class="form" [formGroup]="formIDform">
       <mat-form-field style="margin-right: 20px;">
         <app-ui-input label="Form ID" placeholder="Enter an ID here" [control]="formIDform.get('id')"></app-ui-input>
       </mat-form-field>
       <button mat-raised-button (click)="updateFormID()">Fetch form</button>
-      <br /><p style="font-size: 12px;line-height: 1.4em;">This field defaults to your profile ID if left blank.</p>
+      <br />
+      <p style="font-size: 12px;line-height: 1.4em;">This field defaults to your profile ID if left blank.</p>
     </form>
   </div>
   <div *ngIf="showSpecificFormField">
-    <br />
-    <br />
     <form class="form" [formGroup]="specificForm">
       <mat-form-field style="margin-right: 20px;">
         <app-ui-input label="Form ID" placeholder="Enter an ID here" [control]="specificForm.get('id')"></app-ui-input>
       </mat-form-field>
       <button mat-raised-button (click)="makeSpecificForm()">Create form</button>
-      <br /><p style="font-size: 12px;line-height: 1.4em;">This field defaults to your profile ID if left blank.</p>
+      <br />
+      <p style="font-size: 12px;line-height: 1.4em;">This field defaults to your profile ID if left blank.</p>
     </form>
   </div>
 </div>
@@ -44,8 +52,8 @@
       </button>
     </div>
     <!-- Form fields displayed as list-->
-    <table *ngIf="fields" class="formTable">
-      <div *ngFor="let field of fields; index as i">
+    <table *ngIf="(form | async)?.fields" class="formTable">
+      <div *ngFor="let field of (form | async)?.fields; index as i">
         <tr>
           <td class="formIconColumn">
             <mat-icon aria-label="Delete" aria-hidden="true" (click)="removeField(i)">trash</mat-icon>
