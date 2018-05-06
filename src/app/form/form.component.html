@@ -2,10 +2,13 @@
 
 <div *ngIf="firstVisit">
   <button mat-raised-button color="primary" (click)="makeBlankForm()">
-    Create a form
+    Create a form (recommended)
   </button>
+  , <button mat-raised-button color="primary" (click)="toggle2()">
+    Create a form by keyword
+  </button>,
   or
-  <button mat-raised-button (click)="toggle()">
+  <button mat-raised-button (click)="toggle1()">
     Load a form
   </button>
   <div *ngIf="showFormIDField">
@@ -17,6 +20,17 @@
         <p>This field defaults to your profile ID if left blank.</p>
       </mat-form-field>
       <button mat-raised-button (click)="updateFormID()">Fetch form</button>
+    </form>
+  </div>
+  <div *ngIf="showSpecificFormField">
+    <br />
+    <br />
+    <form class="form" [formGroup]="specificForm">
+      <mat-form-field>
+        <app-ui-input label="Form ID" [placeholder]="profile" [control]="specificForm.get('id')"></app-ui-input>
+        <p>This field defaults to your profile ID if left blank.</p>
+      </mat-form-field>
+      <button mat-raised-button (click)="makeSpecificForm()">Create form {{ specificForm.get('id') }}</button>
     </form>
   </div>
 </div>

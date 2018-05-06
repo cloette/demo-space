@@ -28,6 +28,7 @@ export class FormComponent implements OnInit {
 
   public firstVisit: boolean = true;
   public showFormIDField: boolean = false;
+  public showSpecificFormField: boolean = false;
   public dataReady: boolean = false;
   public formID: string = undefined;
   public form: Store<IFormResponse>;
@@ -37,6 +38,7 @@ export class FormComponent implements OnInit {
   public newField: IFieldResponse;
 
   public formIDform: FormGroup;
+  public specificForm: FormGroup;
   public newFieldForm: FormGroup;
 
   constructor(
@@ -53,8 +55,11 @@ export class FormComponent implements OnInit {
     this.firstVisit = false;
   }
 
-  toggle(): void {
+  toggle1(): void {
     this.showFormIDField = !this.showFormIDField;
+  }
+  toggle2(): void {
+    this.showSpecificFormField = !this.showSpecificFormField;
   }
 
   getTypeIcon(fieldType: string) {
@@ -95,6 +100,13 @@ export class FormComponent implements OnInit {
     }
   }
 
+  makeSpecificForm(): void {
+    // Post to /api/form/:id with supplied id
+    // or the user's id
+    this.formID = this.specificForm.get('id').value;
+    this.getForm(this.formID);
+  }
+
   getForm(id: any): void {
     console.log("Form get payload");
     if (id === undefined || id === '') {
@@ -113,6 +125,7 @@ export class FormComponent implements OnInit {
         payload: id
       });
     }
+    console.log("Store: " + JSON.stringify(this.store));
     this.form = this.store.select('form');
     this.dataReady = true;
   }
