@@ -15,19 +15,15 @@ export function formReducer(state: IFormResponse, action: Actions): IFormRespons
 
     case FORM_ADD_SUCCESS:
 
-      return Object.assign({}, state, {
-        form: action.payload
-      });
+      return state;
 
     case FORM_EDIT_SUCCESS:
 
-      return Object.assign({}, state, {
-        form: action.payload
-      });
+      return state;
 
     case FORM_GET_SUCCESS:
 
-      console.log("FORM_GET_SUCCESS " + JSON.stringify(action.payload));
+      console.log("FORM_GET_SUCCESS " + action.payload);
 
       return Object.assign({}, state, {
         form: action.payload

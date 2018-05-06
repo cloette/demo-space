@@ -1,5 +1,6 @@
 import { IFormResponse } from './../../shared/interfaces/form.interface';
 import { Action } from '@ngrx/store';
+import { Jsonp } from '@angular/http';
 
 export const FORM_ADD = '[Form] add new';
 export const FORM_ADD_FAIL = '[Form] add new fail';
@@ -34,26 +35,26 @@ export class FormAddSuccess implements Action {
 export class FormAddFail implements Action {
   readonly type = FORM_ADD_FAIL;
 
-  constructor(public payload: string) {}
+  constructor(public payload: Jsonp) {}
 }
 
 /* Form Edit */
 export class FormEdit implements Action {
   readonly type = FORM_EDIT;
 
-  constructor(public payload: string) {}
+  constructor(public payload: IFormResponse) {}
 }
 
 export class FormEditSuccess implements Action {
   readonly type = FORM_EDIT_SUCCESS;
 
-  constructor(public payload: IFormResponse) {}
+  constructor(public payload: Jsonp) {}
 }
 
 export class FormEditFail implements Action {
   readonly type = FORM_EDIT_FAIL;
 
-  constructor(public payload: string) {}
+  constructor(public payload: Jsonp) {}
 }
 
 /* Form Get */
@@ -66,13 +67,13 @@ export class FormGet implements Action {
 export class FormGetSuccess implements Action {
   readonly type = FORM_GET_SUCCESS;
 
-  constructor(public payload: IFormResponse) {}
+  constructor(public payload: Jsonp) {}
 }
 
 export class FormGetFail implements Action {
   readonly type = FORM_GET_FAIL;
 
-  constructor(public payload: string) {}
+  constructor(public payload: Jsonp) {}
 }
 
 /* Form Remove
