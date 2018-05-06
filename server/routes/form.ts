@@ -101,7 +101,8 @@ formRouter.get("/form/:id", (request: Request, response: Response) => {
 
   Form.find({ id: request.params.id }, function (err, items) {
     if (err) return console.error(err);
-    res = items;
+    console.log("items returned: " + JSON.stringify(items));
+    res = items[0];
   });
 
   return response.json(res);

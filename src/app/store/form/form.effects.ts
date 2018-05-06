@@ -44,7 +44,7 @@ export class FormEffects {
 
       return this.http.get<IFormResponse>(`/api/form/${action.payload}`)
         .catch((error) => Observable.of(new FormGetFail(error)))
-        .map((response: IFormResponse) => new FormGetSuccess(response));
+        .map((response: any) => new FormGetSuccess(response));
     });
 /*
   @Effect()
