@@ -1,6 +1,5 @@
 .floating-button{
-  position: fixed;
-  float: right bottom;
+  text-align: right;
   padding: 20px;
 }
 .column-layout{

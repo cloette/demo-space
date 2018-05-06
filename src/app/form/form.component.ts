@@ -167,6 +167,17 @@ export class FormComponent implements OnInit {
   }
 
   openDialog(someField: IFieldResponse, index: number, newField: boolean): void {
+    if (someField === undefined) {
+      someField = {
+        order: 1,
+        type: '',
+        question: 'Enter a question',
+        options: null,
+        multiplier: 0,
+        maxValue: 0,
+        disabled: false
+      };
+    }
     let dialogRef = this.dialog.open(Dialog, {
       width: '400px',
       data: {
