@@ -44,6 +44,8 @@ formRouter.post("/field", (request: Request, response: Response) => {
 // Make the initial Form
 formRouter.post("/form/:formid", (request: Request, response: Response) => {
 
+  console.log("POST form " + JSON.stringify(request.body.json));
+
   var form = new Form(
     {
       id: request.params.formid(),
@@ -93,9 +95,11 @@ formRouter.get("/item/all/:formid", (request: Request, response: Response) => {
 // Returns the form
 formRouter.get("/form/:id", (request: Request, response: Response) => {
 
-  let res = {}
+  console.log("GET form " + JSON.stringify(request.body.json));
 
-  Form.find({ id: request.params.id() }, function (err, items) {
+  let res;
+
+  Form.find({ id: request.params.id }, function (err, items) {
     if (err) return console.error(err);
     res = items[0];
   });
@@ -123,11 +127,13 @@ formRouter.put("/item/:addressid", (request: Request, response: Response) => {
 // Updates a form
 formRouter.put("/form/:id", (request: Request, response: Response) => {
 
-  let form = new Form({});
+  console.log("PUT form " + JSON.stringify(request.body.json));
+
+  let form = new Form();
 
   form = request.body.form;
 
-  form.save(function (err) {
+  Form.update({ id: request.params.id}, { $set: { fields: request.body.fields} }, function (err) {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });
