@@ -10,27 +10,27 @@
   or
   <button mat-raised-button color="primary" class="lightgreen" (click)="toggle1()">
     Load a form
-  </button><br/><br/><br/><br/><button (click)="checkStore">Check Store</button>
+  </button><br/><br/><br/><br/><button (click)="checkStore()">Check Store</button>
   <div *ngIf="showFormIDField">
     <br />
     <br />
     <form class="form" [formGroup]="formIDform">
-      <mat-form-field>
-        <app-ui-input label="Form ID" [placeholder]="profile" [control]="formIDform.get('id')"></app-ui-input>
-        <p>This field defaults to your profile ID if left blank.</p>
+      <mat-form-field style="margin-right: 20px;">
+        <app-ui-input label="Form ID" placeholder="Enter an ID here" [control]="formIDform.get('id')"></app-ui-input>
       </mat-form-field>
       <button mat-raised-button (click)="updateFormID()">Fetch form</button>
+      <br /><p style="font-size: 12px;line-height: 1.4em;">This field defaults to your profile ID if left blank.</p>
     </form>
   </div>
   <div *ngIf="showSpecificFormField">
     <br />
     <br />
     <form class="form" [formGroup]="specificForm">
-      <mat-form-field>
-        <app-ui-input label="Form ID" [placeholder]="profile" [control]="specificForm.get('id')"></app-ui-input>
-        <p>This field defaults to your profile ID if left blank.</p>
+      <mat-form-field style="margin-right: 20px;">
+        <app-ui-input label="Form ID" placeholder="Enter an ID here" [control]="specificForm.get('id')"></app-ui-input>
       </mat-form-field>
-      <button mat-raised-button (click)="makeSpecificForm()">Create form {{ specificForm.get('id') }}</button>
+      <button mat-raised-button (click)="makeSpecificForm()">Create form</button>
+      <br /><p style="font-size: 12px;line-height: 1.4em;">This field defaults to your profile ID if left blank.</p>
     </form>
   </div>
 </div>

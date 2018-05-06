@@ -66,6 +66,7 @@ export class FormComponent implements OnInit {
     if(this.store.select('form')){
       this.form = this.store.select('form');
       this.dataReady = true;
+      console.log(JSON.stringify(this.form));
     }
     else{
       console.log("Nope.");
