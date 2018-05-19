@@ -26,10 +26,7 @@ export function formReducer(state: IFormResponse, action: Actions): IFormRespons
       console.log("FORM_GET_SUCCESS " + JSON.stringify(action.payload));
 
       return Object.assign({}, state, {
-        form: {
-          id: action.payload.id,
-          fields: action.payload.fields
-        }
+        form: action.payload
       });
 
     /*case FORM_REMOVE_SUCCESS:
