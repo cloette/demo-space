@@ -19,7 +19,7 @@
   <div *ngIf="showFormIDField">
     <form class="form" [formGroup]="formIDform">
       <mat-form-field style="margin-right: 20px;">
-        <app-ui-input label="id" placeholder="Enter an ID here" formControlName="id1"></app-ui-input>
+        <app-ui-input label="id" placeholder="Enter an ID here" formControlName="id"></app-ui-input>
       </mat-form-field>
       <button mat-raised-button (click)="updateFormID()">Fetch form</button>
       <br />
@@ -29,7 +29,7 @@
   <div *ngIf="showSpecificFormField">
     <form class="form" [formGroup]="specificForm">
       <mat-form-field style="margin-right: 20px;">
-        <app-ui-input label="sid" placeholder="Enter an ID here" formControlName="sid1"></app-ui-input>
+        <app-ui-input label="sid" placeholder="Enter an ID here" formControlName="sid"></app-ui-input>
       </mat-form-field>
       <button mat-raised-button (click)="makeSpecificForm()">Create form</button>
       <br />

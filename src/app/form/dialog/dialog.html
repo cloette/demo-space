@@ -3,48 +3,44 @@
   <form class="form-horizontal" [formGroup]="questionData">
     <fieldset>
       <mat-form-field>
-        <mat-label for="question1">Question</mat-label>
-        <input matInput type="text" formControlName="question" id="question1">
+        <mat-label for="question">Question</mat-label>
+        <input matInput type="text" formControlName="question" id="question">
         <mat-hint>What do you want to measure?</mat-hint>
       </mat-form-field>
       <mat-form-field>
-        <mat-label for="type1">Type</mat-label>
-        <mat-select formControlName="type" id="type1" placeholder="Field Type">
+        <mat-label for="type">Type</mat-label>
+        <mat-select formControlName="type" id="type" placeholder="Field Type">
           <mat-option *ngFor="let t of types" [(value)]="t.value">
             {{ t.viewValue }}
           </mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <mat-label for="order1">Order</mat-label>
-        <input matInput type="text" formControlName="order" id="order1" placeholder="0">
+        <mat-label for="order">Order</mat-label>
+        <input matInput type="text" formControlName="order" id="order" placeholder="0">
         <mat-hint>The order each field appears in, sorted in ascending order. (0 means it will be shown first)</mat-hint>
       </mat-form-field>
 
       <div *ngIf="needsOptions()">
         <div *ngIf="data.options">
           <div *ngFor="let option of data.options; index as i">
-            <form class="form-horizontal">
-              <mat-form-field>
-                <mat-label>Display Name: {{ option.helperText }}</mat-label>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>Value: {{ option.value }}</mat-label>
-              </mat-form-field>
+            <p>Option:
+                <br />Display Name: {{ option.helperText }}
+                <br />Value: {{ option.value }}
+              </p>
               <button mat-button (click)="removeOption(i)">Delete</button>
-            </form>
           </div>
         </div>
         <div *ngIf="addAnOption">
           <form class="form-horizontal" formControlName="options">
             <mat-form-field>
-              <mat-label for="helperText1">Display Name</mat-label>
-              <input matInput type="text" formControlName="helperText" id="helperText1">
+              <mat-label for="helperText">Display Name</mat-label>
+              <input matInput type="text" formControlName="helperText" id="helperText">
               <mat-hint>Text to show for this option</mat-hint>
             </mat-form-field>
             <mat-form-field>
-              <mat-label for="optionValue1">Value</mat-label>
-              <input matInput type="text" formControlName="optionValue" id="optionValue1">
+              <mat-label for="optionValue">Value</mat-label>
+              <input matInput type="text" formControlName="optionValue" id="optionValue">
               <mat-hint>Value of this option (number)</mat-hint>
             </mat-form-field>
             <button mat-button (click)="toggleAddAnOption()">Cancel</button>
@@ -57,23 +53,23 @@
       </div>
 
       <mat-form-field>
-        <mat-label for="maxValue1">Maximum Value</mat-label>
-        <input matInput type="text" formControlName="maxValue" id="maxValue1">
+        <mat-label for="maxValue">Maximum Value</mat-label>
+        <input matInput type="text" formControlName="maxValue" id="maxValue">
         <mat-hint>What's the highest possible score for this field? (before multiplier is applied?)</mat-hint>
       </mat-form-field>
       <mat-form-field>
-        <mat-label for="value1">Default Value</mat-label>
-        <input matInput type="text" formControlName="value" id="value1">
+        <mat-label for="value">Default Value</mat-label>
+        <input matInput type="text" formControlName="value" id="value">
         <mat-hint>What's the default value for this field? (before multiplier is applied?)</mat-hint>
       </mat-form-field>
       <mat-form-field>
-        <mat-label for="multiplier1">Multiplier</mat-label>
-        <input matInput type="text" formControlName="multiplier" id="multiplier1">
+        <mat-label for="multiplier">Multiplier</mat-label>
+        <input matInput type="text" formControlName="multiplier" id="multiplier">
         <mat-hint>How important is this, relative to other items? (field score is multiplied by this number - defaults to 1)</mat-hint>
       </mat-form-field>
       <mat-form-field>
-        <mat-label for="disabled1">Disable this field?</mat-label>
-        <mat-slide-toggle formControlName="disabled" id="disabled1">Disable</mat-slide-toggle>
+        <mat-label for="disabled">Disable this field?</mat-label>
+        <mat-slide-toggle formControlName="disabled" id="disabled">Disable</mat-slide-toggle>
         <mat-hint>By default, fields are enabled. Disabled fields are not counted in the scoring process.</mat-hint>
       </mat-form-field>
     </fieldset>
