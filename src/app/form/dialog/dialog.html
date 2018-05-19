@@ -35,21 +35,21 @@
             </form>
           </div>
         </div>
-        <div *ngIf="addAnOption"><!--
+        <div *ngIf="addAnOption">
           <form class="form-horizontal" formControlName="options">
             <mat-form-field>
-              <mat-label for="type">Display Name</mat-label>
-              <input matInput type="text" formControlName="helperText" id="helperText">
+              <mat-label for="helperText1">Display Name</mat-label>
+              <input matInput type="text" formControlName="helperText" id="helperText1">
               <mat-hint>Text to show for this option</mat-hint>
             </mat-form-field>
             <mat-form-field>
-              <mat-label for="type">Value</mat-label>
-              <input matInput type="text" formControlName="optionValue" id="optionValue">
+              <mat-label for="optionValue1">Value</mat-label>
+              <input matInput type="text" formControlName="optionValue" id="optionValue1">
               <mat-hint>Value of this option (number)</mat-hint>
             </mat-form-field>
             <button mat-button (click)="toggleAddAnOption()">Cancel</button>
             <button mat-button color="primary" (click)="addOption()" cdkFocusInitial>Save</button>
-          </form>-->
+          </form>
         </div>
         <div *ngIf="!addAnOption">
           <button mat-button color="primary" (click)="toggleAddAnOption()">Add</button>
