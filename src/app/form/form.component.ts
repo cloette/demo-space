@@ -9,7 +9,7 @@ import { Dialog } from './dialog/dialog.component';
 import { IFormResponse } from './../shared/interfaces/form.interface';
 import { IFieldResponse } from './../shared/interfaces/field.interface';
 
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 import { FORM_ADD, FORM_EDIT, FORM_GET } from '../store/form/form.actions';
 
@@ -48,10 +48,6 @@ export class FormComponent implements OnInit {
   ) {
     this.profile = localStorage.getItem('profile');
     console.log("Profile: ", this.profile);
-    this.formIDform, this.specificForm = this.fb.group({
-      'id': ['Enter an ID here'],
-    });
-
   }
 
   toggle1(): void {
@@ -68,7 +64,7 @@ export class FormComponent implements OnInit {
   makeSpecificForm(): void {
     // Post to /api/form/:id with supplied id
     // or the user's id
-    this.formID = this.specificForm.get('id').value;
+    this.formID = this.specificForm.get('sid').value;
     this.makeBlankForm();
   }
 
@@ -130,16 +126,22 @@ export class FormComponent implements OnInit {
     }
     this.firstVisit = false;
     this.form = this.store.select('form');
+    this.form.subscribe(form => this.fields = form.fields);
     this.dataReady = true;
   }
 
   saveForm(): void {
     // Put to /api/form/:id with this.form (contains id)
-    console.log("Form save payload:");
-    console.log(this.form);
     this.store.dispatch({
       type: FORM_EDIT,
-      payload: this.form
+      payload: { id: this.formID, fields: this.fields }
+    })
+  }
+
+  clearForm(): void {
+    this.store.dispatch({
+      type: FORM_EDIT,
+      payload: { id: this.formID, fields: [] }
     })
   }
 
@@ -159,14 +161,15 @@ export class FormComponent implements OnInit {
 
   openDialog(someField: IFieldResponse, index: number, newField: boolean): void {
     if (someField === undefined) {
-      someField = {
+      let someField = {
         order: 1,
         type: '',
         question: 'Enter a question',
         options: null,
         multiplier: 0,
         maxValue: 0,
-        disabled: false
+        disabled: false,
+        value: 0
       };
     }
     let dialogRef = this.dialog.open(Dialog, {
@@ -178,7 +181,8 @@ export class FormComponent implements OnInit {
         options: someField.options,
         multiplier: someField.multiplier,
         maxValue: someField.maxValue,
-        disabled: someField.disabled
+        disabled: someField.disabled,
+        value: someField.value
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -200,8 +204,11 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formIDform = this.fb.group({
-      'id': ['']
+    this.formIDform = new FormGroup({
+      id: new FormControl()
+    });
+    this.specificForm = new FormGroup({
+      sid: new FormControl()
     });
   }
 

@@ -1,11 +1,14 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog',
   templateUrl: 'dialog.html',
 })
-export class Dialog {
+export class Dialog implements OnInit {
+
+  questionData: FormGroup;
 
   public types = [
     { value: 'text', viewValue: 'Text Field' },
@@ -23,8 +26,39 @@ export class Dialog {
     public dialogRef: MatDialogRef<Dialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  needsOptions(type: string): boolean {
-    if (type === 'text' || type === 'switch'){
+    ngOnInit() {
+
+      this.questionData = new FormGroup ({
+        order: new FormControl(),
+        type: new FormControl(),
+        question: new FormControl('',Validators.required),
+        options: new FormGroup({
+          helperText: new FormControl(),
+          optionValue: new FormControl()
+        }),
+        maxValue: new FormControl(),
+        multiplier:new FormControl(),
+        disabled: new FormControl(),
+        value: new FormControl()
+      })
+
+      if(this.data){
+        this.questionData.setValue({
+          order: this.data.order,
+          type: this.data.type,
+          question: this.data.question,
+          options: this.data.options,
+          maxValue: this.data.maxValue,
+          multiplier: this.data.multiplier,
+          disabled: this.data.disabled,
+          value: this.data.value
+        });
+      }
+
+     }
+
+  needsOptions(): boolean {
+    if (this.questionData.get('type').value === 'text' || this.questionData.get('type').value === 'switch'){
       return false;
     }
     else{
@@ -37,7 +71,8 @@ export class Dialog {
   }
 
   addOption(): void {
-    this.newOption.value = parseInt(this.newOption.value);
+    this.newOption.helperText = this.questionData.get('options').get('helperText').value;
+    this.newOption.value = parseInt(this.questionData.get('options').get('optionValue').value);
     this.data.options.push(this.newOption);
   }
 
@@ -45,8 +80,14 @@ export class Dialog {
     this.data.options.splice(index, 1);
   }
 
+  save(): void{
+    this.data = this.questionData.value;
+    console.log(this.data);
+    this.dialogRef.close({result: this.data});
+  }
+
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close({result: this.data});
   }
 
 }

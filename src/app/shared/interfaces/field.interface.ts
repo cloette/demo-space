@@ -7,5 +7,6 @@ export interface IFieldResponse {
   options: IOptionResponse
   multiplier: number,
   maxValue: number,
-  disabled: boolean
+  disabled: boolean,
+  value: number
 }
