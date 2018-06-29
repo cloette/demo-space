@@ -160,18 +160,6 @@ export class FormComponent implements OnInit {
 
   openDialog(someField: IFieldResponse, index: number, newField: boolean): void {
     console.log(someField);
-    if (!someField) {
-      let someField = {
-        order: 1,
-        type: 'text',
-        question: 'Enter a question',
-        options: null,
-        multiplier: 0,
-        maxValue: 0,
-        disabled: false,
-        value: 0
-      };
-    }
     let dialogRef = this.dialog.open(Dialog, {
       width: '400px',
       data: {
@@ -204,6 +192,16 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.newField = {
+      order: 1,
+      type: 'text',
+      question: 'Enter a question',
+      options: null,
+      multiplier: 0,
+      maxValue: 0,
+      disabled: false,
+      value: 0
+    };
   }
 
 }
