@@ -31,8 +31,8 @@ export class FormComponent implements OnInit {
   public showSpecificFormField: boolean = false;
   public dataReady: boolean = false;
   public formID: string = undefined;
-  public form: IFormResponse;
-  public fields: Array<IFieldResponse>;
+  public form;
+  public fields;
   private payload;
   public profile;
   public newField: IFieldResponse;
@@ -125,7 +125,7 @@ export class FormComponent implements OnInit {
       });
     }
     this.firstVisit = false;
-    this.store.select('form').subscribe(form => {this.form = form; this.fields = form.fields});
+    this.store.select('form').subscribe(form => {this.form = form; this.fields = this.form.fields});
     this.dataReady = true;
   }
 
