@@ -159,10 +159,11 @@ export class FormComponent implements OnInit {
   }
 
   openDialog(someField: IFieldResponse, index: number, newField: boolean): void {
-    if (someField === undefined) {
+    console.log(someField);
+    if (!someField) {
       let someField = {
         order: 1,
-        type: '',
+        type: 'text',
         question: 'Enter a question',
         options: null,
         multiplier: 0,
