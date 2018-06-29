@@ -1,3 +1,6 @@
 .mat-form-field-infix{
   border-top: none !important;
 }
+.mat-form-field-wrapper{
+  -webkit-margin-after: 10px;
+}

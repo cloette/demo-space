@@ -20,34 +20,34 @@
       </mat-form-field>
 
       <div *ngIf="needsOptions()">
-        <div *ngIf="options">
-          <div *ngFor="let option of options; index as i">
-            <p>Option:
-                <br />Display Name: {{ option.helperText }}
-                <br />Value: {{ option.value }}
-              </p>
-              <button type="button" mat-button (click)="removeOption(i)">Delete</button>
-          </div>
-        </div>
-        <div *ngIf="addAnOption">
-          <form class="form-horizontal" style="border:1px solid grey; padding:20px;">
-            <mat-form-field>
-              <h4>Display Name</h4>
-              <input matInput type="text" [(ngModel)]="optionsHelperText" name="helperText">
-              <mat-hint align="start">Text to show for this option</mat-hint>
-            </mat-form-field>
-            <mat-form-field>
-              <h4>Value</h4>
-              <input matInput type="number" [(ngModel)]="optionsValue" name="optionValue">
-              <mat-hint align="start">Value of this option (number)</mat-hint>
-            </mat-form-field>
-            <br /><br />
-            <button type="button" mat-button (click)="toggleAddAnOption()">Cancel</button>
-            <button type="button" mat-button color="primary" (click)="addOption()" cdkFocusInitial>Save</button>
-          </form>
-        </div>
         <div *ngIf="!addAnOption">
           <h4>Options</h4>
+          <div *ngIf="options">
+              <div *ngFor="let option of options; index as i">
+                <p>Option {{i}}:
+                    <br />Display Name: {{ option.helperText }}
+                    <br />Value: {{ option.value }}
+                  </p>
+                  <button type="button" mat-button (click)="removeOption(i)">Delete</button>
+              </div>
+            </div>
+          <div *ngIf="addAnOption">
+              <form class="form-horizontal" style="border:1px solid grey; padding:20px;">
+                <mat-form-field>
+                  <h4>Display Name</h4>
+                  <input matInput type="text" [(ngModel)]="optionsHelperText" name="helperText">
+                  <mat-hint align="start">Text to show for this option</mat-hint>
+                </mat-form-field>
+                <mat-form-field>
+                  <h4>Value</h4>
+                  <input matInput type="number" [(ngModel)]="optionsValue" name="optionValue">
+                  <mat-hint align="start">Value of this option (number)</mat-hint>
+                </mat-form-field>
+                <br /><br />
+                <button type="button" mat-button (click)="toggleAddAnOption()">Cancel</button>
+                <button type="button" mat-button color="primary" (click)="addOption()" cdkFocusInitial>Save</button>
+              </form>
+            </div>
           <button type="button" mat-button color="primary" (click)="toggleAddAnOption()">Add an option</button>
         </div>
       </div>
