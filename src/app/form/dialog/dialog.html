@@ -4,12 +4,12 @@
     <fieldset>
       <mat-form-field>
         <mat-label for="question">Question</mat-label>
-        <input matInput type="text" [formControl]="question" id="question">
+        <input matInput type="text" formControl="question" id="question">
         <mat-hint>What do you want to measure?</mat-hint>
       </mat-form-field>
       <mat-form-field>
         <mat-label for="type">Type</mat-label>
-        <mat-select [formControl]="type" id="type" placeholder="Field Type">
+        <mat-select formControl="type" id="type" placeholder="Field Type">
           <mat-option *ngFor="let t of types" [(value)]="t.value">
             {{ t.viewValue }}
           </mat-option>
@@ -17,7 +17,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label for="order">Order</mat-label>
-        <input matInput type="number" [formControl]="order" id="order" placeholder="0">
+        <input matInput type="number" formControl="order" id="order" placeholder="0">
         <mat-hint>The order each field appears in, sorted in ascending order. (0 means it will be shown first)</mat-hint>
       </mat-form-field>
 
@@ -32,15 +32,15 @@
           </div>
         </div>
         <div *ngIf="addAnOption">
-          <form class="form-horizontal" [formControl]="options">
+          <form class="form-horizontal" formControl="options">
             <mat-form-field>
               <mat-label for="helperText">Display Name</mat-label>
-              <input matInput type="text" [formControl]="helperText" id="helperText">
+              <input matInput type="text" formControl="helperText" id="helperText">
               <mat-hint>Text to show for this option</mat-hint>
             </mat-form-field>
             <mat-form-field>
               <mat-label for="optionValue">Value</mat-label>
-              <input matInput type="number" [formControl]="optionValue" id="optionValue">
+              <input matInput type="number" formControl="optionValue" id="optionValue">
               <mat-hint>Value of this option (number)</mat-hint>
             </mat-form-field>
             <button mat-button (click)="toggleAddAnOption()">Cancel</button>
@@ -54,12 +54,12 @@
 
       <mat-form-field>
         <mat-label for="maxValue">Maximum Value</mat-label>
-        <input matInput type="number" [formControl]="maxValue" id="maxValue">
+        <input matInput type="number" formControl="maxValue" id="maxValue">
         <mat-hint>What's the highest possible score for this field? (before multiplier is applied?)</mat-hint>
       </mat-form-field>
       <mat-form-field>
         <mat-label for="value">Default Value</mat-label>
-        <input matInput type="number" [formControl]="value" id="value">
+        <input matInput type="number" formControl="value" id="value">
         <mat-hint>What's the default value for this field? (before multiplier is applied?)</mat-hint>
       </mat-form-field>
       <mat-form-field>
@@ -69,7 +69,7 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label for="disabled">Disable this field?</mat-label>
-        <mat-slide-toggle [formControl]="disabled" id="disabled">Disable</mat-slide-toggle>
+        <mat-slide-toggle formControl="disabled" id="disabled">Disable</mat-slide-toggle>
         <mat-hint>By default, fields are enabled. Disabled fields are not counted in the scoring process.</mat-hint>
       </mat-form-field>
     </fieldset>
