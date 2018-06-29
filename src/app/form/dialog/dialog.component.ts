@@ -8,7 +8,19 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class Dialog implements OnInit {
 
-  public questionData: FormGroup;
+  public questionData = new FormGroup ({
+    order: new FormControl(),
+    type: new FormControl(),
+    question: new FormControl('',Validators.required),
+    options: new FormGroup({
+      helperText: new FormControl(),
+      optionValue: new FormControl()
+    }),
+    maxValue: new FormControl(),
+    multiplier: new FormControl(),
+    disabled: new FormControl(),
+    value: new FormControl()
+  })
 
   public types = [
     { value: 'text', viewValue: 'Text Field' },
@@ -27,21 +39,6 @@ export class Dialog implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
     ngOnInit() {
-
-      this.questionData = new FormGroup ({
-        order: new FormControl(),
-        type: new FormControl(),
-        question: new FormControl('',Validators.required),
-        options: new FormGroup({
-          helperText: new FormControl(),
-          optionValue: new FormControl()
-        }),
-        maxValue: new FormControl(),
-        multiplier: new FormControl(),
-        disabled: new FormControl(),
-        value: new FormControl()
-      })
-
       if(this.data){
         this.questionData.setValue({
           order: this.data.order,
