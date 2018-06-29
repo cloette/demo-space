@@ -30,7 +30,7 @@
           </div>
         </div>
         <div *ngIf="addAnOption">
-          <form class="form-horizontal" style="border:1px solid grey">
+          <form class="form-horizontal" style="border:1px solid grey; padding:20px;">
             <mat-form-field>
               <h4>Display Name</h4>
               <input matInput type="text" [(ngModel)]="optionsHelperText" name="helperText">
@@ -41,8 +41,8 @@
               <input matInput type="number" [(ngModel)]="optionsValue" name="optionValue">
               <mat-hint align="start">Value of this option (number)</mat-hint>
             </mat-form-field>
-            <br />
-            <button type="button" mat-button (click)="toggleAddAnOption()">Cancel</button><br />
+            <br /><br />
+            <button type="button" mat-button (click)="toggleAddAnOption()">Cancel</button>
             <button type="button" mat-button color="primary" (click)="addOption()" cdkFocusInitial>Save</button>
           </form>
         </div>

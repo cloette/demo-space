@@ -1,26 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import {
-  MatIconModule,
-  MatIconRegistry,
-  MatButtonModule,
-  MatRippleModule,
-  MatInputModule,
-  MatSelectModule,
-  MatOptionModule,
-  MatFormFieldModule,
-  MatFormFieldControl,
-  MatSlideToggleModule
-} from '@angular/material';
 
 @Component({
   selector: 'app-dialog',
-  templateUrl: 'dialog.html',
+  templateUrl: './dialog.html',
   styleUrls: ['./dialog.component.css']
 })
 export class Dialog implements OnInit {
-
   order;
   type;
   question;
