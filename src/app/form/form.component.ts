@@ -37,8 +37,8 @@ export class FormComponent implements OnInit {
   public profile;
   public newField: IFieldResponse;
 
-  public formIDform: FormGroup;
-  public specificForm: FormGroup;
+  public id = new FormControl;
+  public sid = new FormControl;
   public newFieldForm: FormGroup;
 
   constructor(
@@ -58,13 +58,13 @@ export class FormComponent implements OnInit {
   }
 
   updateFormID(): void {
-    this.getForm(this.formIDform.get('id').value);
+    this.getForm(this.id.value);
     this.firstVisit = false;
   }
   makeSpecificForm(): void {
     // Post to /api/form/:id with supplied id
     // or the user's id
-    this.formID = this.specificForm.get('sid').value;
+    this.formID = this.sid.value;
     this.makeBlankForm();
   }
 
@@ -203,12 +203,6 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formIDform = new FormGroup({
-      id: new FormControl()
-    });
-    this.specificForm = new FormGroup({
-      sid: new FormControl()
-    });
   }
 
 }
