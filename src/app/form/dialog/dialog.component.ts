@@ -8,19 +8,16 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class Dialog implements OnInit {
 
-  public questionData = new FormGroup ({
-    order: new FormControl(),
-    type: new FormControl(),
-    question: new FormControl('',Validators.required),
-    options: new FormGroup({
-      helperText: new FormControl(),
-      optionValue: new FormControl()
-    }),
-    maxValue: new FormControl(),
-    multiplier: new FormControl(),
-    disabled: new FormControl(),
-    value: new FormControl()
-  })
+  public order = new FormControl();
+  public type = new FormControl();
+  public question = new FormControl();
+  public options = [];
+  public optionsHelperText = new FormControl();
+  public optionsValue = new FormControl();
+  public maxValue = new FormControl();
+  public multiplier = new FormControl();
+  public disabled = new FormControl();
+  public value = new FormControl();
 
   public types = [
     { value: 'text', viewValue: 'Text Field' },
@@ -38,53 +35,60 @@ export class Dialog implements OnInit {
     public dialogRef: MatDialogRef<Dialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-    ngOnInit() {
-      if(this.data){
-        this.questionData.setValue({
-          order: this.data.order,
-          type: this.data.type,
-          question: this.data.question,
-          options: this.data.options,
-          maxValue: this.data.maxValue,
-          multiplier: this.data.multiplier,
-          disabled: this.data.disabled,
-          value: this.data.value
-        });
-      }
+  ngOnInit() {
+    if (this.data) {
+      this.order.setValue(this.data.order);
+      this.type.setValue(this.data.type);
+      this.question.setValue(this.data.question);
+      this.options = this.data.options; //arrays gotta be different
+      this.maxValue.setValue(this.data.maxValue);
+      this.multiplier.setValue(this.data.multiplier);
+      this.disabled.setValue(this.data.disabled);
+      this.value.setValue(this.data.value);
+    }
 
-     }
+  }
 
-  needsOptions(): boolean {
-    if (this.questionData.get('type').value === 'text' || this.questionData.get('type').value === 'switch'){
+  public needsOptions(): boolean {
+    if (this.value.value === 'text' || this.type.value === 'switch') {
       return false;
     }
-    else{
+    else {
       return true;
     }
   }
 
-  toggleAddAnOption(): void {
+  public toggleAddAnOption(): void {
     this.addAnOption = !this.addAnOption;
   }
 
-  addOption(): void {
-    this.newOption.helperText = this.questionData.get('options').get('helperText').value;
-    this.newOption.value = parseInt(this.questionData.get('options').get('optionValue').value);
-    this.data.options.push(this.newOption);
+  public addOption(): void {
+    this.newOption.helperText = this.optionsHelperText.value;
+    this.newOption.value = parseInt(this.optionsValue.value);
+    this.options.push(this.newOption);
   }
 
-  removeOption(index: number): void {
-    this.data.options.splice(index, 1);
+  public removeOption(index: number): void {
+    this.options.splice(index, 1);
   }
 
-  save(): void{
-    this.data = this.questionData.value;
-    console.log(this.data);
-    this.dialogRef.close({result: this.data});
+  public save(): void {
+    this.data = {
+      order: this.order.value,
+      type: this.type.value,
+      question: this.question.value,
+      options: this.options,
+      maxValue: this.maxValue.value,
+      multipler: this.multiplier.value,
+      disabled: this.disabled.value,
+      value: this.value.value
+    };
+    console.log("saved field" + this.data);
+    this.dialogRef.close({ result: this.data });
   }
 
-  onNoClick(): void {
-    this.dialogRef.close({result: this.data});
+  public onNoClick(): void {
+    this.dialogRef.close({ result: this.data });
   }
 
 }
