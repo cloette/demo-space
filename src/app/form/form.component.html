@@ -21,7 +21,7 @@
       <mat-form-field style="margin-right: 20px;">
         <input matInput label="id" placeholder="Enter an ID here" [formControl]="id" />
       </mat-form-field>
-      <button mat-raised-button (click)="updateFormID()">Fetch form</button>
+      <button type="button" mat-raised-button (click)="updateFormID()">Fetch form</button>
       <br />
       <p style="font-size: 12px;line-height: 1.4em;">This field defaults to your profile ID if left blank.</p>
     </form>
@@ -31,7 +31,7 @@
       <mat-form-field style="margin-right: 20px;">
         <input matInput label="sid" placeholder="Enter an ID here" [formControl]="sid" />
       </mat-form-field>
-      <button mat-raised-button (click)="makeSpecificForm()">Create form</button>
+      <button type="button" mat-raised-button (click)="makeSpecificForm()">Create form</button>
       <br />
       <p style="font-size: 12px;line-height: 1.4em;">This field defaults to your profile ID if left blank.</p>
     </form>
@@ -41,7 +41,7 @@
 <div *ngIf="!firstVisit">
   <div *ngIf="dataReady">
     <div class="floating-button">
-      <button mat-fab (click)="openDialog(newField,9,true)">
+      <button type="button" mat-fab (click)="openDialog(newField,9,true)">
         <!-- Displays add field form -->
         <mat-icon aria-label="Add Field" title="Add Field">add</mat-icon>
       </button>
@@ -69,14 +69,14 @@
     <app-ui-loader [visible]="true"></app-ui-loader>
   </div>
   <br />
-  <button mat-raised-button color="primary" (click)="saveForm()">
+  <button type="button" mat-raised-button color="primary" (click)="saveForm()">
     Save Changes
   </button>
-  <button mat-raised-button>
+  <button type="button" mat-raised-button>
     Cancel
   </button>
   <br /><br />
-  <button mat-raised-button color="warn" (click)="clearForm()">
+  <button type="button" mat-raised-button color="warn" (click)="clearForm()">
     Start Over (Blank Form)
   </button>
 </div>
