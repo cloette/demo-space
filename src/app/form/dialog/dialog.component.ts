@@ -21,7 +21,19 @@ import {
 })
 export class Dialog implements OnInit {
 
-  public order = new FormControl();
+  order;
+  type;
+  question;
+  options = [];
+  optionsHelperText;
+  optionsValue;
+  maxValue;
+  multiplier;
+  disabled;
+  value;
+  newOption = { helperText: '', value: 0};
+  addAnOption: boolean = false;
+  /*public order = new FormControl();
   public type = new FormControl();
   public question = new FormControl();
   public options = [];
@@ -30,11 +42,9 @@ export class Dialog implements OnInit {
   public maxValue = new FormControl();
   public multiplier = new FormControl();
   public disabled = new FormControl();
-  public value = new FormControl();
-  public newOption = { helperText: '', value: 0};
-  public addAnOption: boolean = false;
+  public value = new FormControl();*/
 
-  public types = [
+  types = [
     { value: 'text', viewValue: 'Text Field' },
     { value: 'radio', viewValue: 'Radio Options' },
     { value: 'checkbox', viewValue: 'Checkbox' },
@@ -48,20 +58,28 @@ export class Dialog implements OnInit {
 
   ngOnInit() {
     if (this.data) {
-      this.order.setValue(this.data.order);
+      this.order = this.data.order;
+      this.type = this.data.type;
+      this.question = this.data.question;
+      this.options = this.data.options;
+      this.maxValue = this.data.maxValue;
+      this.multiplier = this.data.multiplier;
+      this.disabled = this.data.disabled;
+      this.value = this.data.value;
+      /*this.order.setValue(this.data.order);
       this.type.setValue(this.data.type);
       this.question.setValue(this.data.question);
       this.options = this.data.options; //arrays gotta be different
       this.maxValue.setValue(this.data.maxValue);
       this.multiplier.setValue(this.data.multiplier);
       this.disabled.setValue(this.data.disabled);
-      this.value.setValue(this.data.value);
+      this.value.setValue(this.data.value);*/
     }
 
   }
 
-  public needsOptions(): boolean {
-    if (this.value.value === 'text' || this.type.value === 'switch') {
+  needsOptions(): boolean {
+    if (this.value === 'text' || this.type === 'switch') {
       return false;
     }
     else {
@@ -69,36 +87,36 @@ export class Dialog implements OnInit {
     }
   }
 
-  public toggleAddAnOption(): void {
+  toggleAddAnOption(): void {
     this.addAnOption = !this.addAnOption;
   }
 
-  public addOption(): void {
+  addOption(): void {
     this.newOption.helperText = this.optionsHelperText.value;
     this.newOption.value = parseInt(this.optionsValue.value);
     this.options.push(this.newOption);
   }
 
-  public removeOption(index: number): void {
+  removeOption(index: number): void {
     this.options.splice(index, 1);
   }
 
-  public save(): void {
+  save(): void {
     this.data = {
-      order: this.order.value,
-      type: this.type.value,
-      question: this.question.value,
+      order: this.order,
+      type: this.type,
+      question: this.question,
       options: this.options,
-      maxValue: this.maxValue.value,
-      multipler: this.multiplier.value,
-      disabled: this.disabled.value,
-      value: this.value.value
+      maxValue: this.maxValue,
+      multipler: this.multiplier,
+      disabled: this.disabled,
+      value: this.value
     };
     console.log("saved field" + this.data);
     this.dialogRef.close({ result: this.data });
   }
 
-  public onNoClick(): void {
+  onNoClick(): void {
     this.dialogRef.close({ result: this.data });
   }
 
