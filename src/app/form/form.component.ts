@@ -31,8 +31,8 @@ export class FormComponent implements OnInit {
   public showSpecificFormField: boolean = false;
   public dataReady: boolean = false;
   public formID: string = undefined;
-  public form;
-  public fields;
+  public form: IFormResponse;
+  public fields: Array<IFieldResponse>;
   private payload;
   public profile;
   public newField: IFieldResponse;
