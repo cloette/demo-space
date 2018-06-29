@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>Add/Edit Field</h1>
-<div mat-dialog-content>
+<div *ngIf="data" mat-dialog-content>
   <form class="form-horizontal">
       <mat-form-field>
         <input matInput type="text" [formControl]="question" id="question" placeholder="Question">
@@ -41,8 +41,8 @@
               <input matInput type="number" [formControl]="optionsValue" id="optionValue">
               <mat-hint align="start">Value of this option (number)</mat-hint>
             </mat-form-field>
-            <button mat-button (click)="toggleAddAnOption()">Cancel</button>
-            <button mat-button color="primary" (click)="addOption()" cdkFocusInitial>Save</button>
+            <button type="button" mat-button (click)="toggleAddAnOption()">Cancel</button>
+            <button type="button" mat-button color="primary" (click)="addOption()" cdkFocusInitial>Save</button>
           </form>
         </div>
         <div *ngIf="!addAnOption">

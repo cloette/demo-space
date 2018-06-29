@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 @Component({
   selector: 'app-dialog',
   templateUrl: 'dialog.html',
+  styleUrls: ['./dialog.component.css']
 })
 export class Dialog implements OnInit {
 
@@ -18,6 +19,8 @@ export class Dialog implements OnInit {
   public multiplier = new FormControl();
   public disabled = new FormControl();
   public value = new FormControl();
+  public newOption = { helperText: '', value: 0};
+  public addAnOption: boolean = false;
 
   public types = [
     { value: 'text', viewValue: 'Text Field' },
@@ -26,10 +29,6 @@ export class Dialog implements OnInit {
     { value: 'switch', viewValue: 'Toggle' },
     { value: 'select', viewValue: 'Dropdown' },
   ];
-
-  public newOption;
-
-  public addAnOption: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<Dialog>,
