@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 })
 export class Dialog implements OnInit {
 
-  questionData: FormGroup;
+  public questionData: FormGroup;
 
   public types = [
     { value: 'text', viewValue: 'Text Field' },
@@ -37,7 +37,7 @@ export class Dialog implements OnInit {
           optionValue: new FormControl()
         }),
         maxValue: new FormControl(),
-        multiplier:new FormControl(),
+        multiplier: new FormControl(),
         disabled: new FormControl(),
         value: new FormControl()
       })
