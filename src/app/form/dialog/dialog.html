@@ -1,21 +1,21 @@
 <h1 mat-dialog-title>Add/Edit Field</h1>
-<div *ngIf="data" mat-dialog-content>
+<div mat-dialog-content>
   <form class="form-horizontal">
       <mat-form-field>
-        <input matInput type="text" [formControl]="question" id="question" placeholder="Question">
+        <input matInput type="text" [formControl]="question" id="question" placeholder="Question" />
         <mat-hint align="start">What do you want to measure?</mat-hint>
       </mat-form-field>
       <mat-form-field>
         <h4>Type</h4>
-        <mat-select [formControl]="type" id="type" placeholder="Field Type">
-          <mat-option *ngFor="let t of types" [(value)]="t.value">
+        <select mat-select matSelect [formControl]="type" id="type" placeholder="Field Type">
+          <option mat-option *ngFor="let t of types" [(value)]="t.value">
             {{ t.viewValue }}
-          </mat-option>
-        </mat-select>
+          </option>
+        </select>
       </mat-form-field>
       <mat-form-field>
         <h4>Order</h4>
-        <input matInput type="number" [formControl]="order" id="order" placeholder="0">
+        <input matInput type="number" [formControl]="order" id="order" placeholder="0" />
         <mat-hint align="start">The order each field appears in, sorted in ascending order. (0 means it will be shown first)</mat-hint>
       </mat-form-field>
 
@@ -33,41 +33,42 @@
           <form class="form-horizontal">
             <mat-form-field>
               <h4>Display Name</h4>
-              <input matInput type="text" [formControl]="optionsHelperText" id="helperText">
+              <input matInput type="text" [formControl]="optionsHelperText" id="helperText" />
               <mat-hint align="start">Text to show for this option</mat-hint>
             </mat-form-field>
             <mat-form-field>
               <h4>Value</h4>
-              <input matInput type="number" [formControl]="optionsValue" id="optionValue">
+              <input matInput type="number" [formControl]="optionsValue" id="optionValue" />
               <mat-hint align="start">Value of this option (number)</mat-hint>
             </mat-form-field>
-            <button type="button" mat-button (click)="toggleAddAnOption()">Cancel</button>
+            <br />
+            <button type="button" mat-button (click)="toggleAddAnOption()">Cancel</button><br />
             <button type="button" mat-button color="primary" (click)="addOption()" cdkFocusInitial>Save</button>
           </form>
         </div>
         <div *ngIf="!addAnOption">
-          <button type="button" mat-button color="primary" (click)="toggleAddAnOption()">Add</button>
+          <button type="button" mat-button color="primary" (click)="toggleAddAnOption()">Add an option</button>
         </div>
       </div>
 
       <mat-form-field>
         <h4>Maximum Value</h4>
-        <input matInput type="number" formControl="maxValue" id="maxValue">
+        <input matInput type="number" formControl="maxValue" id="maxValue" />
         <mat-hint align="start">What's the highest possible score for this field? (before multiplier is applied?)</mat-hint>
       </mat-form-field>
       <mat-form-field>
         <h4>Default Value</h4>
-        <input matInput type="number" formControl="value" id="value">
+        <input matInput type="number" formControl="value" id="value" />
         <mat-hint align="start">What's the default value for this field? (before multiplier is applied?)</mat-hint>
       </mat-form-field>
       <mat-form-field>
         <h4>Multiplier</h4>
-        <input matInput type="number" formControl="multiplier" id="multiplier">
+        <input matInput type="number" formControl="multiplier" id="multiplier" />
         <mat-hint align="start">How important is this, relative to other items? (field score is multiplied by this number - defaults to 1)</mat-hint>
       </mat-form-field>
       <mat-form-field>
         <h4>Disable this field?</h4>
-        <mat-slide-toggle formControl="disabled" id="disabled">Disable field</mat-slide-toggle>
+        <input mat-slide-toggle matSlideToggle formControl="disabled" id="disabled" />
         <mat-hint align="start">By default, fields are enabled. Disabled fields are not counted in the scoring process.</mat-hint>
       </mat-form-field>
   </form>
