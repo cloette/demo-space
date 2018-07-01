@@ -22,19 +22,15 @@
 
     <div *ngIf="needsOptions()">
       <h4>Options</h4>
-      <div *ngIf="!addAnOption">
-        <div *ngIf="options">
-          <div *ngFor="let option of options; index as i">
-            <p>Option {{i}}:
-              <br />Display Name: {{ option.helperText }}
-              <br />Value: {{ option.value }}
-            </p>
-            <button type="button" mat-button (click)="removeOption(i)">Delete</button>
-          </div>
-          <button type="button" mat-button color="primary" (click)="toggleAddAnOption()">Add an option</button>
+      <div *ngIf="options">
+        <div *ngFor="let option of options; index as i">
+          <p>Option {{i}}:
+            <br />Display Name: {{ option.helperText }}
+            <br />Value: {{ option.value }}
+          </p>
+          <button type="button" mat-button (click)="removeOption(i)">Delete</button>
         </div>
       </div>
-
       <div *ngIf="addAnOption">
         <form class="form-horizontal" style="border:1px solid grey; padding:20px;">
           <mat-form-field>
@@ -53,6 +49,7 @@
           <button type="button" mat-button color="primary" (click)="addOption()" cdkFocusInitial>Save</button>
         </form>
       </div>
+      <button type="button" mat-button color="primary" (click)="toggleAddAnOption()">Add an option</button>
     </div>
 
     <mat-form-field>
