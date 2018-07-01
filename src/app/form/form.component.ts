@@ -31,7 +31,7 @@ export class FormComponent implements OnInit {
   public dataReady: boolean = false;
   public formID: string = undefined;
   public form: IFormResponse;
-  public fields;
+  public fields: Array<IFieldResponse>;
   public profile;
   public newField: IFieldResponse;
 
