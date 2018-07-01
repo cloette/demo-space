@@ -20,16 +20,6 @@ export class Dialog implements OnInit {
   value;
   newOption = { helperText: '', value: 0};
   addAnOption: boolean = false;
-  /*public order = new FormControl();
-  public type = new FormControl();
-  public question = new FormControl();
-  public options = [];
-  public optionsHelperText = new FormControl();
-  public optionsValue = new FormControl();
-  public maxValue = new FormControl();
-  public multiplier = new FormControl();
-  public disabled = new FormControl();
-  public value = new FormControl();*/
 
   types = [
     { value: 'text', viewValue: 'Text Field' },
@@ -53,14 +43,6 @@ export class Dialog implements OnInit {
       this.multiplier = this.data.multiplier;
       this.disabled = this.data.disabled;
       this.value = this.data.value;
-      /*this.order.setValue(this.data.order);
-      this.type.setValue(this.data.type);
-      this.question.setValue(this.data.question);
-      this.options = this.data.options; //arrays gotta be different
-      this.maxValue.setValue(this.data.maxValue);
-      this.multiplier.setValue(this.data.multiplier);
-      this.disabled.setValue(this.data.disabled);
-      this.value.setValue(this.data.value);*/
     }
 
   }
@@ -80,7 +62,7 @@ export class Dialog implements OnInit {
 
   addOption(): void {
     this.newOption.helperText = this.optionsHelperText.value;
-    this.newOption.value = parseInt(this.optionsValue.value);
+    this.newOption.value = this.optionsValue.value;
     this.options.push(this.newOption);
   }
 
@@ -104,7 +86,7 @@ export class Dialog implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close({ result: this.data });
+    this.dialogRef.close({ result: false });
   }
 
 }

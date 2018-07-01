@@ -31,7 +31,7 @@ export class FormComponent implements OnInit {
   public dataReady: boolean = false;
   public formID: string = undefined;
   public form: IFormResponse;
-  public fields: Array<IFieldResponse>;
+  public fields;
   public profile;
   public newField: IFieldResponse;
 
@@ -171,7 +171,10 @@ export class FormComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (!newField) {
+      if (!result){
+        console.log("Dialog closed without saving. Do nothing.")
+      }
+      else if (!newField) {
         let formattedResult = result;
         this.replaceField(formattedResult, index);
       }
