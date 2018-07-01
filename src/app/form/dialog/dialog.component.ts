@@ -99,7 +99,7 @@ export class Dialog implements OnInit {
       disabled: this.disabled,
       value: this.value
     };
-    console.log("saved field" + this.data);
+    console.log("saved field" + JSON.stringify(this.data));
     this.dialogRef.close({ result: this.data });
   }
 

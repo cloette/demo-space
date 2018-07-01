@@ -13,7 +13,6 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 import { FORM_ADD, FORM_EDIT, FORM_GET } from '../store/form/form.actions';
 
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
@@ -33,7 +32,6 @@ export class FormComponent implements OnInit {
   public formID: string = undefined;
   public form: IFormResponse;
   public fields: Array<IFieldResponse>;
-  private payload;
   public profile;
   public newField: IFieldResponse;
 
@@ -175,16 +173,10 @@ export class FormComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (!newField) {
         let formattedResult = result;
-        formattedResult.maxValue = parseInt(formattedResult.maxValue);
-        formattedResult.multiplier = parseInt(formattedResult.multiplier);
-        formattedResult.order = parseInt(formattedResult.order);
         this.replaceField(formattedResult, index);
       }
       else {
         this.newField = result;
-        this.newField.maxValue = parseInt(result.maxValue);
-        this.newField.multiplier = parseInt(result.multiplier);
-        this.newField.order = parseInt(result.order);
         this.addField();
       }
     });
