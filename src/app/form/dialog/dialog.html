@@ -6,7 +6,6 @@
       <mat-hint align="start">What do you want to measure?</mat-hint>
     </mat-form-field>
     <mat-form-field>
-      <h4>Type</h4>
       <mat-select [(ngModel)]="type" name="type" placeholder="Field Type">
         <mat-option *ngFor="let t of types" [(value)]="t.value">
           {{ t.viewValue }}
@@ -14,8 +13,7 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field>
-      <h4>Order</h4>
-      <input matInput type="number" [(ngModel)]="order" name="order" placeholder="0">
+      <input matInput type="number" [(ngModel)]="order" name="order" placeholder="Order">
       <mat-hint align="start">The order each field appears in, sorted in ascending order. (0 means it will be shown first)</mat-hint>
     </mat-form-field>
 
@@ -31,47 +29,43 @@
             <button type="button" mat-button (click)="removeOption(i)">Delete</button>
           </div>
         </div>
-        <div *ngIf="addAnOption">
-          <form class="form-horizontal" style="border:1px solid grey; padding:20px;">
-            <mat-form-field>
-              <h4>Display Name</h4>
-              <input matInput type="text" [(ngModel)]="optionsHelperText" name="helperText">
-              <mat-hint align="start">Text to show for this option</mat-hint>
-            </mat-form-field>
-            <mat-form-field>
-              <h4>Value</h4>
-              <input matInput type="number" [(ngModel)]="optionsValue" name="optionValue">
-              <mat-hint align="start">Value of this option (number)</mat-hint>
-            </mat-form-field>
-            <br />
-            <br />
-            <button type="button" mat-button (click)="toggleAddAnOption()">Cancel</button>
-            <button type="button" mat-button color="primary" (click)="addOption()" cdkFocusInitial>Save</button>
-          </form>
-        </div>
         <button type="button" mat-button color="primary" (click)="toggleAddAnOption()">Add an option</button>
+      </div>
+      <div *ngIf="addAnOption">
+        <form class="form-horizontal" style="border:1px solid grey; padding:20px;">
+          <mat-form-field>
+            <input matInput type="text" [(ngModel)]="optionsHelperText" name="helperText" placeholder="Option Display Name">
+            <mat-hint align="start">Text to show for this option</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput type="number" [(ngModel)]="optionsValue" name="optionValue" placeholder="Option Value">
+            <mat-hint align="start">Value of this option (number)</mat-hint>
+          </mat-form-field>
+          <br />
+          <br />
+          <button type="button" mat-button (click)="toggleAddAnOption()">Cancel</button>
+          <button type="button" mat-button color="primary" (click)="addOption()" cdkFocusInitial>Save</button>
+        </form>
       </div>
     </div>
 
     <mat-form-field>
-      <h4>Maximum Value</h4>
-      <input matInput type="number" [(ngModel)]="maxValue" name="maxValue">
+      <input matInput type="number" [(ngModel)]="maxValue" name="maxValue" placeholder="Maximum Value">
       <mat-hint align="start">What's the highest possible score for this field? (before multiplier is applied?)</mat-hint>
     </mat-form-field>
     <mat-form-field>
-      <h4>Default Value</h4>
-      <input matInput type="number" [(ngModel)]="value" name="value">
+      <input matInput type="number" [(ngModel)]="value" name="value" placeholder="Default Value">
       <mat-hint align="start">What's the default value for this field? (before multiplier is applied?)</mat-hint>
     </mat-form-field>
     <mat-form-field>
-      <h4>Multiplier</h4>
-      <input matInput type="number" [(ngModel)]="multiplier" name="multiplier">
+      <input matInput type="number" [(ngModel)]="multiplier" name="multiplier" placeholder="Multiplier">
       <mat-hint align="start">How important is this, relative to other items? (field score is multiplied by this number - defaults to 1)</mat-hint>
     </mat-form-field>
-    <h4>Disable this field?</h4>
-    <mat-slide-toggle [(ngModel)]="disabled" name="disabled"></mat-slide-toggle>
-    <mat-hint align="start">
-      <br />By default, fields are enabled. Disabled fields are not counted in the scoring process.</mat-hint>
+    <mat-form-field>
+      <mat-slide-toggle [(ngModel)]="disabled" name="disabled" placeholder="Disable this field?"></mat-slide-toggle>
+      <mat-hint align="start">
+        By default, fields are enabled. Disabled fields are not counted in the scoring process.</mat-hint>
+    </mat-form-field>
   </form>
 
   <p>Please note: you must still save the form after saving the field.</p>
