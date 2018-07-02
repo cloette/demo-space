@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -8,18 +8,17 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
   styleUrls: ['./dialog.component.css']
 })
 export class Dialog implements OnInit {
-  order;
-  type;
-  question;
-  options = [];
-  optionsHelperText;
-  optionsValue;
-  maxValue;
-  multiplier;
-  disabled;
-  value;
-  newOption = { helperText: '', value: 0};
-  addAnOption: boolean = false;
+  public order;
+  public type;
+  public question;
+  public options = [];
+  public optionsHelperText;
+  public optionsValue;
+  public maxValue;
+  public multiplier;
+  public disabled;
+  public value;
+  public addAnOption: boolean = false;
 
   types = [
     { value: 'text', viewValue: 'Text Field' },
@@ -61,9 +60,7 @@ export class Dialog implements OnInit {
   }
 
   addOption(): void {
-    this.newOption.helperText = this.optionsHelperText.value;
-    this.newOption.value = this.optionsValue.value;
-    this.options.push(this.newOption);
+    this.options.push({ helperText: this.optionsHelperText.value, value: this.optionsValue.value});
   }
 
   removeOption(index: number): void {
