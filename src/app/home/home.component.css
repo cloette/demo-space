@@ -5,3 +5,13 @@ a {
 .padded{
   padding:40px;
 }
+.background-block{
+  position: absolute;
+  top:0;
+  height: 550px;
+  width:100%;
+}
+.calm{
+  background: lightblue; /* For browsers that do not support gradients */
+  background: linear-gradient(to bottom, lightblue, lightgreen);
+}

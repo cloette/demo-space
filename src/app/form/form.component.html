@@ -51,12 +51,12 @@
       <div *ngFor="let field of fields; index as i">
         <tr>
           <td class="formIconColumn">
-            <mat-icon aria-label="Delete" aria-hidden="true" (click)="removeField(i)">trash</mat-icon>
+            <mat-icon aria-label="Delete" aria-hidden="true" (click)="removeField(i)">delete</mat-icon>
           </td>
           <td class="formIconColumn">
             <mat-icon aria-label="Field Type" aria-hidden="true" [svgIcon]="getTypeIcon(field.type)"></mat-icon>
           </td>
-          <td>{{ field.question }}</td>
+          <td>{{ field.question || "Cannot read field name." }}</td>
           <td class="formIconColumn">
             <mat-icon aria-label="Edit" aria-hidden="true" (click)="openDialog(field,i,false)">
               edit</mat-icon>

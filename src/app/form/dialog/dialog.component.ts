@@ -43,7 +43,6 @@ export class Dialog implements OnInit {
       this.disabled = this.data.disabled;
       this.value = this.data.value;
     }
-
   }
 
   needsOptions(): boolean {
@@ -60,11 +59,15 @@ export class Dialog implements OnInit {
   }
 
   addOption(): void {
-    this.options.push({ helperText: this.optionsHelperText.value, value: this.optionsValue.value});
+    if (this.options != undefined) {
+      this.options.push({ helperText: this.optionsHelperText.value, value: this.optionsValue.value });
+    }
   }
 
   removeOption(index: number): void {
-    this.options.splice(index, 1);
+    if (this.options != undefined) {
+      this.options.splice(index, 1);
+    }
   }
 
   save(): void {

@@ -1,5 +1,6 @@
 <div class="padded">
   <div *ngIf="!auth.isAuthenticated()">
+    <div class="background-block calm"></div>
     <h4>
       Welcome!
       <a (click)="auth.login()">Log in</a> or

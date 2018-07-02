@@ -67,22 +67,22 @@ export class FormComponent implements OnInit {
 
   getTypeIcon(fieldType: string) {
     if (fieldType === "text") {
-      return 'text format';
+      return 'format-text';
     }
     else if (fieldType === "radio") {
-      return 'radio button checked';
+      return 'radiobox-marked';
     }
     else if (fieldType === "checkbox") {
-      return 'check box';
+      return 'checkbox-marked';
     }
     else if (fieldType === "switch") {
-      return 'toll';
+      return 'toggle-switch';
     }
     else if (fieldType === "select") {
-      return 'mat select arrow';
+      return 'arrow-drop-down-circle';
     }
     else {
-      return 'error';
+      return 'alert-circle-outline';
     }
   }
 
@@ -152,6 +152,7 @@ export class FormComponent implements OnInit {
   addField(): void {
     if (this.form) {
       this.fields.push(this.newField);
+      console.log("Fields Array", this.fields);
     }
   }
 
