@@ -16,6 +16,10 @@ import { FORM_ADD, FORM_EDIT, FORM_GET } from '../store/form/form.actions';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+export interface result {
+  result: Object;
+}
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -122,7 +126,7 @@ export class FormComponent implements OnInit {
       });
     }
     this.firstVisit = false;
-    this.store.select('form').subscribe(form => {this.form = form;});
+    this.store.select('form').subscribe(form => { this.form = form; });
     this.dataReady = true;
   }
 
@@ -172,16 +176,25 @@ export class FormComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (!result){
+      if (!result) {
         console.log("Dialog closed without saving. Do nothing.")
       }
       else if (!newField) {
-        let formattedResult = result;
-        this.replaceField(formattedResult, index);
+        if (!result.result) {
+          console.log("Dialog closed without saving. Do nothing.")
+        }
+        else {
+          this.replaceField(result.result, index);
+        }
       }
       else {
-        this.newField = result;
-        this.addField();
+        if (!result.result) {
+          console.log("Dialog closed without saving. Do nothing.")
+        }
+        else {
+          this.newField = result.result;
+          this.addField();
+        }
       }
     });
   }

@@ -59,14 +59,18 @@ export class Dialog implements OnInit {
   }
 
   addOption(): void {
+    console.log("adding option");
     if (this.options != undefined) {
       this.options.push({ helperText: this.optionsHelperText.value, value: this.optionsValue.value });
+      console.log("Options Array", this.options);
     }
   }
 
   removeOption(index: number): void {
+    console.log("removing option");
     if (this.options != undefined) {
       this.options.splice(index, 1);
+      console.log("Options Array", this.options);
     }
   }
 
