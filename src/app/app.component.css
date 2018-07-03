@@ -1,3 +1,6 @@
+h1, h2, h3, h4, p, td, li{
+  font-family: Arial;
+}
 .main {
   width: 100%;
   max-width: 800px;
@@ -8,4 +11,7 @@
 }
 h4{
   -webkit-margin-before: 0;
+}
+h1{
+  font-size:60;
 }

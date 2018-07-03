@@ -1,18 +1,30 @@
 <div class="padded">
   <div *ngIf="!auth.isAuthenticated()">
-    <div class="background-block calm"></div>
-    <h4>
-      Welcome!
-      <a (click)="auth.login()">Log in</a> or
-      <a (click)="auth.login()">Sign up</a> to start assessing!
-    </h4>
+    <div class="background-block"></div>
+    <div style="max-width:400px; min-height: 400px">
+      <h1>Tough decision?</h1>
+      <h3 style="color:#5a5a5a">Objective assessor compares and scores options - so you don't have to!</h3>
+      <p>Utilize weighted scoring systems, toggle values on the fly, and see your best options at a glance; anytime, anywhere,
+        on any device. </p>
+      <h3 style="color: #008171; cursor:pointer" (click)="auth.login()">Get Started</h3>
+    </div>
+    <div class="background-block green"></div>
+    <div style="min-height: 400px; text-align: right">
+      <h1>Explore Use Cases</h1>
+      <p>See screenshots of what Objective Assessor looks like in action.<br /><br />
+      </p>
+      <p style="font-weight: bold; list-style: none; color:white">
+        <a href="#">Home Buying</a>&nbsp;&nbsp;
+        <a href="#">Game Scorekeeping</a>&nbsp;&nbsp;
+        <a href="#">Negotiation</a></p>
+    </div>
+    <p style="text-align: right">Support Requests | Report a Bug | Objective Assessor is MIT-licensed. Last updated 7.2.2018.</p>
   </div>
   <div *ngIf="auth.isAuthenticated()">
-    <h4>
-      Thanks for logging in!
-      <br />
-      <br />Get started by
-      <a style="color: green" routerLink="/form" routerLinkActive="active">creating a form</a>.
+    <h1>
+      Thanks for logging in!</h1>
+    <h4>Get started by
+      <a style="color: #008171" routerLink="/form" routerLinkActive="active">creating a form</a>.
     </h4>
   </div>
 </div>
