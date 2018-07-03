@@ -71,22 +71,22 @@ export class FormComponent implements OnInit {
 
   getTypeIcon(fieldType: string) {
     if (fieldType === "text") {
-      return 'format-text';
+      return 'text_format';
     }
     else if (fieldType === "radio") {
-      return 'radiobox-marked';
+      return 'radio_button_checked';
     }
     else if (fieldType === "checkbox") {
-      return 'checkbox-marked';
+      return 'check_box';
     }
     else if (fieldType === "switch") {
-      return 'toggle-switch';
+      return 'toggle_off';
     }
     else if (fieldType === "select") {
-      return 'arrow-drop-down-circle';
+      return 'arrow_drop_down_circle';
     }
     else {
-      return 'alert-circle-outline';
+      return 'help';
     }
   }
 
