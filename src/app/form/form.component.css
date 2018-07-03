@@ -1,6 +1,9 @@
 .floating-button{
   text-align: right;
   padding: 20px;
+  position: absolute;
+  margin-top: -85px;
+  margin-left: 200px;
 }
 .column-layout{
   display: inline-flex;
@@ -16,5 +19,14 @@
   background-color: #008171 !important;
 }
 .lightgreen{
+  background-color: #94b777 !important;
+}
+.greytext{
+  color:#5e5e5e
+}
+.mat-icon{
+  cursor:pointer;
+}
+.mat-fab .mat-accent{
   background-color: #94b777 !important;
 }
