@@ -71,7 +71,7 @@ export class FormComponent implements OnInit {
 
   getTypeIcon(fieldType: string) {
     if (fieldType === "text") {
-      return 'text_format';
+      return 'title';
     }
     else if (fieldType === "radio") {
       return 'radio_button_checked';
@@ -80,7 +80,7 @@ export class FormComponent implements OnInit {
       return 'check_box';
     }
     else if (fieldType === "switch") {
-      return 'toggle_off';
+      return 'toll';
     }
     else if (fieldType === "select") {
       return 'arrow_drop_down_circle';
