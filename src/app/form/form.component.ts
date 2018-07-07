@@ -50,6 +50,9 @@ export class FormComponent implements OnInit {
   ) {
     this.profile = localStorage.getItem('profile');
     this.store.select('form').subscribe(form => { this.form = form; });
+    if (localStorage.getItem('form')){
+      this.form = JSON.parse(localStorage.getItem('form'));
+    }
   }
 
   toggle1(): void {
@@ -69,6 +72,11 @@ export class FormComponent implements OnInit {
     this.formID = this.sid.value;
     console.log("make specific form " + this.formID);
     this.makeBlankForm();
+  }
+
+  loadFormOptions(): void{
+    this.firstVisit = true;
+    this.dataReady = false;
   }
 
   getTypeIcon(fieldType: string) {
@@ -134,7 +142,7 @@ export class FormComponent implements OnInit {
       });
     }
     this.firstVisit = false;
-    this.store.select('form').subscribe(form => { this.form = form; localStorage.setItem('form', JSON.stringify(this.form)); });
+    this.store.select('form').subscribe(form => { this.form = form; localStorage.setItem('form', JSON.stringify(this.form)); this.fields = this.form.fields; });
     this.dataReady = true;
   }
 
@@ -216,7 +224,7 @@ export class FormComponent implements OnInit {
       this.firstVisit = false;
       this.dataReady = true;
     }
-    else{
+    if(!this.fields){
       this.fields = [];
     }
     this.newField = {
