@@ -35,7 +35,7 @@ export class FormComponent implements OnInit {
   public dataReady: boolean = false;
   public formID: string = undefined;
   public form: IFormResponse;
-  public fields = [];
+  public fields;
   public profile;
   public newField: IFieldResponse;
 
@@ -209,6 +209,9 @@ export class FormComponent implements OnInit {
       this.fields = this.form.fields;
       this.firstVisit = false;
       this.dataReady = true;
+    }
+    else{
+      this.fields = [];
     }
     this.newField = {
       order: 1,
