@@ -49,6 +49,7 @@ export class FormComponent implements OnInit {
     public dialog: MatDialog,
   ) {
     this.profile = localStorage.getItem('profile');
+    this.store.select('form').subscribe(form => { this.form = form; });
   }
 
   toggle1(): void {
@@ -202,8 +203,7 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.select('form').subscribe(form => { this.form = form; });
-    if (this.form.id){
+    if (this.form){
       this.formID = this.form.id;
       this.fields = this.form.fields;
       this.firstVisit = false;
