@@ -106,10 +106,10 @@ export class FormComponent implements OnInit {
     }
     else {
       console.log("Form new payload:");
-      console.log(this.profile);
+      console.log(this.formID);
       this.store.dispatch({
         type: FORM_ADD,
-        payload: this.profile
+        payload: this.formID
       });
       this.getForm(this.formID);
     }

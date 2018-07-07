@@ -43,10 +43,13 @@ export class Dialog implements OnInit {
       this.disabled = this.data.disabled;
       this.value = this.data.value;
     }
+    if(this.options = []){
+      this.options = [{ helperText: 'dummy', value: '0' }];
+    }
   }
 
   needsOptions(): boolean {
-    if (this.value === 'text' || this.type === 'switch') {
+    if (this.type === 'text' || this.type === 'switch') {
       return false;
     }
     else {
@@ -71,6 +74,11 @@ export class Dialog implements OnInit {
   }
 
   save(): void {
+    if(this.options){
+      if(this.options[1].helperText === 'dummy'){
+        this.options.splice(0, 1);
+      }
+    }
     this.data = {
       order: this.order,
       type: this.type,
