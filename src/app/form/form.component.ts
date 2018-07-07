@@ -105,6 +105,12 @@ export class FormComponent implements OnInit {
       this.getForm(this.profile);
     }
     else {
+      console.log("Form new payload:");
+      console.log(this.profile);
+      this.store.dispatch({
+        type: FORM_ADD,
+        payload: this.profile
+      });
       this.getForm(this.formID);
     }
   }

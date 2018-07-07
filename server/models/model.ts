@@ -28,7 +28,7 @@ var fieldSchema = new Schema({
 
 var formSchema = new Schema({
   id: { type: String, unique: true, validate: [nameValidation, 'Name cannot be blank.'] },
-  fields: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Field'}]
+  fields: { type: Array }///[{ type: mongoose.Schema.Types.ObjectId, ref: 'Field'}]
 })
 
 var itemSchema = new Schema({
