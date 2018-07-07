@@ -39,7 +39,7 @@ export class ItemComponent implements OnInit {
       this.itemID = params['addressid'];
       console.log(this.itemID);
     });
-    store.select('form').subscribe(data => this.onDataEmitted(data));
+    this.store.select('form').subscribe(form => { this.form = form; });
   }
 
   public onDataEmitted(data){

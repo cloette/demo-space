@@ -67,6 +67,7 @@ export class FormComponent implements OnInit {
     // Post to /api/form/:id with supplied id
     // or the user's id
     this.formID = this.sid.value;
+    console.log("make specific form " + this.formID);
     this.makeBlankForm();
   }
 
