@@ -63,7 +63,7 @@ export class Dialog implements OnInit {
 
   addOption(): void {
     console.log("adding option to " + this.options);
-    this.options.push({ helperText: this.optionsHelperText.value, value: this.optionsValue.value });
+    this.options.push({ helperText: this.optionsHelperText, value: this.optionsValue });
     console.log("Options Array", this.options);
   }
 
@@ -75,9 +75,7 @@ export class Dialog implements OnInit {
 
   save(): void {
     if(this.options){
-      if(this.options[1].helperText === 'dummy'){
-        this.options.splice(0, 1);
-      }
+      this.options.splice(0, 1); // Remove dummy value
     }
     this.data = {
       order: this.order,
