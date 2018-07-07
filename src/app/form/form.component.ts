@@ -134,7 +134,7 @@ export class FormComponent implements OnInit {
       });
     }
     this.firstVisit = false;
-    this.store.select('form').subscribe(form => { this.form = form; });
+    this.store.select('form').subscribe(form => { this.form = form; localStorage.setItem('form', JSON.stringify(this.form)); });
     this.dataReady = true;
   }
 

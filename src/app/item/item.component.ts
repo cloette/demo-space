@@ -40,6 +40,9 @@ export class ItemComponent implements OnInit {
       console.log(this.itemID);
     });
     this.store.select('form').subscribe(form => { this.form = form; });
+    if (!this.form){
+      this.form = localStorage.getItem('form');
+    }
   }
 
   public onDataEmitted(data){
@@ -132,6 +135,7 @@ export class ItemComponent implements OnInit {
         this.dataReady = true;
       }
     }
+    console.log(this.form);
   }
 
 }
