@@ -47,8 +47,8 @@
       </button>
     </div>
     <!-- Form fields displayed as list-->
-    <table *ngIf="fields" class="formTable">
-      <div *ngFor="let field of fields; index as i">
+    <table *ngIf="form.fields" class="formTable">
+      <div *ngFor="let field of form.fields; index as i">
         <tr>
           <td class="formIconColumn">
             <mat-icon class="greytext" aria-label="Delete" aria-hidden="true" (click)="removeField(i)">delete</mat-icon>
