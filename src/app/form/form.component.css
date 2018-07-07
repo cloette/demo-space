@@ -30,3 +30,10 @@
 .mat-fab.mat-accent, .mat-mini-fab.mat-accent, .mat-raised-button.mat-accent{
   background-color: #ffffff !important;
 }
+.mat-dialog-content{
+  max-height: 25vh;
+  overflow-y: scroll;
+}
+.mat-dialog-actions .mat-button+.mat-button{
+  border: 1px solid #673ab7;
+}

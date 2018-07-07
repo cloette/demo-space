@@ -51,7 +51,8 @@ export class FormComponent implements OnInit {
     this.profile = localStorage.getItem('profile');
     this.store.select('form').subscribe(form => { this.form = form; });
     if (localStorage.getItem('form')){
-      this.form = JSON.parse(localStorage.getItem('form'));
+      const storedForm = localStorage.getItem('form');
+      this.form = JSON.parse(storedForm);
     }
   }
 
@@ -142,7 +143,8 @@ export class FormComponent implements OnInit {
       });
     }
     this.firstVisit = false;
-    this.store.select('form').subscribe(form => { this.form = form; localStorage.setItem('form', JSON.stringify(this.form)); this.fields = this.form.fields; });
+    this.store.select('form').subscribe(form => { this.form = form; localStorage.setItem('form', JSON.stringify(this.form)); });
+    this.fields = this.form.fields;
     this.dataReady = true;
   }
 
