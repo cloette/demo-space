@@ -53,6 +53,7 @@ export class FormComponent implements OnInit {
     if (localStorage.getItem('form')){
       const storedForm = localStorage.getItem('form');
       this.form = JSON.parse(storedForm);
+      this.fields = this.form.fields || [];
     }
   }
 
@@ -144,7 +145,6 @@ export class FormComponent implements OnInit {
     }
     this.firstVisit = false;
     this.store.select('form').subscribe(form => { this.form = form; localStorage.setItem('form', JSON.stringify(this.form)); });
-    this.fields = this.form.fields;
     this.dataReady = true;
   }
 
