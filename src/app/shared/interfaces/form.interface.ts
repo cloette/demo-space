@@ -1,6 +1,6 @@
 import { IFieldResponse } from "./field.interface";
 
 export interface IFormResponse {
-  id: String,
+  id: string,
 	fields: IFieldResponse[]
 }

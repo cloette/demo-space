@@ -27,6 +27,6 @@
 .mat-icon{
   cursor:pointer;
 }
-.mat-fab .mat-accent{
-  background-color: #94b777 !important;
+.mat-fab.mat-accent, .mat-mini-fab.mat-accent, .mat-raised-button.mat-accent{
+  background-color: #ffffff !important;
 }

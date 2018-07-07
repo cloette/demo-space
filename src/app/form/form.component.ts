@@ -132,6 +132,7 @@ export class FormComponent implements OnInit {
 
   saveForm(): void {
     // Put to /api/form/:id with this.form (contains id)
+    console.log("saveForm " + this.formID, this.fields);
     this.store.dispatch({
       type: FORM_EDIT,
       payload: { id: this.formID, fields: this.fields }
@@ -139,6 +140,7 @@ export class FormComponent implements OnInit {
   }
 
   clearForm(): void {
+    console.log("clearForm " + this.formID);
     this.store.dispatch({
       type: FORM_EDIT,
       payload: { id: this.formID, fields: [] }
@@ -200,6 +202,13 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.select('form').subscribe(form => { this.form = form; });
+    if (this.form.id){
+      this.formID = this.form.id;
+      this.fields = this.form.fields;
+      this.firstVisit = false;
+      this.dataReady = true;
+    }
     this.newField = {
       order: 1,
       type: 'text',

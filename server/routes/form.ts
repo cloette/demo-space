@@ -132,9 +132,6 @@ formRouter.put("/item/:addressid", (request: Request, response: Response) => {
 
 // Updates a form
 formRouter.put("/form", (request: Request, response: Response) => {
-
-  console.log("PUT form " + JSON.stringify(request.body.json));
-
   let form = new Form();
 
   form = request.body;
@@ -143,6 +140,8 @@ formRouter.put("/form", (request: Request, response: Response) => {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });
+
+  console.log("PUT form " + JSON.stringify(request.body.json));
 
 });
 
