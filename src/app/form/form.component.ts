@@ -53,7 +53,7 @@ export class FormComponent implements OnInit {
     if (localStorage.getItem('form')){
       const storedForm = localStorage.getItem('form');
       this.form = JSON.parse(storedForm);
-      this.fields = this.form.fields || [];
+      this.fields = this.form.fields.map(x => x) || [];
     }
   }
 
@@ -222,7 +222,7 @@ export class FormComponent implements OnInit {
   ngOnInit() {
     if (this.form){
       this.formID = this.form.id;
-      this.fields = this.form.fields;
+      this.fields = this.form.fields.map(x => x);
       this.firstVisit = false;
       this.dataReady = true;
     }
