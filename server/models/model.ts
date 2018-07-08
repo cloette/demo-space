@@ -33,7 +33,7 @@ var formSchema = new Schema({
 
 var itemSchema = new Schema({
   address: { type: String}, //, unique: true}, //, validate: [nameValidation, 'Name cannot be blank.']},
-  addressID: {type: String}, //, unique: true },
+  addressID: {type: String, unique: true },
   score: { type: Number, default: 0 },
   form: formSchema,
   formid: {type: String}
