@@ -24,7 +24,7 @@ export class ItemComponent implements OnInit {
   public formReady: boolean = false;
   public itemID: string = "";
   public item: any;// Observable<IItemResponse>
-  public form: any;
+  public form: IFormResponse;
   public firstSave: boolean = false;
   private payload;
   private emptyItem = {
@@ -39,7 +39,7 @@ export class ItemComponent implements OnInit {
       this.itemID = params['addressid'];
       console.log(this.itemID);
     });
-    this.store.select('form').subscribe(form => { this.form = form; });
+    this.store.select('form').subscribe(form => { this.form = form["form"]; });
     if (!this.form){
       if (localStorage.getItem('form')){
         const storedForm = localStorage.getItem('form');

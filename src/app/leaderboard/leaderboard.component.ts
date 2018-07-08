@@ -25,12 +25,12 @@ export class LeaderboardComponent implements OnInit {
   public formReady: boolean = false;
   public descending: boolean = true;
   public items;//Array<IItemResponse>;
-  public form;//: Observable<IFormResponse>;
+  public form: IFormResponse;
   public warning: string;
   private payload;
 
   constructor( private http: HttpClient, private store: Store<IAppState>) {
-    this.store.select('form').subscribe(form => { this.form = form; });
+    this.store.select('form').subscribe(form => { this.form = form["form"]; });
     if (!this.form){
       if (localStorage.getItem('form')){
         const storedForm = localStorage.getItem('form');
