@@ -144,9 +144,6 @@ export class FormComponent implements OnInit {
     }
     this.firstVisit = false;
     this.store.select('form').subscribe(form => { this.form = form; localStorage.setItem('form', JSON.stringify(this.form)); });
-    if(Object.keys(this.form).length > 1){
-      console.log(Object.keys(this.form).length);
-    }
     this.dataReady = true;
   }
 
@@ -225,6 +222,7 @@ export class FormComponent implements OnInit {
     if (this.form){
       this.formID = this.form.id;
       this.fields = this.form.fields;
+      console.log("fields ", this.fields);
       this.firstVisit = false;
       this.dataReady = true;
     }
