@@ -126,7 +126,7 @@ export class FormComponent implements OnInit {
 
   getForm(id: any): void {
     console.log("Form get payload");
-    if (id === undefined || id === '') {
+    if (id === undefined || id === null || id === '') {
       console.log(this.profile);
       this.store.dispatch({
         type: FORM_GET,
@@ -220,15 +220,16 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     if (this.form){
-      console.log(this.form);
+      console.log("init " + this.form);
       const localForm = localStorage.getItem('form');
       this.form = JSON.parse(localForm);
-      console.log(this.form);
+      console.log("after " + this.form.fields);
       this.formID = this.form.id;
       this.fields = this.form.fields;
       this.firstVisit = false;
       this.dataReady = true;
-      console.log(this.fields);
+      console.log("id " + this.formID);
+      console.log("fields " + this.fields);
     }
     if(!this.fields){
       this.fields = [];
