@@ -33,7 +33,8 @@ export class ItemComponent implements OnInit {
     address: 'Item Display Name',
     addressID: undefined,
     score: 0,
-    form: this.form
+    form: this.form,
+    formid: ''
   };
 
   constructor(private route: ActivatedRoute, public store: Store<IAppState>) {
@@ -47,12 +48,14 @@ export class ItemComponent implements OnInit {
         const storedForm = localStorage.getItem('form');
         this.form = JSON.parse(storedForm).form;
         this.emptyItem.form = this.form;
+        this.emptyItem.formid = this.form.id;
         this.formReady = true;
       }
     }
     else {
       this.form = this.form["form"];
       this.emptyItem.form = this.form;
+      this.emptyItem.formid = this.form.id;
       this.formReady = true;
     }
   }

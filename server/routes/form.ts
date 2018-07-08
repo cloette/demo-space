@@ -14,7 +14,7 @@ formRouter.get("/hello", (request: Request, response: Response) => {
   response.json(check);
 });
 
-// Make a new option
+/*/ Make a new option
 formRouter.post("/option", (request: Request, response: Response) => {
 
   var option = new Option({
@@ -48,7 +48,7 @@ formRouter.post("/field", (request: Request, response: Response) => {
     response.json({ message: "Success!" });
   });
 
-});
+});*/
 
 // Make the initial Form
 formRouter.post("/form/:formid", (request: Request, response: Response) => {
@@ -69,15 +69,45 @@ formRouter.post("/form/:formid", (request: Request, response: Response) => {
 
 });
 
+// Returns the form
+formRouter.get("/form/:id", (request: Request, response: Response) => {
+
+  console.log("GET form " + JSON.stringify(request.params.id));
+
+  Form.find({ id: request.params.id }, function (err, items) {
+    if (err) return console.error(err);
+    console.log("items returned: " + JSON.stringify(items));
+    response.json(items[0]);
+  });
+});
+
+// Updates a form
+formRouter.put("/form", (request: Request, response: Response) => {
+  let form = new Form();
+
+  form = request.body;
+
+  Form.update({ id: request.body.id }, { $set: { fields: request.body.fields } }, function (err) {
+    if (err) return console.error(err);
+    response.json({ message: "Success!" });
+  });
+
+  console.log("PUT form " + JSON.stringify(request.body));
+
+});
+
+// Eventually: delete a form
+
 // Make an Item to be assessed
-formRouter.post("/item/:addressid", (request: Request, response: Response) => {
+formRouter.post("/item", (request: Request, response: Response) => {
 
   var item = new Item(
     {
       address: request.body.address,
       addressID: request.body.addressID,
       score: request.body.score,
-      form: request.body.form
+      form: request.body.form,
+      formid: request.body.formid
     }
   );
 
@@ -90,17 +120,18 @@ formRouter.post("/item/:addressid", (request: Request, response: Response) => {
 
 });
 
-// Returns all Items
-formRouter.get("/item/all/:formid", (request: Request, response: Response) => {
+// Updates an item
+formRouter.put("/item", (request: Request, response: Response) => {
 
-  let res;
+  let item = request.body;
 
-  Item.find({ form: request.params.formid }, function (err, items) {
+  Item.update({ addressid: request.body.addressid }, { $set: { form: request.body.form, formid: request.body.formid, score: request.body.score } }, function (err) {
     if (err) return console.error(err);
-    res = items;
+    response.json({ message: "Success!" });
   });
 
-  return response.json(res);
+  console.log("PUT item " + JSON.stringify(request.body));
+
 });
 
 // Returns one item
@@ -118,45 +149,17 @@ formRouter.get("/item/:addressid", (request: Request, response: Response) => {
   return response.json(res);
 });
 
-// Returns the form
-formRouter.get("/form/:id", (request: Request, response: Response) => {
+// Returns all Items
+formRouter.get("/item/all/:formid", (request: Request, response: Response) => {
 
-  console.log("GET form " + JSON.stringify(request.params.id));
+  let res;
 
-  Form.find({ id: request.params.id }, function (err, items) {
+  Item.find({ formid: request.params.formid }, function (err, items) {
     if (err) return console.error(err);
-    console.log("items returned: " + JSON.stringify(items));
-    response.json(items[0]);
-  });
-});
-
-// Updates an item
-formRouter.put("/item", (request: Request, response: Response) => {
-
-  let item = request.body;
-
-  Item.update({ addressid: request.body.addressid }, { $set: { form: request.body.form, score: request.body.score } }, function (err) {
-    if (err) return console.error(err);
-    response.json({ message: "Success!" });
+    res = items;
   });
 
-  console.log("PUT item " + JSON.stringify(request.body));
-
-});
-
-// Updates a form
-formRouter.put("/form", (request: Request, response: Response) => {
-  let form = new Form();
-
-  form = request.body;
-
-  Form.update({ id: request.body.id }, { $set: { fields: request.body.fields } }, function (err) {
-    if (err) return console.error(err);
-    response.json({ message: "Success!" });
-  });
-
-  console.log("PUT form " + JSON.stringify(request.body));
-
+  return response.json(res);
 });
 
 // Deletes an item
@@ -177,7 +180,5 @@ formRouter.delete("/item/:addressid", (request: Request, response: Response) => 
   console.log("DELETE item " + JSON.stringify(request.params.addressid));
 
 });
-
-// Eventually: delete a form
 
 export { formRouter };
