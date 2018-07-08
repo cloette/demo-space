@@ -32,25 +32,20 @@
       </div>
       <div *ngIf="field.type === 'radio' && !field.disabled">
         <p>{{ field.question }}</p>
-        <mat-form-field>
-          <mat-radio-group name="radiofield" *ngFor="let optionR of field.options" class="column-layout" [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}">
-            <mat-radio-button [value]="optionR.value">{{ optionR.helperText }}</mat-radio-button>
-          </mat-radio-group>
-        </mat-form-field>
+        <mat-radio-group name="radiofield" *ngFor="let optionR of field.options" class="column-layout" [(ngModel)]="field.value"
+          [ngModelOptions]="{standalone: true}">
+          <mat-radio-button [value]="optionR.value">{{ optionR.helperText }}</mat-radio-button>
+        </mat-radio-group>
       </div>
       <div *ngIf="field.type === 'checkbox' && !field.disabled">
         <p>{{ field.question }}</p>
-        <mat-form-field>
           <div *ngFor="let optionC of field.options" class="column-layout">
             <mat-checkbox name="checkboxfield" [(ngModel)]="optionC.value" [ngModelOptions]="{standalone: true}">{{ optionC.helperText }}</mat-checkbox>
           </div>
-        </mat-form-field>
       </div>
       <div *ngIf="field.type === 'switch' && !field.disabled">
         <p>{{ field.question }}</p>
-        <mat-form-field>
           <mat-slide-toggle name="switchfield" [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}"></mat-slide-toggle>
-        </mat-form-field>
       </div>
       <div *ngIf="field.type === 'select' && !field.disabled">
         <p>{{ field.question }}</p>
