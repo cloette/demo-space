@@ -40,24 +40,24 @@ export class ItemComponent implements OnInit {
       console.log(this.itemID);
     });
     this.store.select('form').subscribe(form => { this.form = form; });
-    if (!this.form){
-      if (localStorage.getItem('form')){
+    if (!this.form) {
+      if (localStorage.getItem('form')) {
         const storedForm = localStorage.getItem('form');
         this.form = JSON.parse(storedForm).form;
         this.emptyItem.form = this.form;
         this.formReady = true;
       }
     }
-    else{
+    else {
       this.form = this.form["form"];
       this.emptyItem.form = this.form;
       this.formReady = true;
     }
   }
 
-  public onDataEmitted(data){
+  public onDataEmitted(data) {
     this.form = data;
-    if(!data || !data.length){
+    if (!data || !data.length) {
       this.formReady = false;
     }
     else {
@@ -79,31 +79,36 @@ export class ItemComponent implements OnInit {
       payload: this.payload
     });
     this.store.select('item').subscribe(data => this.item = data);
-    setTimeout(function() { this.item = this.item["item"]; }, 3000); // wait three seconds for this.item to update
+    setTimeout(function () { this.item = this.item["item"]; }, 3000); // wait three seconds for this.item to update
     this.dataReady = true;
   }
 
   saveItem(): void {
     // PUT request /api/item with this.item.addressid
     this.calculateScore();
-    console.log("Item Put payload:");
-    console.log(this.item);
-    this.store.dispatch({
-      type: ITEM_EDIT,
-      payload: this.item
-    });
+    setTimeout(function () {
+      console.log("Item Put payload:");
+      console.log(this.item);
+      this.store.dispatch({
+        type: ITEM_EDIT,
+        payload: this.item
+      });
+    }, 3000);
+
   }
 
   newItem(): void {
     this.item.addressID = encodeURI(this.item.address);
     this.calculateScore();
-    console.log("Item post payload:");
-    console.log(this.item);
-    this.store.dispatch({
-      type: ITEM_ADD,
-      payload: this.item
-    });
-    this.firstSave = false;
+    setTimeout(function () {
+      console.log("Item post payload:");
+      console.log(this.item);
+      this.store.dispatch({
+        type: ITEM_ADD,
+        payload: this.item
+      });
+      this.firstSave = false;
+    }, 3000);
   }
 
   deleteItem(): void {
@@ -141,7 +146,7 @@ export class ItemComponent implements OnInit {
     }
     else {
       this.firstSave = true;
-      if (this.formReady){
+      if (this.formReady) {
         this.item = this.emptyItem;
         this.dataReady = true;
       }
