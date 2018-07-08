@@ -162,15 +162,17 @@ export class FormComponent implements OnInit {
     console.log("saveForm " + this.formID, this.fields);
     this.store.dispatch({
       type: FORM_EDIT,
-      payload: { id: this.formID, fields: this.fields }
+      payload: this.form
     })
+    localStorage.setItem('form', JSON.stringify(this.form));
   }
 
   clearForm(): void {
     console.log("clearForm " + this.formID);
+    this.form.fields = [];
     this.store.dispatch({
       type: FORM_EDIT,
-      payload: { id: this.formID, fields: [] }
+      payload: this.form
     })
   }
 
