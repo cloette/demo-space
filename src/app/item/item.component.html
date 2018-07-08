@@ -20,7 +20,7 @@
 <div *ngIf="dataReady && formReady">
   <form class="form" onsubmit="saveItem()">
     <mat-form-field>
-      <input matInput name="address" [placeholder]="'Address:'" [(ngModel)]="item.address">
+      <input matInput name="address" [placeholder]="'Item Reference Name:'" [(ngModel)]="item.address">
     </mat-form-field>
     <button mat-fab title="Item score updates on save">{{ item.score || '?' }}%</button>
     <div *ngFor="let field of item.form.fields">

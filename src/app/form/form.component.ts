@@ -145,6 +145,8 @@ export class FormComponent implements OnInit {
     this.firstVisit = false;
     this.store.select('form').subscribe(form => { this.form = form; localStorage.setItem('form', JSON.stringify(this.form)); });
     // formID and fields need to update here. Somehow.
+    this.formID = this.form["id"];
+    this.fields = this.form["fields"];
     this.dataReady = true;
   }
 
@@ -225,8 +227,8 @@ export class FormComponent implements OnInit {
       /*const localForm = localStorage.getItem('form');
       this.form = JSON.parse(localForm);
       console.log("after " + this.form.fields);*/
-      this.formID = this.form.id;
-      this.fields = this.form.fields;
+      this.formID = this.form["id"];
+      this.fields = this.form["fields"];
       this.firstVisit = false;
       this.dataReady = true;
     }

@@ -57,7 +57,7 @@ export class LeaderboardComponent implements OnInit {
     console.log(this.form.id);
     this.store.dispatch({
       type: ITEMS_GET,
-      payload: this.form.id
+      payload: this.form["id"]
     });
     this.store.select('items').subscribe(data => this.items = data);
     if(this.items){
