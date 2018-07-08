@@ -29,7 +29,7 @@ export class LeaderboardComponent implements OnInit {
   public warning: string;
   private payload;
 
-  constructor( private http: HttpClient, private store: Store<IAppState>) {
+  constructor( private http: HttpClient, public store: Store<IAppState>) {
     this.store.select('form').subscribe(form => { this.form = form; });
     if (!this.form){
       if (localStorage.getItem('form')){

@@ -34,7 +34,7 @@ export class ItemComponent implements OnInit {
     form: this.form
   };
 
-  constructor(private route: ActivatedRoute, private store: Store<IAppState>) {
+  constructor(private route: ActivatedRoute, public store: Store<IAppState>) {
     this.route.params.subscribe(params => {
       this.itemID = params['addressid'];
       console.log(this.itemID);
