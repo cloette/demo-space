@@ -39,13 +39,13 @@
       </div>
       <div *ngIf="field.type === 'checkbox' && !field.disabled">
         <p>{{ field.question }}</p>
-          <div *ngFor="let optionC of field.options" class="column-layout">
-            <mat-checkbox name="checkboxfield" [(ngModel)]="optionC.value" [ngModelOptions]="{standalone: true}">{{ optionC.helperText }}</mat-checkbox>
-          </div>
+        <div *ngFor="let optionC of field.options" class="column-layout">
+          <mat-checkbox name="checkboxfield" [(ngModel)]="optionC.value" [ngModelOptions]="{standalone: true}">{{ optionC.helperText }}</mat-checkbox>
+        </div>
       </div>
       <div *ngIf="field.type === 'switch' && !field.disabled">
         <p>{{ field.question }}</p>
-          <mat-slide-toggle name="switchfield" [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}"></mat-slide-toggle>
+        <mat-slide-toggle name="switchfield" [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}"></mat-slide-toggle>
       </div>
       <div *ngIf="field.type === 'select' && !field.disabled">
         <p>{{ field.question }}</p>
@@ -63,9 +63,16 @@
   <button mat-raised-button color="warning" (click)="deleteItem()">
     Delete
   </button>
-  <button mat-raised-button color="primary" (click)="saveItem()">
-    Save Changes
-  </button>
+  <div *ngIf="firstSave">
+    <button mat-raised-button color="primary" (click)="newItem()">
+      Add Item
+    </button>
+  </div>
+  <div *ngIf="!firstSave">
+    <button mat-raised-button color="primary" (click)="saveItem()">
+      Save Changes
+    </button>
+  </div>
   <button mat-raised-button>
     Cancel
   </button>

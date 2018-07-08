@@ -84,6 +84,7 @@ export class ItemComponent implements OnInit {
   }
 
   saveItem(): void {
+    console.log("save Item", this.item);
     // PUT request /api/item with this.item.addressid
     this.calculateScore();
     setTimeout(function () {
@@ -98,6 +99,7 @@ export class ItemComponent implements OnInit {
   }
 
   newItem(): void {
+    console.log("new Item", this.item);
     this.item.addressID = encodeURI(this.item.address);
     this.calculateScore();
     setTimeout(function () {
