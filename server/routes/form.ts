@@ -72,21 +72,14 @@ formRouter.post("/form/:formid", (request: Request, response: Response) => {
 // Make an Item to be assessed
 formRouter.post("/item", (request: Request, response: Response) => {
 
-  var item = new Item(
-    {
-      address: request.body.address,
-      addressId: request.body.addressID,
-      score: request.body.score,
-      form: request.body.form
-    }
-  );
+  var item = new Item(request.body);
 
   item.save(function (err) {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });
 
-  console.log("POST item " + JSON.stringify(item));
+  console.log("POST item " + JSON.stringify(request.body));
 
 });
 
@@ -99,6 +92,21 @@ formRouter.get("/item/all/:formid", (request: Request, response: Response) => {
     if (err) return console.error(err);
     res = items;
   });
+
+  return response.json(res);
+});
+
+// Returns one item
+formRouter.get("/item/:addressid", (request: Request, response: Response) => {
+
+  let res;
+
+  Item.find({ addressID: request.params.addressid }, function (err, items) {
+    if (err) return console.error(err);
+    res = items[0];
+  });
+
+  console.log("GET item " + JSON.stringify(request.params.addressid));
 
   return response.json(res);
 });
@@ -116,20 +124,11 @@ formRouter.get("/form/:id", (request: Request, response: Response) => {
 });
 
 // Updates an item
-formRouter.put("/item/:addressid", (request: Request, response: Response) => {
+formRouter.put("/item", (request: Request, response: Response) => {
 
-  let item = new Item({
-    address: request.body.address,
-    addressId: request.body.addressID,
-    score: request.body.score,
-    form: request.body.form
-  });
+  let item = request.body;
 
-  Item.find({ addressID: request.params.addressid }, function (err, items) {
-    if (err) return console.error(err);
-  });
-
-  item.save(function (err) {
+  Item.update({ addressid: request.body.addressid}, { $set: { form: request.body.form, score: request.body.score} }, function (err) {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });

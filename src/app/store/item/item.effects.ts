@@ -23,7 +23,7 @@ export class ItemEffects {
     .ofType(ITEM_ADD)
     .switchMap((action: ItemAdd) => {
 
-      return this.http.post<IItemResponse>('/api/item', action.payload)
+      return this.http.post<IItemResponse>(`/api/item`, action.payload)
         .catch((error) => Observable.of(new ItemAddFail(error)))
         .map((response: any) => new ItemAddSuccess(response));
     });
@@ -33,7 +33,7 @@ export class ItemEffects {
     .ofType(ITEM_EDIT)
     .switchMap((action: ItemEdit) => {
 
-      return this.http.put<IItemResponse>('/api/item/${action.payload.addressID}', action.payload)
+      return this.http.put<IItemResponse>(`/api/item`, action.payload)
         .catch((error) => Observable.of(new ItemEditFail(error)))
         .map((response: any) => new ItemEditSuccess(response));
     });
@@ -43,7 +43,7 @@ export class ItemEffects {
     .ofType(ITEM_GET)
     .switchMap((action: ItemGet) => {
 
-      return this.http.get<IItemResponse>('/api/item', {
+      return this.http.get<IItemResponse>(`/api/item`,{
         params: {
           addressid: action.payload
         }
@@ -57,7 +57,7 @@ export class ItemEffects {
     .ofType(ITEM_REMOVE)
     .switchMap((action: ItemRemove) => {
 
-      return this.http.delete<IItemResponse>('/api/item', {
+      return this.http.delete<IItemResponse>(`/api/item`, {
         params: {
           addressid: action.payload
         }
