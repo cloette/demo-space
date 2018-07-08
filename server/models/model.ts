@@ -42,6 +42,6 @@ var itemSchema = new Schema({
 const Option = mongoose.model('Option',optionSchema);
 const Field = mongoose.model('Field',fieldSchema);
 const Form = mongoose.model('Form',formSchema);
-const Item = mongoose.model('Item',formSchema);
+const Item = mongoose.model('Item',itemSchema);
 
 export { Option, Field, Form, Item };

@@ -68,15 +68,11 @@ export class ItemComponent implements OnInit {
   getItem(id: string): void {
     // Get request /api/item/:addressid with itemID
     // this.item = response; this.form = this.item.form;
-    this.payload = {
-      addressid: id,
-      form: this.form
-    }
     console.log("Item get payload:");
-    console.log(this.payload);
+    console.log(id);
     this.store.dispatch({
       type: ITEM_GET,
-      payload: this.payload
+      payload: id
     });
     this.store.select('item').subscribe(data => this.item = data);
     setTimeout(function () { this.item = this.item["item"]; }, 3000); // wait three seconds for this.item to update
