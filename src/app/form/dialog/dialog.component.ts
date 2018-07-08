@@ -43,7 +43,7 @@ export class Dialog implements OnInit {
       this.disabled = this.data.disabled;
       this.value = this.data.value;
     }
-    if(this.options = []){
+    if(!this.options){
       this.options = [{ helperText: 'Example Option', value: '0' }];
     }
   }

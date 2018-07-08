@@ -50,6 +50,8 @@ export class ItemComponent implements OnInit {
     }
     else{
       this.form = this.form["form"];
+      this.emptyItem.form = this.form;
+      this.formReady = true;
     }
   }
 

@@ -40,6 +40,7 @@ export class LeaderboardComponent implements OnInit {
     }
     else{
       this.form = this.form["form"];
+      this.formReady = true;
     }
   }
 
