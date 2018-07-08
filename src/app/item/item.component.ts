@@ -83,34 +83,36 @@ export class ItemComponent implements OnInit {
     this.dataReady = true;
   }
 
+  put(): void {
+    console.log("Item put payload:");
+    console.log(this.item);
+    this.store.dispatch({
+      type: ITEM_EDIT,
+      payload: this.item
+    });
+  }
+
+  post(): void {
+    console.log("Item post payload:");
+    console.log(this.item);
+    this.store.dispatch({
+      type: ITEM_ADD,
+      payload: this.item
+    });
+    this.firstSave = false;
+  }
+
   saveItem(): void {
     console.log("save Item", this.item);
-    // PUT request /api/item with this.item.addressid
     this.calculateScore();
-    setTimeout(function () {
-      console.log("Item put payload:");
-      console.log(this.item);
-      this.store.dispatch({
-        type: ITEM_EDIT,
-        payload: this.item
-      });
-    }, 3000);
-
+    setTimeout(this.put(), 3000);
   }
 
   newItem(): void {
     console.log("new Item", this.item);
     this.item.addressID = encodeURI(this.item.address);
     this.calculateScore();
-    setTimeout(function () {
-      console.log("Item post payload:");
-      console.log(this.item);
-      this.store.dispatch({
-        type: ITEM_ADD,
-        payload: this.item
-      });
-      this.firstSave = false;
-    }, 3000);
+    setTimeout(this.post(), 3000);
   }
 
   deleteItem(): void {
