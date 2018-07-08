@@ -20,20 +20,20 @@
 <div *ngIf="dataReady && formReady">
   <form class="form" onsubmit="saveItem()">
     <mat-form-field>
-      <input matInput name="address" [placeholder]="'Item Reference Name:'" [(ngModel)]="item.address">
+      <input matInput name="address" [placeholder]="'Item Reference Name:'" [(ngModel)]="item.address" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
     <button mat-fab title="Item score updates on save">{{ item.score || '?' }}%</button>
     <div *ngFor="let field of item.form.fields">
       <div *ngIf="field.type === 'text' && !field.disabled">
         <p>{{ field.question }}</p>
         <mat-form-field>
-          <input matInput name="textfield" [placeholder]="field.value" [(ngModel)]="field.value">
+          <input matInput name="textfield" [placeholder]="field.value" [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
       </div>
       <div *ngIf="field.type === 'radio' && !field.disabled">
         <p>{{ field.question }}</p>
         <mat-form-field>
-          <mat-radio-group name="radiofield" *ngFor="let optionR of field.options" class="column-layout" [(ngModel)]="field.value">
+          <mat-radio-group name="radiofield" *ngFor="let optionR of field.options" class="column-layout" [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}">
             <mat-radio-button [value]="optionR.value">{{ optionR.helperText }}</mat-radio-button>
           </mat-radio-group>
         </mat-form-field>
@@ -42,14 +42,14 @@
         <p>{{ field.question }}</p>
         <mat-form-field>
           <div *ngFor="let optionC of field.options" class="column-layout">
-            <mat-checkbox name="checkboxfield" [(ngModel)]="optionC.value">{{ optionC.helperText }}</mat-checkbox>
+            <mat-checkbox name="checkboxfield" [(ngModel)]="optionC.value" [ngModelOptions]="{standalone: true}">{{ optionC.helperText }}</mat-checkbox>
           </div>
         </mat-form-field>
       </div>
       <div *ngIf="field.type === 'switch' && !field.disabled">
         <p>{{ field.question }}</p>
         <mat-form-field>
-          <mat-slide-toggle name="switchfield" [(ngModel)]="field.value"></mat-slide-toggle>
+          <mat-slide-toggle name="switchfield" [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}"></mat-slide-toggle>
         </mat-form-field>
       </div>
       <div *ngIf="field.type === 'select' && !field.disabled">

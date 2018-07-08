@@ -142,9 +142,7 @@ export class ItemComponent implements OnInit {
     else {
       this.firstSave = true;
       if (this.formReady){
-        console.log("empty item", this.emptyItem);
         this.item = this.emptyItem;
-        console.log("item", this.item);
         this.dataReady = true;
       }
     }
