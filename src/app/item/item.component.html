@@ -32,8 +32,7 @@
       </div>
       <div *ngIf="field.type === 'radio' && !field.disabled">
         <p>{{ field.question }}</p>
-        <mat-radio-group name="radiofield" *ngFor="let optionR of field.options" class="column-layout" [(ngModel)]="field.value"
-          [ngModelOptions]="{standalone: true}">
+        <mat-radio-group *ngFor="let optionR of field.options" class="column-layout" name="radiofield" [(ngModel)]="field.value">
           <mat-radio-button [value]="optionR.value">{{ optionR.helperText }}</mat-radio-button>
         </mat-radio-group>
       </div>
