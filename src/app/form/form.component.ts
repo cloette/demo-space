@@ -143,7 +143,7 @@ export class FormComponent implements OnInit {
       });
     }
     this.firstVisit = false;
-    this.store.select('form').subscribe(form => { this.form = form; this.formID = form["id"]; this.fields = form["fields"]; localStorage.setItem('form', JSON.stringify(this.form)); });
+    this.store.select('form').subscribe(form => { this.form = form; localStorage.setItem('form', JSON.stringify(this.form)); });
     // formID and fields need to update here. Somehow.
     this.dataReady = true;
   }
@@ -227,6 +227,7 @@ export class FormComponent implements OnInit {
       console.log("after " + this.form.fields);*/
       this.formID = this.form["id"];
       this.fields = this.form["fields"];
+      console.log("id, fields", this.formID, this.fields)
       this.firstVisit = false;
       this.dataReady = true;
     }
