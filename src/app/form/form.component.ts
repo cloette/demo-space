@@ -53,11 +53,11 @@ export class FormComponent implements OnInit {
     if (!this.form){
       if (localStorage.getItem('form')){
         const storedForm = localStorage.getItem('form');
-        this.form = JSON.parse(storedForm).form;
+        this.form = JSON.parse(storedForm);
       }
     }
     else{
-      this.form = this.form["form"];
+      this.form = this.form;
     }
   }
 
@@ -153,7 +153,7 @@ export class FormComponent implements OnInit {
       localStorage.setItem('form', JSON.stringify(form));
     });
     // formID and fields need to update here. Somehow.
-    this.testForm();
+    setTimeout(this.testForm(), 3000); // wait three seconds for this.form to update
     this.dataReady = true;
   }
 
