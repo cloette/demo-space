@@ -70,14 +70,14 @@ formRouter.post("/form/:formid", (request: Request, response: Response) => {
 });
 
 // Make an Item to be assessed
-formRouter.post("/item", (request: Request, response: Response) => {
+formRouter.post("/item/:addressid", (request: Request, response: Response) => {
 
   var item = new Item(
     {
       address: request.body.address,
       addressID: request.body.addressID,
       score: request.body.score,
-      form: request.body.form
+      form: JSON.stringify(request.body.form)
     }
   );
 

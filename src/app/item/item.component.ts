@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { IItemResponse } from './../shared/interfaces/item.interface';
 import { IFormResponse } from './../shared/interfaces/form.interface';
+import { IFieldResponse } from './../shared/interfaces/field.interface';
 
 import { ITEM_ADD, ITEM_EDIT, ITEM_GET, ITEM_REMOVE } from '../store/item/item.actions';
 
@@ -27,6 +28,7 @@ export class ItemComponent implements OnInit {
   public form: IFormResponse;
   public firstSave: boolean = false;
   private payload;
+  public fieldArrayCopy: Array<IFieldResponse>;
   private emptyItem = {
     address: 'Item Display Name',
     addressID: undefined,
@@ -127,18 +129,15 @@ export class ItemComponent implements OnInit {
     let currentPoints = 0;
     let score = 0;
     if (this.item.form.fields) {
-      for (let i = 0; i > this.item.form.fields.length; i++) {
-        currentPoints = currentPoints + (this.item.form.fields[i].value * this.item.form.fields[i].multiplier);
-        maxPoints = maxPoints + (this.item.form.fields[i].maxValue * this.item.form.fields[i].multiplier);
+      console.log("fieldArrayCopy");
+      this.fieldArrayCopy = this.item.form.fields
+      for (let i = 0; i > this.fieldArrayCopy.length; i++) {
+        currentPoints = currentPoints + (this.fieldArrayCopy[i].value * this.fieldArrayCopy[i].multiplier);
+        maxPoints = maxPoints + (this.fieldArrayCopy[i].maxValue * this.fieldArrayCopy[i].multiplier);
+        score = (currentPoints / maxPoints) * 100;
       }
     }
-    if (maxPoints === 0) {
-      this.item.score = 0;
-    }
-    else {
-      score = (currentPoints / maxPoints) * 100;
-      this.item.score = score;
-    }
+    this.item.score = score;
     console.log("item after calcScore", this.item);
   }
 

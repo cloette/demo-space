@@ -35,7 +35,7 @@ var itemSchema = new Schema({
   address: { type: String}, //, unique: true}, //, validate: [nameValidation, 'Name cannot be blank.']},
   addressID: {type: String}, //, unique: true },
   score: { type: Number, default: 0 },
-  form: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Form'}]
+  form: {type: String}//[{ type: mongoose.Schema.Types.ObjectId, ref: 'Form'}]
 })
 
 // export models so we can interact with it in other files
