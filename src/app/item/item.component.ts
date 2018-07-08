@@ -28,7 +28,7 @@ export class ItemComponent implements OnInit {
   public firstSave: boolean = false;
   private payload;
   private emptyItem = {
-    address: 'Type address here',
+    address: 'Item Display Name',
     addressID: undefined,
     score: 0,
     form: this.form
