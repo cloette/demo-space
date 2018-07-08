@@ -27,13 +27,13 @@ var fieldSchema = new Schema({
 })
 
 var formSchema = new Schema({
-  id: { type: String, unique: true}, //, validate: [nameValidation, 'Name cannot be blank.'] },
+  id: { type: String},//, unique: true}, //, validate: [nameValidation, 'Name cannot be blank.'] },
   fields: { type: Array }///[{ type: mongoose.Schema.Types.ObjectId, ref: 'Field'}]
 })
 
 var itemSchema = new Schema({
-  address: { type: String, unique: true}, //, validate: [nameValidation, 'Name cannot be blank.']},
-  addressID: {type: String, unique: true },
+  address: { type: String}, //, unique: true}, //, validate: [nameValidation, 'Name cannot be blank.']},
+  addressID: {type: String}, //, unique: true },
   score: { type: Number, default: 0 },
   form: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Form'}]
 })
