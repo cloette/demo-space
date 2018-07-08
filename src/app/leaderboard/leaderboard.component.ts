@@ -24,7 +24,7 @@ export class LeaderboardComponent implements OnInit {
   public dataReady: boolean = false;
   public formReady: boolean = false;
   public descending: boolean = true;
-  public items;//Array<IItemResponse>;
+  public items: Array<IItemResponse>;
   public form: IFormResponse;
   public warning: string;
   private payload;

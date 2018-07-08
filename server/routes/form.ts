@@ -141,7 +141,7 @@ formRouter.put("/form", (request: Request, response: Response) => {
     response.json({ message: "Success!" });
   });
 
-  console.log("PUT form " + JSON.stringify(request.body.json));
+  console.log("PUT form " + JSON.stringify(request.body));
 
 });
 
