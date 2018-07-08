@@ -24,13 +24,13 @@
     </mat-form-field>
     <button mat-fab title="Item score updates on save">{{ item.score || '?' }}%</button>
     <div *ngFor="let field of item.form.fields">
-      <div *ngIf="field.type === 'text' && field.enabled">
+      <div *ngIf="field.type === 'text' && !field.disabled">
         <p>{{ field.question }}</p>
         <mat-form-field>
           <input matInput name="textfield" [placeholder]="field.value" [(ngModel)]="field.value">
         </mat-form-field>
       </div>
-      <div *ngIf="field.type === 'radio' && field.enabled">
+      <div *ngIf="field.type === 'radio' && !field.disabled">
         <p>{{ field.question }}</p>
         <mat-form-field>
           <mat-radio-group name="radiofield" *ngFor="let optionR of field.options" class="column-layout" [(ngModel)]="field.value">
@@ -38,7 +38,7 @@
           </mat-radio-group>
         </mat-form-field>
       </div>
-      <div *ngIf="field.type === 'checkbox' && field.enabled">
+      <div *ngIf="field.type === 'checkbox' && !field.disabled">
         <p>{{ field.question }}</p>
         <mat-form-field>
           <div *ngFor="let optionC of field.options" class="column-layout">
@@ -46,13 +46,13 @@
           </div>
         </mat-form-field>
       </div>
-      <div *ngIf="field.type === 'switch' && field.enabled">
+      <div *ngIf="field.type === 'switch' && !field.disabled">
         <p>{{ field.question }}</p>
         <mat-form-field>
           <mat-slide-toggle name="switchfield" [(ngModel)]="field.value"></mat-slide-toggle>
         </mat-form-field>
       </div>
-      <div *ngIf="field.type === 'select' && field.enabled">
+      <div *ngIf="field.type === 'select' && !field.disabled">
         <p>{{ field.question }}</p>
         <mat-form-field>
           <mat-select placeholder="Click to select..." name="selectfield" [(value)]="field.value">

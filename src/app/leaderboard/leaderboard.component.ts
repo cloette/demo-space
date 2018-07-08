@@ -92,6 +92,16 @@ export class LeaderboardComponent implements OnInit {
     }
   }
 
+  recalculateAllScores(): void{
+    // Right now, you have to click into each item
+    // and re-save to get an updated score if you
+    // disable a field or change a multiplier.
+    // This function should cycle through each item and recalc scores
+    // Also probably should save that to local storage since we're not re-saving each item
+    // Although that could be done
+    this.sortItems();
+  }
+
   ngOnInit() {
     if (this.formReady){
       this.getItems();
