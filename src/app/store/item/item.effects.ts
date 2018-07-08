@@ -43,7 +43,7 @@ export class ItemEffects {
     .ofType(ITEM_GET)
     .switchMap((action: ItemGet) => {
 
-      return this.http.get<IItemResponse>(`/api/item/${action.payload}`)
+      return this.http.get<IItemResponse>(`/api/item/single/${action.payload}`)
         .catch((error) => Observable.of(new ItemGetFail(error)))
         .map((response: IItemResponse) => new ItemGetSuccess(response));
     });

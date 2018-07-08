@@ -135,13 +135,13 @@ formRouter.put("/item", (request: Request, response: Response) => {
 });
 
 // Returns one item
-formRouter.get("/item/:addressid", (request: Request, response: Response) => {
+formRouter.get("/item/single/:addressid", (request: Request, response: Response) => {
 
   let res;
 
-  Item.find({ addressID: request.params.addressid }, function (err, items) {
+  Item.findOne({ addressID: request.params.addressid }, function (err, items) {
     if (err) return console.error(err);
-    res = items[0];
+    res = items;
   });
 
   console.log("GET item " + JSON.stringify(request.params.addressid));
@@ -157,6 +157,7 @@ formRouter.get("/item/all/:formid", (request: Request, response: Response) => {
   Item.find({ formid: request.params.formid }, function (err, items) {
     if (err) return console.error(err);
     res = items;
+    console.log("items returned", items);
   });
 
   return response.json(res);
@@ -167,17 +168,11 @@ formRouter.delete("/item/:addressid", (request: Request, response: Response) => 
 
   let item = new Item();
 
-  Item.find({ addressID: request.params.addressid }, function (err, items) {
+  Item.findOneAndDelete({ addressID: request.params.addressid }, function (err, items) {
     if (err) return console.error(err);
-    item = items[0];
   });
 
-  item.dropCollection(function (err) {
-    if (err) return console.error(err);
-    response.json({ message: "Success!" });
-  });
-
-  console.log("DELETE item " + JSON.stringify(request.params.addressid));
+  console.log("DELETED item " + JSON.stringify(request.params.addressid));
 
 });
 
