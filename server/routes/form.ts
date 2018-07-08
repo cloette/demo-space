@@ -77,7 +77,7 @@ formRouter.post("/item/:addressid", (request: Request, response: Response) => {
       address: request.body.address,
       addressID: request.body.addressID,
       score: request.body.score,
-      form: JSON.stringify(request.body.form)
+      form: request.body.form
     }
   );
 
