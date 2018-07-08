@@ -149,12 +149,11 @@ export class FormComponent implements OnInit {
     }
     this.firstVisit = false;
     this.store.select('form').subscribe(form => {
-      this.form = form["form"];
-      this.formID = form["form"]["id"];
-      this.fields = form["form"]["fields"];
-      localStorage.setItem('form', JSON.stringify(this.form));
+      this.form = form;
+      localStorage.setItem('form', JSON.stringify(form));
     });
     // formID and fields need to update here. Somehow.
+    this.testForm();
     this.dataReady = true;
   }
 
@@ -187,6 +186,16 @@ export class FormComponent implements OnInit {
     if (this.form) {
       this.fields.push(this.newField);
       console.log("Fields Array", this.fields);
+    }
+  }
+
+  testForm(): void {
+    console.log("testing form values");
+    if (this.form){
+      this.formID = this.form["form"]["id"];
+      this.fields = this.form["form"]["fields"];
+      this.firstVisit = false;
+      this.dataReady = true;
     }
   }
 
@@ -231,12 +240,7 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     console.log("Form on load", this.form);
-    if (this.form){
-      this.formID = this.form["form"]["id"];
-      this.fields = this.form["form"]["fields"];
-      this.firstVisit = false;
-      this.dataReady = true;
-    }
+    this.testForm();
     if(!this.fields){
       this.fields = [];
     }
