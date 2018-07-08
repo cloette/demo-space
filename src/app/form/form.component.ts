@@ -220,11 +220,15 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
     if (this.form){
+      console.log(this.form);
+      const localForm = localStorage.getItem('form');
+      this.form = JSON.parse(localForm);
+      console.log(this.form);
       this.formID = this.form.id;
       this.fields = this.form.fields;
-      console.log("fields ", this.fields, this.form.fields);
       this.firstVisit = false;
       this.dataReady = true;
+      console.log(this.fields);
     }
     if(!this.fields){
       this.fields = [];
