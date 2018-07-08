@@ -13,6 +13,9 @@
 </div>
 
 <div *ngIf="formReady">
+  <div *ngIf="warning" style="border:1px solid grey; padding:20px;">
+    <p>{{ warning }}</p>
+  </div>
   <button mat-raised-button color="primary" (click)="getItems()">
     Refresh
   </button>

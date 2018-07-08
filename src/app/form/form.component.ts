@@ -222,7 +222,7 @@ export class FormComponent implements OnInit {
     if (this.form){
       this.formID = this.form.id;
       this.fields = this.form.fields;
-      console.log("fields ", this.fields);
+      console.log("fields ", this.fields, this.form.fields);
       this.firstVisit = false;
       this.dataReady = true;
     }

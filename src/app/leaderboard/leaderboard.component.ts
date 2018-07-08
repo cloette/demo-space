@@ -26,6 +26,7 @@ export class LeaderboardComponent implements OnInit {
   public descending: boolean = true;
   public items;//Array<IItemResponse>;
   public form;//: Observable<IFormResponse>;
+  public warning: string;
   private payload;
 
   constructor( private http: HttpClient, private store: Store<IAppState>) {
@@ -59,12 +60,16 @@ export class LeaderboardComponent implements OnInit {
       payload: this.form.id
     });
     this.store.select('items').subscribe(data => this.items = data);
-    this.sortItems();
+    if(this.items){
+      this.sortItems();
+    }
+    else{
+      this.warning = "There are no items! Make some items first."
+    }
     this.dataReady = true;
   }
 
   sortItems(): void{
-    this.form = this.store.select('item');
     if (this.descending){
       this.descending = !this.descending;
       this.items.slice.call(this.items).sort(function(a, b) {
