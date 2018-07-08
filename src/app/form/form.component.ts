@@ -160,19 +160,20 @@ export class FormComponent implements OnInit {
   saveForm(): void {
     // Put to /api/form/:id with this.form (contains id)
     console.log("saveForm " + this.formID, this.fields);
+    const savePayload = {id: this.formID, fields: this.fields};
     this.store.dispatch({
       type: FORM_EDIT,
-      payload: this.form
+      payload: savePayload
     })
     localStorage.setItem('form', JSON.stringify(this.form));
   }
 
   clearForm(): void {
     console.log("clearForm " + this.formID);
-    this.form.fields = [];
+    const clearPayload = {id: this.formID, fields: []};
     this.store.dispatch({
       type: FORM_EDIT,
-      payload: this.form
+      payload: clearPayload
     })
   }
 

@@ -31,7 +31,6 @@ export class FormEffects {
   editForm$ = this.actions$
     .ofType(FORM_EDIT)
     .switchMap((action: FormEdit) => {
-
       return this.http.put<IFormResponse>(`/api/form`, action.payload)
         .catch((error) => Observable.of(new FormEditFail(error)))
         .map((response: any) => new FormEditSuccess(response));
