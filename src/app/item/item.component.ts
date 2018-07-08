@@ -43,7 +43,7 @@ export class ItemComponent implements OnInit {
     if (!this.form){
       if (localStorage.getItem('form')){
         const storedForm = localStorage.getItem('form');
-        this.form = JSON.parse(storedForm);
+        this.form = JSON.parse(storedForm).form;
         this.formReady = true;
       }
     }

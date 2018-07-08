@@ -34,7 +34,7 @@ export class LeaderboardComponent implements OnInit {
     if (!this.form){
       if (localStorage.getItem('form')){
         const storedForm = localStorage.getItem('form');
-        this.form = JSON.parse(storedForm)["id"]; // see if that makes a diff
+        this.form = JSON.parse(storedForm).form; // see if that makes a diff
         this.formReady = true;
       }
     }
@@ -57,7 +57,7 @@ export class LeaderboardComponent implements OnInit {
     console.log(this.form.id);
     this.store.dispatch({
       type: ITEMS_GET,
-      payload: this.form
+      payload: this.form["id"]
     });
     this.store.select('items').subscribe(data => this.items = data);
     if(this.items){

@@ -44,7 +44,7 @@ export class Dialog implements OnInit {
       this.value = this.data.value;
     }
     if(this.options = []){
-      this.options = [{ helperText: 'dummy', value: '0' }];
+      this.options = [{ helperText: 'Example Option', value: '0' }];
     }
   }
 
@@ -75,7 +75,9 @@ export class Dialog implements OnInit {
 
   save(): void {
     if(this.options){
-      this.options.splice(0, 1); // Remove dummy value
+      if (this.options[0].helperText === "Example Option"){
+        this.options.splice(0, 1); // Remove dummy value
+      }
     }
     this.data = {
       order: this.order,
