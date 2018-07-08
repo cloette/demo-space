@@ -39,7 +39,7 @@ export class ItemComponent implements OnInit {
       this.itemID = params['addressid'];
       console.log(this.itemID);
     });
-    this.store.select('form').subscribe(form => { this.form = form["form"]; });
+    this.store.select('form').subscribe(form => { this.form = form; });
     if (!this.form){
       if (localStorage.getItem('form')){
         const storedForm = localStorage.getItem('form');
@@ -47,6 +47,9 @@ export class ItemComponent implements OnInit {
         this.emptyItem.form = this.form;
         this.formReady = true;
       }
+    }
+    else{
+      this.form = this.form["form"];
     }
   }
 
