@@ -29,24 +29,24 @@ export class LeaderboardComponent implements OnInit {
   public warning: string;
   private payload;
 
-  constructor( private http: HttpClient, public store: Store<IAppState>) {
+  constructor(private http: HttpClient, public store: Store<IAppState>) {
     this.store.select('form').subscribe(form => { this.form = form; });
-    if (!this.form){
-      if (localStorage.getItem('form')){
+    if (!this.form) {
+      if (localStorage.getItem('form')) {
         const storedForm = localStorage.getItem('form');
         this.form = JSON.parse(storedForm).form; // see if that makes a diff
         this.formReady = true;
       }
     }
-    else{
+    else {
       this.form = this.form["form"];
       this.formReady = true;
     }
   }
 
-  public onDataEmitted(data){
+  public onDataEmitted(data) {
     this.form = data;
-    if(!data || !data.length){
+    if (!data || !data.length) {
       this.formReady = false;
     }
     else {
@@ -55,11 +55,11 @@ export class LeaderboardComponent implements OnInit {
   }
 
   checkItemsReady(): void {
-    if(this.items){
+    if (this.items) {
       this.items = this.items["items"];
       this.sortItems();
     }
-    else{
+    else {
       this.warning = "There are no items! Make some items first."
     }
   }
@@ -78,21 +78,23 @@ export class LeaderboardComponent implements OnInit {
     this.dataReady = true;
   }
 
-  sortItems(): void{
-    if (this.descending){
-      this.descending = !this.descending;
-      this.items.slice.call(this.items).sort(function(a, b) {
-        return a.score - b.score;
-      });
-    }
-    else{
-      this.items.slice.call(this.items).sort(function(a, b) {
-        return b.score - a.score;
-      });
+  sortItems(): void {
+    if (this.items) {
+      if (this.descending) {
+        this.descending = !this.descending;
+        this.items.slice.call(this.items).sort(function (a, b) {
+          return a.score - b.score;
+        });
+      }
+      else {
+        this.items.slice.call(this.items).sort(function (a, b) {
+          return b.score - a.score;
+        });
+      }
     }
   }
 
-  recalculateAllScores(): void{
+  recalculateAllScores(): void {
     // Right now, you have to click into each item
     // and re-save to get an updated score if you
     // disable a field or change a multiplier.
@@ -103,7 +105,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.formReady){
+    if (this.formReady) {
       this.getItems();
     }
     console.log(this.form);

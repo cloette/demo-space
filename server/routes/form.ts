@@ -72,7 +72,14 @@ formRouter.post("/form/:formid", (request: Request, response: Response) => {
 // Make an Item to be assessed
 formRouter.post("/item", (request: Request, response: Response) => {
 
-  var item = new Item(request.body);
+  var item = new Item(
+    {
+      address: request.body.address,
+      addressID: request.body.addressID,
+      score: request.body.score,
+      form: request.body.form
+    }
+  );
 
   item.save(function (err) {
     if (err) return console.error(err);
@@ -128,7 +135,7 @@ formRouter.put("/item", (request: Request, response: Response) => {
 
   let item = request.body;
 
-  Item.update({ addressid: request.body.addressid}, { $set: { form: request.body.form, score: request.body.score} }, function (err) {
+  Item.update({ addressid: request.body.addressid }, { $set: { form: request.body.form, score: request.body.score } }, function (err) {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });
@@ -143,7 +150,7 @@ formRouter.put("/form", (request: Request, response: Response) => {
 
   form = request.body;
 
-  Form.update({ id: request.body.id}, { $set: { fields: request.body.fields} }, function (err) {
+  Form.update({ id: request.body.id }, { $set: { fields: request.body.fields } }, function (err) {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });
