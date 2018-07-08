@@ -62,16 +62,12 @@
   <button mat-raised-button color="warning" (click)="deleteItem()">
     Delete
   </button>
-  <div *ngIf="firstSave">
-    <button mat-raised-button color="primary" (click)="newItem()">
-      Add Item
-    </button>
-  </div>
-  <div *ngIf="!firstSave">
-    <button mat-raised-button color="primary" (click)="saveItem()">
-      Save Changes
-    </button>
-  </div>
+  <button *ngIf="firstSave" mat-raised-button color="primary" (click)="newItem()">
+    Add Item
+  </button>
+  <button *ngIf="!firstSave" mat-raised-button color="primary" (click)="saveItem()">
+    Save Changes
+  </button>
   <button mat-raised-button>
     Cancel
   </button>
