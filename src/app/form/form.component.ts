@@ -225,8 +225,8 @@ export class FormComponent implements OnInit {
       /*const localForm = localStorage.getItem('form');
       this.form = JSON.parse(localForm);
       console.log("after " + this.form.fields);*/
-      this.formID = Object.assign(this.form).id;
-      this.fields = Object.assign(this.form).fields;
+      this.formID = this.form["id"];
+      this.fields = this.form.fields;
       console.log("id, fields", this.formID, this.fields)
       this.firstVisit = false;
       this.dataReady = true;
