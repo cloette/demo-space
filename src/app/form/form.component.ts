@@ -159,9 +159,6 @@ export class FormComponent implements OnInit {
 
   saveForm(): void {
     // Put to /api/form/:id with this.form (contains id)
-    this.fields.slice.call(this.fields).sort(function(a, b) {
-      return b.order - a.order;
-    });
     console.log("saveForm " + this.formID, this.fields);
     const savePayload = {id: this.formID, fields: this.fields};
     this.store.dispatch({

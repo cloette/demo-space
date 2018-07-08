@@ -154,9 +154,9 @@ export class ItemComponent implements OnInit {
       this.firstSave = true;
       if (this.formReady) {
         this.item = this.emptyItem;
-        this.item.fields.slice.call(this.item.fields).sort(function(a, b) {
+        /*this.item.fields.slice.call(this.item.fields).sort(function(a, b) {
           return b.order - a.order;
-        });
+        });*/
         this.dataReady = true;
       }
     }

@@ -75,7 +75,7 @@ formRouter.post("/item", (request: Request, response: Response) => {
   var item = new Item(
     {
       address: request.body.address,
-      addressId: encodeURI(request.body.address),
+      addressId: request.body.addressID,
       score: request.body.score,
       form: request.body.form
     }
@@ -85,6 +85,8 @@ formRouter.post("/item", (request: Request, response: Response) => {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });
+
+  console.log("POST item " + JSON.stringify(item));
 
 });
 
@@ -116,17 +118,23 @@ formRouter.get("/form/:id", (request: Request, response: Response) => {
 // Updates an item
 formRouter.put("/item/:addressid", (request: Request, response: Response) => {
 
-  let item = new Item();
+  let item = new Item({
+    address: request.body.address,
+    addressId: request.body.addressID,
+    score: request.body.score,
+    form: request.body.form
+  });
 
   Item.find({ addressID: request.params.addressid }, function (err, items) {
     if (err) return console.error(err);
-    item = items[0];
   });
 
   item.save(function (err) {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });
+
+  console.log("PUT item " + JSON.stringify(request.body));
 
 });
 
@@ -159,6 +167,8 @@ formRouter.delete("/item/:addressid", (request: Request, response: Response) => 
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });
+
+  console.log("DELETE item " + JSON.stringify(request.params.addressid));
 
 });
 
