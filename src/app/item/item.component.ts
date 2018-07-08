@@ -79,6 +79,7 @@ export class ItemComponent implements OnInit {
       payload: this.payload
     });
     this.store.select('item').subscribe(data => this.item = data);
+    setTimeout(function() { this.item = this.item["item"]; }, 3000); // wait three seconds for this.item to update
     this.dataReady = true;
   }
 
@@ -141,7 +142,9 @@ export class ItemComponent implements OnInit {
     else {
       this.firstSave = true;
       if (this.formReady){
+        console.log("empty item", this.emptyItem);
         this.item = this.emptyItem;
+        console.log("item", this.item);
         this.dataReady = true;
       }
     }

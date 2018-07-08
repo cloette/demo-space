@@ -54,6 +54,16 @@ export class LeaderboardComponent implements OnInit {
     }
   }
 
+  checkItemsReady(): void {
+    if(this.items){
+      this.items = this.items["items"];
+      this.sortItems();
+    }
+    else{
+      this.warning = "There are no items! Make some items first."
+    }
+  }
+
   getItems(): void {
     // Get request /api/item/all with this.form.id
     // sort the response in descending order, flippable
@@ -64,12 +74,7 @@ export class LeaderboardComponent implements OnInit {
       payload: this.form["id"]
     });
     this.store.select('items').subscribe(data => this.items = data);
-    if(this.items){
-      this.sortItems();
-    }
-    else{
-      this.warning = "There are no items! Make some items first."
-    }
+    setTimeout(this.checkItemsReady(), 3000); // wait three seconds for this.item to update
     this.dataReady = true;
   }
 

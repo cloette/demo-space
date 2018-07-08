@@ -13,8 +13,16 @@
 </div>
 
 <div *ngIf="formReady">
-  <div *ngIf="warning" style="border:1px solid grey; padding:20px;">
-    <p>{{ warning }}</p>
+  <div *ngIf="warning">
+    <mat-list>
+      <mat-list-item>
+        <mat-icon style="color: #f49500" mat-list-icon>warning</mat-icon>
+        <h4 style="font-weight:bold" mat-line>No items found.</h4>
+        <p mat-line>Uh-oh! Looks like you haven't made any items yet.
+          <a style="color: green" routerLink="/item" routerLinkActive="active">Make a item here.</a>
+        </p>
+      </mat-list-item>
+    </mat-list>
   </div>
   <button mat-raised-button color="primary" (click)="getItems()">
     Refresh
