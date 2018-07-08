@@ -143,11 +143,8 @@ export class FormComponent implements OnInit {
       });
     }
     this.firstVisit = false;
-    this.store.select('form').subscribe(form => { this.form = form; localStorage.setItem('form', JSON.stringify(this.form)); });
+    this.store.select('form').subscribe(form => { console.log(form); this.form = form; localStorage.setItem('form', JSON.stringify(this.form)); });
     // formID and fields need to update here. Somehow.
-    console.log("after get", this.form);
-    this.formID = this.form["form"]["id"];
-    this.fields = this.form["form"]["fields"];
     this.dataReady = true;
   }
 
@@ -223,6 +220,7 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("Form on load", this.form);
     if (this.form){
       this.formID = this.form["form"]["id"];
       this.fields = this.form["form"]["fields"];
