@@ -53,7 +53,6 @@ export class FormComponent implements OnInit {
     if (localStorage.getItem('form')){
       const storedForm = localStorage.getItem('form');
       this.form = JSON.parse(storedForm);
-      //this.fields = this.form.fields.map(x => x) || [];
     }
   }
 
@@ -145,6 +144,9 @@ export class FormComponent implements OnInit {
     }
     this.firstVisit = false;
     this.store.select('form').subscribe(form => { this.form = form; localStorage.setItem('form', JSON.stringify(this.form)); });
+    if(Object.keys(this.form).length > 1){
+      console.log(Object.keys(this.form).length);
+    }
     this.dataReady = true;
   }
 
@@ -166,16 +168,16 @@ export class FormComponent implements OnInit {
   }
 
   removeField(index: number): void {
-    this.form.fields.splice(index, 1);
+    this.fields.splice(index, 1);
   }
 
   replaceField(someField: IFieldResponse, index: number): void {
-    this.form.fields[index] = someField;
+    this.fields[index] = someField;
   }
 
   addField(): void {
     if (this.form) {
-      this.form.fields.push(this.newField);
+      this.fields.push(this.newField);
       console.log("Fields Array", this.fields);
     }
   }
@@ -222,13 +224,13 @@ export class FormComponent implements OnInit {
   ngOnInit() {
     if (this.form){
       this.formID = this.form.id;
-      //this.fields = this.form.fields.map(x => x);
+      this.fields = this.form.fields;
       this.firstVisit = false;
       this.dataReady = true;
     }
-    //if(!this.fields){
-      //this.fields = [];
-    //}
+    if(!this.fields){
+      this.fields = [];
+    }
     this.newField = {
       order: 1,
       type: 'text',
