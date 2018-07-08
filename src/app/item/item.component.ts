@@ -88,7 +88,7 @@ export class ItemComponent implements OnInit {
     // PUT request /api/item with this.item.addressid
     this.calculateScore();
     setTimeout(function () {
-      console.log("Item Put payload:");
+      console.log("Item put payload:");
       console.log(this.item);
       this.store.dispatch({
         type: ITEM_EDIT,
@@ -124,10 +124,11 @@ export class ItemComponent implements OnInit {
   }
 
   calculateScore(): void {
+    console.log("calculateScore");
     let maxPoints = 0;
     let currentPoints = 0;
     let score = 0;
-    if (this.item.form.fields.length > 0) {
+    if (this.item.form.fields) {
       for (let i = 0; i > this.item.form.fields.length; i++) {
         currentPoints = currentPoints + (this.item.form.fields[i].value * this.item.form.fields[i].multiplier);
         maxPoints = maxPoints + (this.item.form.fields[i].maxValue * this.item.form.fields[i].multiplier);
@@ -140,6 +141,7 @@ export class ItemComponent implements OnInit {
       score = (currentPoints / maxPoints) * 100;
       this.item.score = score;
     }
+    console.log("item after calcScore", this.item);
   }
 
   ngOnInit() {
