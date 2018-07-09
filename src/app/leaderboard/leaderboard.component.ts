@@ -56,7 +56,7 @@ export class LeaderboardComponent implements OnInit {
 
   checkItemsReady(): void {
     if (this.items) {
-      this.items = this.items["items"];
+      //this.items = this.items["items"];
       this.sortItems();
     }
     else {

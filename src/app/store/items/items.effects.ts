@@ -22,7 +22,7 @@ export class ItemsEffects {
 
       return this.http.get<IItemResponse[]>(`/api/item/all/${action.payload}`)
         .catch((error) => Observable.of(new ItemsGetFail(error)))
-        .map((response: IItemResponse[]) => new ItemsGetSuccess(response));
+        .map((response: any) => new ItemsGetSuccess(response));
     });
 
   constructor(private actions$: Actions, private http: HttpClient) {}
