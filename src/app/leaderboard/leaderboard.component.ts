@@ -89,8 +89,8 @@ export class LeaderboardComponent implements OnInit {
   }
 
   sortItems(): void {
-    if (this.items.length > 1) {
-      console.log("Sorting items");
+    if (this.items) {
+      console.log("Sorting items", this.items);
       if (this.descending) {
         this.descending = !this.descending;
         this.items.slice.call(this.items).sort(function (a, b) {
