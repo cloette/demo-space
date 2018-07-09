@@ -66,6 +66,7 @@ export class LeaderboardComponent implements OnInit {
     this.items = this.items["items"];
     if (this.items) {
       this.sortItems();
+      this.warning = null;
     }
     else {
       this.warning = "There are no items! Make some items first.";
