@@ -139,9 +139,9 @@ formRouter.get("/item/single/:addressid", (request: Request, response: Response)
 
   let res;
 
-  Item.findOne({ addressID: request.params.addressid }, function (err, items) {
+  Item.find({ addressID: request.params.addressid }, function (err, items) {
     if (err) return console.error(err);
-    res = items;
+    res = items[0];
     return response.json(res);
   });
 

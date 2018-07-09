@@ -147,6 +147,13 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
     if (this.route.snapshot.params.addressid) {
       this.getItem(this.route.snapshot.params.addressid);
+      this.firstSave = false;
+      if (this.formReady && this.item) {
+        /*this.item.fields.slice.call(this.item.fields).sort(function(a, b) {
+          return b.order - a.order;
+        });*/
+        this.dataReady = true;
+      }
     }
     else {
       this.firstSave = true;
