@@ -31,6 +31,7 @@ export class LeaderboardComponent implements OnInit {
 
   constructor(private http: HttpClient, public store: Store<IAppState>) {
     this.store.select('form').subscribe(form => { this.form = form; });
+    this.store.select('items').subscribe(items => { this.items = items; });
     if (!this.form) {
       if (localStorage.getItem('form')) {
         const storedForm = localStorage.getItem('form');
@@ -41,6 +42,13 @@ export class LeaderboardComponent implements OnInit {
     else {
       this.form = this.form["form"];
       this.formReady = true;
+    }
+    if (!this.items) {
+      if (localStorage.getItem('items')) {
+        const storedItems = localStorage.getItem('items');
+        this.items = JSON.parse(storedItems); // see if that makes a diff
+        this.checkItemsReady();
+      }
     }
   }
 
@@ -73,9 +81,11 @@ export class LeaderboardComponent implements OnInit {
       type: ITEMS_GET,
       payload: this.form["id"]
     });
-    this.store.select('items').subscribe(data => this.items = data);
+    this.store.select('items').subscribe(data => {
+      this.items = data;
+      localStorage.setItem('items', JSON.stringify(data));
+    });
     setTimeout(this.checkItemsReady(), 3000); // wait three seconds for this.item to update
-    this.dataReady = true;
   }
 
   sortItems(): void {
@@ -93,6 +103,7 @@ export class LeaderboardComponent implements OnInit {
         });
       }
     }
+    this.dataReady = true;
   }
 
   recalculateAllScores(): void {
