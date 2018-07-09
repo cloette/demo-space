@@ -59,7 +59,7 @@
     </div>
   </form>
   <br />
-  <button mat-raised-button color="warning" (click)="deleteItem()">
+  <button *ngIf="!firstSave" mat-raised-button color="warning" (click)="deleteItem()">
     Delete
   </button>
   <button *ngIf="firstSave" mat-raised-button color="primary" (click)="newItem()">
@@ -68,7 +68,7 @@
   <button *ngIf="!firstSave" mat-raised-button color="primary" (click)="saveItem()">
     Save Changes
   </button>
-  <button mat-raised-button>
+  <button mat-raised-button routerLink="/form" routerLinkActive="active">
     Cancel
   </button>
 </div>
