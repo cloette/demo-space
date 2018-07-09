@@ -62,6 +62,7 @@ export class LeaderboardComponent implements OnInit {
   }
 
   checkItemsReady(): void {
+    console.log("checkItems:", this.items);
     if (this.items) {
       this.items = this.items["items"];
       this.sortItems();
@@ -85,8 +86,8 @@ export class LeaderboardComponent implements OnInit {
     this.store.select('items').subscribe(data => {
       this.items = data;
       localStorage.setItem('items', JSON.stringify(data));
+      this.checkItemsReady();
     });
-    setTimeout(this.checkItemsReady(), 3000); // wait three seconds for this.item to update
   }
 
   sortItems(): void {
