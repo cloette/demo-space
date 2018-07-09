@@ -45,7 +45,7 @@ export class ItemEffects {
 
       return this.http.get<IItemResponse>(`/api/item/single/${action.payload}`)
         .catch((error) => Observable.of(new ItemGetFail(error)))
-        .map((response: IItemResponse) => new ItemGetSuccess(response));
+        .map((response: any) => new ItemGetSuccess(response));
     });
 
   @Effect()
