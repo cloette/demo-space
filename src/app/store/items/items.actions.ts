@@ -15,7 +15,7 @@ export class ItemsGet implements Action {
 export class ItemsGetSuccess implements Action {
   readonly type = ITEMS_GET_SUCCESS;
 
-  constructor(public payload: IItemResponse[]) {}
+  constructor(public payload: any) {}
 }
 
 export class ItemsGetFail implements Action {

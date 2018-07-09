@@ -27,7 +27,7 @@ export class ItemAdd implements Action {
 export class ItemAddSuccess implements Action {
   readonly type = ITEM_ADD_SUCCESS;
 
-  constructor(public payload: IItemResponse) {}
+  constructor(public payload: any) {}
 }
 
 export class ItemAddFail implements Action {
@@ -46,7 +46,7 @@ export class ItemEdit implements Action {
 export class ItemEditSuccess implements Action {
   readonly type = ITEM_EDIT_SUCCESS;
 
-  constructor(public payload: IItemResponse) {}
+  constructor(public payload: any) {}
 }
 
 export class ItemEditFail implements Action {
@@ -65,7 +65,7 @@ export class ItemGet implements Action {
 export class ItemGetSuccess implements Action {
   readonly type = ITEM_GET_SUCCESS;
 
-  constructor(public payload: IItemResponse) {}
+  constructor(public payload: any) {}
 }
 
 export class ItemGetFail implements Action {
@@ -84,7 +84,7 @@ export class ItemRemove implements Action {
 export class ItemRemoveSuccess implements Action {
   readonly type = ITEM_REMOVE_SUCCESS;
 
-  constructor(public payload: IItemResponse) {}
+  constructor(public payload: any) {}
 }
 
 export class ItemRemoveFail implements Action {
