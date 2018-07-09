@@ -27,9 +27,8 @@ export class LeaderboardComponent implements OnInit {
   public items: Array<IItemResponse>;
   public form: IFormResponse;
   public warning: string;
-  private payload;
 
-  constructor(private http: HttpClient, public store: Store<IAppState>) {
+  constructor(public store: Store<IAppState>) {
     this.store.select('form').subscribe(form => { this.form = form; });
     this.store.select('items').subscribe(items => { this.items = items; });
     if (!this.form) {
@@ -68,7 +67,9 @@ export class LeaderboardComponent implements OnInit {
       this.sortItems();
     }
     else {
-      this.warning = "There are no items! Make some items first."
+      this.warning = "There are no items! Make some items first.";
+      this.items = [];
+      this.dataReady = true;
     }
   }
 
@@ -89,8 +90,8 @@ export class LeaderboardComponent implements OnInit {
   }
 
   sortItems(): void {
+    console.log("Sorting items", this.items);
     if (this.items) {
-      console.log("Sorting items", this.items);
       if (this.descending) {
         this.descending = !this.descending;
         this.items.slice.call(this.items).sort(function (a, b) {
@@ -117,10 +118,9 @@ export class LeaderboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.formReady) {
+    if (this.formReady && !this.dataReady) {
       this.getItems();
     }
-    console.log(this.form);
   }
 
 }
