@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../store/index';
 
@@ -24,8 +24,8 @@ export class ItemComponent implements OnInit, OnChanges {
 
   public dataReady: boolean = false;
   public formReady: boolean = false;
-  public itemID: string = "";
-  public item: any;// Observable<IItemResponse>
+  @Input() public itemID: string = "";
+  @Input() public item: any;// Observable<IItemResponse>
   public form: IFormResponse;
   public firstSave: boolean = false;
   private payload;
