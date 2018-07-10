@@ -28,6 +28,8 @@ export function itemReducer(state: IItemResponse, action: Actions): IItemRespons
 
     case ITEM_GET_SUCCESS:
 
+      console.log("ITEM_GET_SUCCESS " + JSON.stringify(action.payload));
+
       return Object.assign({}, state, {
         item: action.payload
       });

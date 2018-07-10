@@ -142,6 +142,7 @@ formRouter.get("/item/single/:addressid", (request: Request, response: Response)
   Item.find({ addressID: request.params.addressid }, function (err, items) {
     if (err) return console.error(err);
     res = items[0];
+    console.log("GET item response" + JSON.stringify(items[0]));
     return response.json(res);
   });
 
