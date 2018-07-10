@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -29,7 +29,7 @@ import { AuthService } from './auth/auth.service';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
     SharedModule,
     FormsModule,
     HttpClientModule,
