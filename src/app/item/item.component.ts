@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
+import { Component, OnInit, DoCheck, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../store/index';
 
@@ -20,7 +20,7 @@ import 'rxjs/add/operator/map';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements OnInit, OnChanges {
+export class ItemComponent implements OnInit, DoCheck {
 
   public dataReady: boolean = false;
   public formReady: boolean = false;
@@ -28,7 +28,6 @@ export class ItemComponent implements OnInit, OnChanges {
   @Input() public item: any;// Observable<IItemResponse>
   public form: IFormResponse;
   public firstSave: boolean = false;
-  private payload;
   public fieldArrayCopy: Array<IFieldResponse>;
   public optionArrayCopy: Array<IOptionResponse>;
   private emptyItem = {
@@ -131,9 +130,11 @@ export class ItemComponent implements OnInit, OnChanges {
       this.getItem(this.route.snapshot.params.addressid);
       this.firstSave = false;
       if (this.formReady && this.item) {
-        /*this.item.fields.slice.call(this.item.fields).sort(function(a, b) {
+        this.fieldArrayCopy = this.item.fields;
+        this.fieldArrayCopy.slice.call(this.fieldArrayCopy).sort(function(a, b) {
           return b.order - a.order;
-        });*/
+        });
+        this.item.fields = this.fieldArrayCopy;
         this.dataReady = true;
       }
     }
@@ -141,16 +142,20 @@ export class ItemComponent implements OnInit, OnChanges {
       this.firstSave = true;
       if (this.formReady) {
         this.item = this.emptyItem;
-        /*this.item.fields.slice.call(this.item.fields).sort(function(a, b) {
+
+        this.fieldArrayCopy = this.item.fields;
+        this.fieldArrayCopy.slice.call(this.fieldArrayCopy).sort(function(a, b) {
           return b.order - a.order;
-        });*/
+        });
+        this.item.fields = this.fieldArrayCopy;
+
         this.dataReady = true;
       }
     }
     console.log(this.form);
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngDoCheck() {
     console.log("calculateScore called");
     let maxPoints = 0;
     let currentPoints = 0;
