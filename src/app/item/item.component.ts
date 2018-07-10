@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../store/index';
 
@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IItemResponse } from './../shared/interfaces/item.interface';
 import { IFormResponse } from './../shared/interfaces/form.interface';
 import { IFieldResponse } from './../shared/interfaces/field.interface';
+import { IOptionResponse } from './../shared/interfaces/option.interface';
 
 import { ITEM_ADD, ITEM_EDIT, ITEM_GET, ITEM_REMOVE } from '../store/item/item.actions';
 
@@ -19,7 +20,7 @@ import 'rxjs/add/operator/map';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements OnInit {
+export class ItemComponent implements OnInit, OnChanges {
 
   public dataReady: boolean = false;
   public formReady: boolean = false;
@@ -29,6 +30,7 @@ export class ItemComponent implements OnInit {
   public firstSave: boolean = false;
   private payload;
   public fieldArrayCopy: Array<IFieldResponse>;
+  public optionArrayCopy: Array<IOptionResponse>;
   private emptyItem = {
     address: 'Item Display Name',
     addressID: undefined,
@@ -105,14 +107,12 @@ export class ItemComponent implements OnInit {
 
   saveItem(): void {
     console.log("save Item", this.item);
-    this.calculateScore();
     setTimeout(this.put(), 3000);
   }
 
   newItem(): void {
     console.log("new Item", this.item);
     this.item.addressID = encodeURI(this.item.address);
-    this.calculateScore();
     setTimeout(this.post(), 3000);
   }
 
@@ -124,24 +124,6 @@ export class ItemComponent implements OnInit {
       payload: this.item
     });
     this.firstSave = true;
-  }
-
-  calculateScore(): void {
-    console.log("calculateScore");
-    let maxPoints = 0;
-    let currentPoints = 0;
-    let score = 0;
-    if (this.item.form.fields) {
-      console.log("fieldArrayCopy");
-      this.fieldArrayCopy = this.item.form.fields
-      for (let i = 0; i > this.fieldArrayCopy.length; i++) {
-        currentPoints = currentPoints + (this.fieldArrayCopy[i].value * this.fieldArrayCopy[i].multiplier);
-        maxPoints = maxPoints + (this.fieldArrayCopy[i].maxValue * this.fieldArrayCopy[i].multiplier);
-        score = (currentPoints / maxPoints) * 100;
-      }
-    }
-    this.item.score = score;
-    console.log("item after calcScore", this.item);
   }
 
   ngOnInit() {
@@ -166,6 +148,40 @@ export class ItemComponent implements OnInit {
       }
     }
     console.log(this.form);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    console.log("calculateScore called");
+    let maxPoints = 0;
+    let currentPoints = 0;
+    let selectedValues = 0;
+    if (this.item.form.fields) {
+      this.fieldArrayCopy = this.item.form.fields;
+      for (let i = 0; i > this.fieldArrayCopy.length; i++) {
+        if(this.fieldArrayCopy[i].type === "checkbox"){
+          this.optionArrayCopy = this.fieldArrayCopy[i].options;
+          for(let j = 0; j > this.optionArrayCopy.length; j++){
+            if(this.optionArrayCopy[j].value){
+              selectedValues = selectedValues + 1;
+            }
+          }
+          currentPoints = currentPoints + (selectedValues * this.fieldArrayCopy[i].multiplier);
+          maxPoints = maxPoints + (selectedValues * this.fieldArrayCopy[i].multiplier);
+        }
+        else if (this.fieldArrayCopy[i].type === "text" || this.fieldArrayCopy[i].type === "switch"){
+          if (this.fieldArrayCopy[i].value){
+            currentPoints = currentPoints + this.fieldArrayCopy[i].multiplier;
+            maxPoints = maxPoints + this.fieldArrayCopy[i].multiplier;
+          }
+        }
+        else{
+          currentPoints = currentPoints + (this.fieldArrayCopy[i].value * this.fieldArrayCopy[i].multiplier);
+          maxPoints = maxPoints + (this.fieldArrayCopy[i].maxValue * this.fieldArrayCopy[i].multiplier);
+        }
+      }
+      this.item.score = (currentPoints / maxPoints) * 100;
+      console.log("score after calcScore", this.item.score);
+    }
   }
 
 }
