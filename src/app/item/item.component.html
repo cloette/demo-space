@@ -38,8 +38,8 @@
       </div>
       <div *ngIf="field.type === 'checkbox' && !field.disabled">
         <p>{{ field.question }}</p>
-        <div *ngFor="let optionC of field.options" class="column-layout">
-          <mat-checkbox name="checkboxfield" [(ngModel)]="optionC.value" [ngModelOptions]="{standalone: true}">{{ optionC.helperText }}</mat-checkbox>
+        <div class="column-layout">
+          <mat-checkbox *ngFor="let optionC of field.options" name="checkboxfield" [(ngModel)]="optionC.value" [ngModelOptions]="{standalone: true}">{{ optionC.helperText }}</mat-checkbox>
         </div>
       </div>
       <div *ngIf="field.type === 'switch' && !field.disabled">
