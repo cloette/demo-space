@@ -131,9 +131,11 @@ export class ItemComponent implements OnInit, DoCheck {
       this.firstSave = false;
       if (this.formReady && this.item) {
         this.fieldArrayCopy = this.item.fields;
-        this.fieldArrayCopy.slice.call(this.fieldArrayCopy).sort(function(a, b) {
-          return b.order - a.order;
-        });
+        if (this.fieldArrayCopy) {
+          this.fieldArrayCopy.slice.call(this.fieldArrayCopy).sort(function (a, b) {
+            return b.order - a.order;
+          });
+        }
         this.item.fields = this.fieldArrayCopy;
         this.dataReady = true;
       }
@@ -142,13 +144,13 @@ export class ItemComponent implements OnInit, DoCheck {
       this.firstSave = true;
       if (this.formReady) {
         this.item = this.emptyItem;
-
         this.fieldArrayCopy = this.item.fields;
-        this.fieldArrayCopy.slice.call(this.fieldArrayCopy).sort(function(a, b) {
-          return b.order - a.order;
-        });
+        if (this.fieldArrayCopy) {
+          this.fieldArrayCopy.slice.call(this.fieldArrayCopy).sort(function (a, b) {
+            return b.order - a.order;
+          });
+        }
         this.item.fields = this.fieldArrayCopy;
-
         this.dataReady = true;
       }
     }
@@ -163,23 +165,23 @@ export class ItemComponent implements OnInit, DoCheck {
     if (this.item.form.fields) {
       this.fieldArrayCopy = this.item.form.fields;
       for (let i = 0; i > this.fieldArrayCopy.length; i++) {
-        if(this.fieldArrayCopy[i].type === "checkbox"){
+        if (this.fieldArrayCopy[i].type === "checkbox") {
           this.optionArrayCopy = this.fieldArrayCopy[i].options;
-          for(let j = 0; j > this.optionArrayCopy.length; j++){
-            if(this.optionArrayCopy[j].value){
+          for (let j = 0; j > this.optionArrayCopy.length; j++) {
+            if (this.optionArrayCopy[j].value) {
               selectedValues = selectedValues + 1;
             }
           }
           currentPoints = currentPoints + (selectedValues * this.fieldArrayCopy[i].multiplier);
           maxPoints = maxPoints + (selectedValues * this.fieldArrayCopy[i].multiplier);
         }
-        else if (this.fieldArrayCopy[i].type === "text" || this.fieldArrayCopy[i].type === "switch"){
-          if (this.fieldArrayCopy[i].value){
+        else if (this.fieldArrayCopy[i].type === "text" || this.fieldArrayCopy[i].type === "switch") {
+          if (this.fieldArrayCopy[i].value) {
             currentPoints = currentPoints + this.fieldArrayCopy[i].multiplier;
             maxPoints = maxPoints + this.fieldArrayCopy[i].multiplier;
           }
         }
-        else{
+        else {
           currentPoints = currentPoints + (this.fieldArrayCopy[i].value * this.fieldArrayCopy[i].multiplier);
           maxPoints = maxPoints + (this.fieldArrayCopy[i].maxValue * this.fieldArrayCopy[i].multiplier);
         }

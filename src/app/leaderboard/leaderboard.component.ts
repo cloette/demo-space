@@ -96,9 +96,7 @@ export class LeaderboardComponent implements OnInit {
     if (this.items) {
       if (this.descending) {
         this.descending = !this.descending;
-        this.items.slice.call(this.items).sort(function (a, b) {
-          return a.score - b.score;
-        });
+        this.items.sort(function(a, b){return a.score - b.score});
       }
       else {
         this.items.slice.call(this.items).sort(function (a, b) {
