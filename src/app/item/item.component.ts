@@ -63,10 +63,12 @@ export class ItemComponent implements OnInit {
 
   ngOnInit() {
     if (this.route.snapshot.params.addressid) {
+      this.item = this.emptyItem;
       this.getItem(this.route.snapshot.params.addressid);
       this.firstSave = false;
       console.log("pre timeout");
       setTimeout(function () {
+        console.log("timeout called");
         if (this.formReady && this.dataReady) {
           if (this.item.form.fields) {
             this.fieldArrayCopy = this.item.form.fields;
@@ -76,7 +78,6 @@ export class ItemComponent implements OnInit {
           }
         }
       }, 5000);
-      console.log("post timeout");
     }
     else {
       this.firstSave = true;
