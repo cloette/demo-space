@@ -25,7 +25,7 @@ export class ItemComponent implements OnInit {
   public dataReady: boolean = false;
   public formReady: boolean = false;
   @Input() public itemID: string = "";
-  @Input() public item: any;// Observable<IItemResponse>
+  @Input() public item: IItemResponse;
   public form: IFormResponse;
   public firstSave: boolean = false;
   public fieldArrayCopy: Array<IFieldResponse>;
@@ -59,6 +59,33 @@ export class ItemComponent implements OnInit {
       this.emptyItem.formid = this.form.id;
       this.formReady = true;
     }
+  }
+
+  ngOnInit() {
+    if (this.route.snapshot.params.addressid) {
+      this.getItem(this.route.snapshot.params.addressid);
+      this.firstSave = false;
+      if (this.formReady && this.dataReady) {
+        if (this.item.form) {
+          this.fieldArrayCopy = this.item.form.fields;
+          this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
+          this.item.form.fields = this.fieldArrayCopy;
+        }
+      }
+    }
+    else {
+      this.firstSave = true;
+      if (this.formReady) {
+        this.item = this.emptyItem;
+        if (this.item.form.fields) {
+          this.fieldArrayCopy = this.item.form.fields;
+          this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
+          this.item.form.fields = this.fieldArrayCopy;
+        }
+        this.dataReady = true;
+      }
+    }
+    console.log(this.form);
   }
 
   public onDataEmitted(data) {
@@ -106,12 +133,14 @@ export class ItemComponent implements OnInit {
 
   saveItem(): void {
     console.log("save Item", this.item);
+    this.calcScore(this.item.form.fields);
     setTimeout(this.put(), 3000);
   }
 
   newItem(): void {
     console.log("new Item", this.item);
     this.item.addressID = encodeURI(this.item.address);
+    this.calcScore(this.item.form.fields);
     setTimeout(this.post(), 3000);
   }
 
@@ -123,34 +152,6 @@ export class ItemComponent implements OnInit {
       payload: this.item
     });
     this.firstSave = true;
-  }
-
-  ngOnInit() {
-    if (this.route.snapshot.params.addressid) {
-      this.getItem(this.route.snapshot.params.addressid);
-      this.firstSave = false;
-      if (this.formReady && this.item !== undefined) {
-        if (this.item.form.fields) {
-          this.fieldArrayCopy = this.item.form.fields;
-          this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
-          this.item.fields = this.fieldArrayCopy;
-        }
-        this.dataReady = true;
-      }
-    }
-    else {
-      this.firstSave = true;
-      if (this.formReady) {
-        this.item = this.emptyItem;
-        if (this.item.fields) {
-          this.fieldArrayCopy = this.item.fields;
-          this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
-          this.item.fields = this.fieldArrayCopy;
-        }
-        this.dataReady = true;
-      }
-    }
-    console.log(this.form);
   }
 
   calcScore(fields: Array<IFieldResponse>): void {
