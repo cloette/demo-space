@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../store/index';
 
@@ -20,7 +20,7 @@ import 'rxjs/add/operator/map';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.css']
 })
-export class ItemComponent implements OnInit, DoCheck {
+export class ItemComponent implements OnInit {
 
   public dataReady: boolean = false;
   public formReady: boolean = false;
@@ -130,11 +130,11 @@ export class ItemComponent implements OnInit, DoCheck {
       this.getItem(this.route.snapshot.params.addressid);
       this.firstSave = false;
       if (this.formReady && this.item) {
-        this.fieldArrayCopy = this.item.fields;
-        if (this.fieldArrayCopy) {
-          this.fieldArrayCopy.sort(function(a, b){return a.order - b.order});
+        if (this.item.fields) {
+          this.fieldArrayCopy = this.item.fields;
+          this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
+          this.item.fields = this.fieldArrayCopy;
         }
-        this.item.fields = this.fieldArrayCopy;
         this.dataReady = true;
       }
     }
@@ -142,44 +142,43 @@ export class ItemComponent implements OnInit, DoCheck {
       this.firstSave = true;
       if (this.formReady) {
         this.item = this.emptyItem;
-        this.fieldArrayCopy = this.item.fields;
-        if (this.fieldArrayCopy) {
-          this.fieldArrayCopy.sort(function(a, b){return a.order - b.order});
+        if (this.item.fields) {
+          this.fieldArrayCopy = this.item.fields;
+          this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
+          this.item.fields = this.fieldArrayCopy;
         }
-        this.item.fields = this.fieldArrayCopy;
         this.dataReady = true;
       }
     }
     console.log(this.form);
   }
 
-  ngDoCheck() {
+  calcScore(fields: Array<IFieldResponse>): void {
     console.log("calculateScore called");
     let maxPoints = 0;
     let currentPoints = 0;
     let selectedValues = 0;
-    if (this.item.form.fields) {
-      this.fieldArrayCopy = this.item.form.fields;
-      for (let i = 0; i > this.fieldArrayCopy.length; i++) {
-        if (this.fieldArrayCopy[i].type === "checkbox") {
-          this.optionArrayCopy = this.fieldArrayCopy[i].options;
+    if (fields) {
+      for (let i = 0; i > fields.length; i++) {
+        if (fields[i].type === "checkbox") {
+          this.optionArrayCopy = fields[i].options;
           for (let j = 0; j > this.optionArrayCopy.length; j++) {
             if (this.optionArrayCopy[j].value) {
               selectedValues = selectedValues + 1;
             }
           }
-          currentPoints = currentPoints + (selectedValues * this.fieldArrayCopy[i].multiplier);
-          maxPoints = maxPoints + (selectedValues * this.fieldArrayCopy[i].multiplier);
+          currentPoints = currentPoints + (selectedValues * fields[i].multiplier);
+          maxPoints = maxPoints + (selectedValues * fields[i].multiplier);
         }
-        else if (this.fieldArrayCopy[i].type === "text" || this.fieldArrayCopy[i].type === "switch") {
-          if (this.fieldArrayCopy[i].value) {
-            currentPoints = currentPoints + this.fieldArrayCopy[i].multiplier;
-            maxPoints = maxPoints + this.fieldArrayCopy[i].multiplier;
+        else if (fields[i].type === "text" || fields[i].type === "switch") {
+          if (fields[i].value) {
+            currentPoints = currentPoints + fields[i].multiplier;
+            maxPoints = maxPoints + fields[i].multiplier;
           }
         }
         else {
-          currentPoints = currentPoints + (this.fieldArrayCopy[i].value * this.fieldArrayCopy[i].multiplier);
-          maxPoints = maxPoints + (this.fieldArrayCopy[i].maxValue * this.fieldArrayCopy[i].multiplier);
+          currentPoints = currentPoints + (fields[i].value * fields[i].multiplier);
+          maxPoints = maxPoints + (fields[i].maxValue * fields[i].multiplier);
         }
       }
       this.item.score = (currentPoints / maxPoints) * 100;
