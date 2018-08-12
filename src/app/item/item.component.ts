@@ -66,16 +66,15 @@ export class ItemComponent implements OnInit {
       this.item = this.emptyItem;
       this.getItem(this.route.snapshot.params.addressid);
       this.firstSave = false;
+      this.dataReady = true;
       console.log("pre timeout");
       setTimeout(function () {
         console.log("timeout called");
-        if (this.formReady && this.dataReady) {
-          if (this.item.form.fields) {
-            this.fieldArrayCopy = this.item.form.fields;
-            this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
-            this.item.form.fields = this.fieldArrayCopy;
-            console.log("timeout fields sorted");
-          }
+        if (this.formReady && this.dataReady && this.item) {
+          this.fieldArrayCopy = this.item.form.fields;
+          this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
+          this.item.form.fields = this.fieldArrayCopy;
+          console.log("timeout fields sorted");
         }
       }, 5000);
     }
@@ -188,7 +187,12 @@ export class ItemComponent implements OnInit {
           maxPoints = maxPoints + (fields[i].maxValue * fields[i].multiplier);
         }
       }
-      this.item.score = (currentPoints / maxPoints) * 100;
+      if (maxPoints = 0) {
+        this.item.score = 0;
+      }
+      else {
+        this.item.score = (currentPoints / maxPoints) * 100;
+      }
       console.log("score after calcScore", this.item.score);
     }
   }
