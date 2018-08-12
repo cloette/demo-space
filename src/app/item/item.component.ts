@@ -65,13 +65,15 @@ export class ItemComponent implements OnInit {
     if (this.route.snapshot.params.addressid) {
       this.getItem(this.route.snapshot.params.addressid);
       this.firstSave = false;
-      if (this.formReady && this.dataReady) {
-        if (this.item.form) {
-          this.fieldArrayCopy = this.item.form.fields;
-          this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
-          this.item.form.fields = this.fieldArrayCopy;
+      setTimeout(function () {
+        if (this.formReady && this.dataReady) {
+          if (this.item.form.fields) {
+            this.fieldArrayCopy = this.item.form.fields;
+            this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
+            this.item.form.fields = this.fieldArrayCopy;
+          }
         }
-      }
+      }, 5000);
     }
     else {
       this.firstSave = true;
