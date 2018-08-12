@@ -65,15 +65,18 @@ export class ItemComponent implements OnInit {
     if (this.route.snapshot.params.addressid) {
       this.getItem(this.route.snapshot.params.addressid);
       this.firstSave = false;
+      console.log("pre timeout");
       setTimeout(function () {
         if (this.formReady && this.dataReady) {
           if (this.item.form.fields) {
             this.fieldArrayCopy = this.item.form.fields;
             this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
             this.item.form.fields = this.fieldArrayCopy;
+            console.log("timeout fields sorted");
           }
         }
       }, 5000);
+      console.log("post timeout");
     }
     else {
       this.firstSave = true;
