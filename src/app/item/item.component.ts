@@ -132,9 +132,7 @@ export class ItemComponent implements OnInit, DoCheck {
       if (this.formReady && this.item) {
         this.fieldArrayCopy = this.item.fields;
         if (this.fieldArrayCopy) {
-          this.fieldArrayCopy.slice.call(this.fieldArrayCopy).sort(function (a, b) {
-            return b.order - a.order;
-          });
+          this.fieldArrayCopy.sort(function(a, b){return a.order - b.order});
         }
         this.item.fields = this.fieldArrayCopy;
         this.dataReady = true;
@@ -146,9 +144,7 @@ export class ItemComponent implements OnInit, DoCheck {
         this.item = this.emptyItem;
         this.fieldArrayCopy = this.item.fields;
         if (this.fieldArrayCopy) {
-          this.fieldArrayCopy.slice.call(this.fieldArrayCopy).sort(function (a, b) {
-            return b.order - a.order;
-          });
+          this.fieldArrayCopy.sort(function(a, b){return a.order - b.order});
         }
         this.item.fields = this.fieldArrayCopy;
         this.dataReady = true;
