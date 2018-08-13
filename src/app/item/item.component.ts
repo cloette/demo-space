@@ -159,7 +159,7 @@ export class ItemComponent implements OnInit {
   }
 
   calcScore(fields: Array<IFieldResponse>): void {
-    console.log("calculateScore called");
+    console.log("calculateScore called", fields);
     let maxPoints = 0;
     let currentPoints = 0;
     let selectedValues = 0;
@@ -193,8 +193,8 @@ export class ItemComponent implements OnInit {
       else {
         this.item.score = (currentPoints / maxPoints) * 100;
       }
-      console.log("score after calcScore", this.item.score);
     }
+    console.log("score after calcScore", this.item.score);
   }
 
 }
