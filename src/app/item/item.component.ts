@@ -68,14 +68,14 @@ export class ItemComponent implements OnInit {
       this.firstSave = false;
       console.log("pre timeout");
       setTimeout(function () {
-        console.log("timeout called");
-        if (this.formReady && this.item) {
+        console.log("timeout called", this.item);
+        if (this.formReady && this.item.form.fields) {
           this.fieldArrayCopy = this.item.form.fields;
           this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
           this.item.form.fields = this.fieldArrayCopy;
           console.log("timeout fields sorted");
-          this.dataReady = true;
         }
+        this.dataReady = true;
       }, 5000);
     }
     else {
@@ -113,7 +113,7 @@ export class ItemComponent implements OnInit {
       payload: id
     });
     this.store.select('item').subscribe(data => this.item = data);
-    setTimeout(function () { this.item = this.item["item"]; }, 3000); // wait three seconds for this.item to update
+    setTimeout(function () { this.item = this.item["item"]; console.log("item updated", this.item); }, 3000); // wait three seconds for this.item to update
   }
 
   put(): void {
