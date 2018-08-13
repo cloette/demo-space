@@ -66,10 +66,7 @@ export class ItemComponent implements OnInit {
       this.item = this.emptyItem;
       this.getItem(this.route.snapshot.params.addressid);
       this.firstSave = false;
-      console.log("pre timeout");
-      setTimeout(this.checkReady(), 5000);
-      setTimeout(this.checkReady(), 10000);
-      setTimeout(this.checkReady(), 20000);
+      this.dataReady = true;
     }
     else {
       this.firstSave = true;
@@ -104,7 +101,6 @@ export class ItemComponent implements OnInit {
       this.item.form.fields = this.fieldArrayCopy;
       console.log("timeout fields sorted");
     }
-    this.dataReady = true;
   }
 
   getItem(id: string): void {
