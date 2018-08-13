@@ -95,13 +95,14 @@ export class ItemComponent implements OnInit {
   }
 
   checkReady(): void {
-    console.log("timeout called", this.item);
-    if (this.formReady && this.item.form.fields) {
+    console.log("timeout called");
+    if (this.formReady && this.item) {
       this.fieldArrayCopy = this.item.form.fields;
       this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
       this.item.form.fields = this.fieldArrayCopy;
       console.log("timeout fields sorted");
     }
+    else { setTimeout(this.checkReady(), 5000); }
     this.dataReady = true;
   }
 
