@@ -67,16 +67,7 @@ export class ItemComponent implements OnInit {
       this.getItem(this.route.snapshot.params.addressid);
       this.firstSave = false;
       console.log("pre timeout");
-      setTimeout(function () {
-        console.log("timeout called", this.item);
-        if (this.formReady && this.item.form.fields) {
-          this.fieldArrayCopy = this.item.form.fields;
-          this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
-          this.item.form.fields = this.fieldArrayCopy;
-          console.log("timeout fields sorted");
-        }
-        this.dataReady = true;
-      }, 5000);
+      setTimeout(this.checkReady(), 5000);
     }
     else {
       this.firstSave = true;
@@ -101,6 +92,17 @@ export class ItemComponent implements OnInit {
     else {
       this.formReady = true;
     }
+  }
+
+  checkReady(): void {
+    console.log("timeout called", this.item);
+    if (this.formReady && this.item.form.fields) {
+      this.fieldArrayCopy = this.item.form.fields;
+      this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
+      this.item.form.fields = this.fieldArrayCopy;
+      console.log("timeout fields sorted");
+    }
+    this.dataReady = true;
   }
 
   getItem(id: string): void {
