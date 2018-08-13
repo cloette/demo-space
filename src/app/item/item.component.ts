@@ -142,14 +142,14 @@ export class ItemComponent implements OnInit {
   saveItem(): void {
     console.log("save Item", this.item);
     this.calcScore(this.item.form.fields);
-    setTimeout(this.put(), 3000);
+    setTimeout(this.put(), 10000);
   }
 
   newItem(): void {
     console.log("new Item", this.item);
     this.item.addressID = encodeURI(this.item.address);
     this.calcScore(this.item.form.fields);
-    setTimeout(this.post(), 3000);
+    setTimeout(this.post(), 10000);
   }
 
   deleteItem(): void {
@@ -169,6 +169,7 @@ export class ItemComponent implements OnInit {
     let selectedValues = 0;
     if (fields) {
       for (let i = 0; i > fields.length; i++) {
+        console.log("field type", fields[i].type);
         if (fields[i].type === "checkbox") {
           this.optionArrayCopy = fields[i].options;
           for (let j = 0; j > this.optionArrayCopy.length; j++) {
@@ -190,7 +191,7 @@ export class ItemComponent implements OnInit {
           maxPoints = maxPoints + (fields[i].maxValue * fields[i].multiplier);
         }
       }
-      if (maxPoints = 0) {
+      if (maxPoints === 0) {
         this.item.score = 0;
       }
       else {
