@@ -66,15 +66,15 @@ export class ItemComponent implements OnInit {
       this.item = this.emptyItem;
       this.getItem(this.route.snapshot.params.addressid);
       this.firstSave = false;
-      this.dataReady = true;
       console.log("pre timeout");
       setTimeout(function () {
         console.log("timeout called");
-        if (this.formReady && this.dataReady && this.item) {
+        if (this.formReady && this.item) {
           this.fieldArrayCopy = this.item.form.fields;
           this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
           this.item.form.fields = this.fieldArrayCopy;
           console.log("timeout fields sorted");
+          this.dataReady = true;
         }
       }, 5000);
     }
@@ -114,7 +114,6 @@ export class ItemComponent implements OnInit {
     });
     this.store.select('item').subscribe(data => this.item = data);
     setTimeout(function () { this.item = this.item["item"]; }, 3000); // wait three seconds for this.item to update
-    this.dataReady = true;
   }
 
   put(): void {
