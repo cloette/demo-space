@@ -137,14 +137,14 @@ export class ItemComponent implements OnInit {
 
   saveItem(): void {
     console.log("save Item", this.item);
-    this.calcScore(this.item.form);
+    this.calcScore(this.item.form.fields);
     setTimeout(this.put(), 10000);
   }
 
   newItem(): void {
     console.log("new Item", this.item);
     this.item.addressID = encodeURI(this.item.address);
-    this.calcScore(this.item.form);
+    this.calcScore(this.item.form.fields);
     setTimeout(this.post(), 10000);
   }
 
@@ -158,8 +158,7 @@ export class ItemComponent implements OnInit {
     this.firstSave = true;
   }
 
-  calcScore(form: IFormResponse): void {
-    const fields = form.fields;
+  calcScore(fields: Array<IFieldResponse>): void {
     console.log("calculateScore called", fields);
     let maxPoints = 0;
     let currentPoints = 0;
