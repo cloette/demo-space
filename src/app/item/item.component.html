@@ -68,7 +68,7 @@
   <button *ngIf="!firstSave" mat-raised-button color="primary" (click)="saveItem()">
     Save Changes
   </button>
-  <button mat-raised-button (click)="calcScore()">
+  <button mat-raised-button (click)="calcScore(item.form.fields)">
     Calculate score
   </button>
   <button mat-raised-button (click)="checkReady()">
