@@ -109,7 +109,7 @@ export class ItemComponent implements OnInit {
       type: SINGLE_ITEM_GET,
       payload: id
     });
-    this.store.select('single_item').subscribe(data => {this.item = data; if(this.item.length === 1){console.log("item updated correctly", data, this.item); this.dataReady = true;});
+    this.store.select('single_item').subscribe(data => {this.item = data; if(this.item){console.log("there is an item", data, this.item); }});//this.dataReady = true;
   }
 
   put(): void {
