@@ -163,6 +163,7 @@ export class ItemComponent implements OnInit {
       for (let i = 0; i > fields.length; i++) {
         console.log("field type", fields[i].type);
         if (fields[i].type === "checkbox") {
+          console.log("checkbox hit");
           this.optionArrayCopy = fields[i].options;
           for (let j = 0; j > this.optionArrayCopy.length; j++) {
             if (this.optionArrayCopy[j].value) {
@@ -173,20 +174,24 @@ export class ItemComponent implements OnInit {
           maxPoints = maxPoints + (selectedValues * fields[i].multiplier);
         }
         else if (fields[i].type === "text" || fields[i].type === "switch") {
+          console.log("text/switch hit");
           if (fields[i].value) {
             currentPoints = currentPoints + fields[i].multiplier;
             maxPoints = maxPoints + fields[i].multiplier;
           }
         }
         else {
+          console.log("else hit");
           currentPoints = currentPoints + (fields[i].value * fields[i].multiplier);
           maxPoints = maxPoints + (fields[i].maxValue * fields[i].multiplier);
         }
       }
-      if (maxPoints === 0) {
+      if (!maxPoints) {
+        console.log("MaxPoints is 0 hit");
         this.item.score = 0;
       }
       else {
+        console.log("MaxPoints is not 0 hit");
         this.item.score = (currentPoints / maxPoints) * 100;
       }
       console.log("end of if fields", this.item.score);
