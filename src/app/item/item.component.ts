@@ -164,8 +164,11 @@ export class ItemComponent implements OnInit {
     this.selectedValues = 0;
     if (fields) {
       for (let i = 0; i < fields.length; i++) {
-        console.log("field type", fields[i].type);
-        if (fields[i].type === "checkbox") {
+        console.log("field type " + i, fields[i].type);
+        if(fields[i].disabled){
+          console.log('field is disabled, not scored');
+        }
+        else if (fields[i].type === "checkbox") {
           this.optionArrayCopy = fields[i].options;
           for (let j = 0; j > this.optionArrayCopy.length; j++) {
             if (this.optionArrayCopy[j].value) {
@@ -174,19 +177,19 @@ export class ItemComponent implements OnInit {
           }
           this.currentPoints = this.currentPoints + (this.selectedValues * (fields[i].multiplier || 0));
           this.maxPoints = this.maxPoints + (this.selectedValues * (fields[i].multiplier || 0));
-          console.log("checkbox hit", this.currentPoints, this.maxPoints);
+          console.log("checkbox hit", this.currentPoints, this.maxPoints, "value", this.selectedValues, "multi", fields[i].multiplier);
         }
         else if (fields[i].type === "text" || fields[i].type === "switch") {
           if (fields[i].value) {
             this.currentPoints = this.currentPoints + (fields[i].multiplier || 0);
             this.maxPoints = this.maxPoints + (fields[i].multiplier || 0);
           }
-          console.log("text/switch hit", this.currentPoints, this.maxPoints);
+          console.log("text/switch hit", this.currentPoints, this.maxPoints, "multi", fields[i].multiplier);
         }
         else {
           this.currentPoints = this.currentPoints + (fields[i].value * (fields[i].multiplier || 0));
           this.maxPoints = this.maxPoints + (fields[i].maxValue * (fields[i].multiplier || 0));
-          console.log("else hit", this.currentPoints, this.maxPoints);
+          console.log("else hit", this.currentPoints, this.maxPoints, "value", fields[i].value);
         }
       }
       if (!this.maxPoints) {
