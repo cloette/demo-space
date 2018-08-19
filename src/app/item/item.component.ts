@@ -133,7 +133,7 @@ export class ItemComponent implements OnInit {
     });
     this.store.select('single_item').subscribe(data => {
       console.log("store single_item", data);
-      if (data.toString()) {
+      if (data && data.toString()) {
         this.item = data["single_item"];
         /*if (this.item.hasOwnProperty('score')) {
           console.log("there is an item", data, this.item);
