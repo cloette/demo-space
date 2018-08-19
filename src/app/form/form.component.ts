@@ -1,9 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { IAppState } from '../store/index';
 import { Store } from '@ngrx/store';
 
-import { MatDialog } from '@angular/material';
-import { MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 import { Dialog } from './dialog/dialog.component';
 
@@ -48,7 +47,8 @@ export class FormComponent implements OnInit {
     public store: Store<IAppState>,
     public fb: FormBuilder,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public viewContainerRef: ViewContainerRef,
   ) {
     this.profile = localStorage.getItem('profile');
     this.store.select('form').subscribe(form => { this.form = form; });
@@ -168,9 +168,10 @@ export class FormComponent implements OnInit {
       payload: savePayload
     })
     localStorage.setItem('form', JSON.stringify(this.form));
-    this.snackBar.open('Form saved!', 'Close', {
-      duration: 3000,
-    });
+    let config = new MatSnackBarConfig();
+    config.duration = 4000;
+    config.viewContainerRef = this.viewContainerRef;
+    this.snackBar.open('Form saved!', 'Close', config);
   }
 
   clearForm(): void {
@@ -188,17 +189,19 @@ export class FormComponent implements OnInit {
 
   replaceField(someField: IFieldResponse, index: number): void {
     this.fields[index] = someField;
-    this.snackBar.open('Updated field successfully!', 'Close', {
-      duration: 3000,
-    });
+    let config = new MatSnackBarConfig();
+    config.duration = 4000;
+    config.viewContainerRef = this.viewContainerRef;
+    this.snackBar.open('Updated field successfully!', 'Close', config);
   }
 
   addField(): void {
     if (this.form) {
       this.fields.push(this.newField);
-      this.snackBar.open('Field added!', 'Close', {
-        duration: 3000,
-      });
+      let config = new MatSnackBarConfig();
+      config.duration = 4000;
+      config.viewContainerRef = this.viewContainerRef;
+      this.snackBar.open('Field added!', 'Close', config);
       console.log("Fields Array", this.fields);
     }
   }

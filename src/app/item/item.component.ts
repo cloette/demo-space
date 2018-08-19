@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../store/index';
 
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 import { ActivatedRoute } from '@angular/router';
 
@@ -42,7 +42,12 @@ export class ItemComponent implements OnInit {
   private currentPoints;
   private selectedValues;
 
-  constructor(private route: ActivatedRoute, public store: Store<IAppState>, public snackBar: MatSnackBar) {
+  constructor(
+    private route: ActivatedRoute,
+    public store: Store<IAppState>,
+    public snackBar: MatSnackBar,
+    public viewContainerRef: ViewContainerRef
+  ) {
     this.route.params.subscribe(params => {
       this.itemID = params['addressid'];
     });
@@ -112,9 +117,6 @@ export class ItemComponent implements OnInit {
       type: SINGLE_ITEM_EDIT,
       payload: this.item
     });
-    this.snackBar.open('Item saved!', 'Close', {
-      duration: 3000,
-    });
   }
 
   post(): void {
@@ -125,9 +127,6 @@ export class ItemComponent implements OnInit {
       payload: this.item
     });
     this.firstSave = false;
-    this.snackBar.open('Item added!', 'Close', {
-      duration: 3000,
-    });
   }
 
   getItem(id: string): void {
@@ -153,6 +152,10 @@ export class ItemComponent implements OnInit {
     console.log("save Item", this.item);
     this.calcScore(this.item.form.fields);
     setTimeout(this.put(), 10000);
+    let config = new MatSnackBarConfig();
+    config.duration = 4000;
+    config.viewContainerRef = this.viewContainerRef;
+    this.snackBar.open('Item saved!', 'Close', config);
   }
 
   newItem(): void {
@@ -160,6 +163,10 @@ export class ItemComponent implements OnInit {
     this.item.addressID = encodeURI(this.item.address);
     this.calcScore(this.item.form.fields);
     setTimeout(this.post(), 10000);
+    let config = new MatSnackBarConfig();
+    config.duration = 4000;
+    config.viewContainerRef = this.viewContainerRef;
+    this.snackBar.open('Item added!', 'Close', config);
   }
 
   deleteItem(): void {
@@ -170,6 +177,10 @@ export class ItemComponent implements OnInit {
       payload: this.item
     });
     this.firstSave = true;
+    let config = new MatSnackBarConfig();
+    config.duration = 4000;
+    config.viewContainerRef = this.viewContainerRef;
+    this.snackBar.open('Item removed.', 'Close', config);
   }
 
   calcScore(fields: Array<IFieldResponse>): void {
