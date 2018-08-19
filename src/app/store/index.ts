@@ -3,7 +3,6 @@ import { storeFreeze } from 'ngrx-store-freeze';
 
 import { IFormResponse } from './../shared/interfaces/form.interface';
 import { IItemResponse } from './../shared/interfaces/item.interface';
-import { IItemsResponse } from './../shared/interfaces/items.interface';
 import { formReducer } from './form/form.reducer';
 import { itemReducer } from './item/item.reducer';
 import { itemsReducer } from './items/items.reducer';
@@ -13,7 +12,7 @@ import { environment } from '../../environments/environment';
 export interface IAppState {
   form: IFormResponse;
   single_item: IItemResponse;
-  items: IItemsResponse;
+  items: IItemResponse[];
 }
 
 // all new reducers should be define here

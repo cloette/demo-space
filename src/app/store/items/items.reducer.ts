@@ -3,11 +3,11 @@ import {
   Actions
 } from './items.actions';
 
-import { IItemsResponse } from './../../shared/interfaces/items.interface';
+import { IItemResponse } from './../../shared/interfaces/item.interface';
 
 /* Revisit this later and compare */
 
-export function itemsReducer(state: IItemsResponse = {all: []}, action: Actions): IItemsResponse {
+export function itemsReducer(state: IItemResponse[] = [], action: Actions): IItemResponse[] {
 
   switch (action.type) {
 
