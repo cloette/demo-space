@@ -85,7 +85,7 @@ export class Dialog implements OnInit {
       question: this.question,
       options: this.options,
       maxValue: this.maxValue,
-      multipler: this.multiplier,
+      multiplier: this.multiplier,
       disabled: this.disabled,
       value: this.value
     };

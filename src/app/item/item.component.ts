@@ -103,18 +103,6 @@ export class ItemComponent implements OnInit {
     }
   }
 
-  getItem(id: string): void {
-    // Get request /api/item/:addressid with itemID
-    // this.item = response; this.form = this.item.form;
-    console.log("Item get payload:");
-    console.log(id);
-    this.store.dispatch({
-      type: SINGLE_ITEM_GET,
-      payload: id
-    });
-    this.store.select('single_item').subscribe(data => {if(data){this.item = data; if(this.item.hasOwnProperty('score')){console.log("there is an item", data, this.item); this.dataReady = true;}}});
-  }
-
   put(): void {
     console.log("Item put payload:");
     console.log(this.item);
@@ -132,6 +120,26 @@ export class ItemComponent implements OnInit {
       payload: this.item
     });
     this.firstSave = false;
+  }
+
+  getItem(id: string): void {
+    // Get request /api/item/:addressid with itemID
+    // this.item = response; this.form = this.item.form;
+    console.log("Item get payload:");
+    console.log(id);
+    this.store.dispatch({
+      type: SINGLE_ITEM_GET,
+      payload: id
+    });
+    this.store.select('single_item').subscribe(data => {
+      if (data) {
+        this.item = data;
+        if (this.item.hasOwnProperty('score')) {
+          console.log("there is an item", data, this.item);
+          this.dataReady = true;
+        }
+      }
+    });
   }
 
   saveItem(): void {
@@ -165,7 +173,7 @@ export class ItemComponent implements OnInit {
     if (fields) {
       for (let i = 0; i < fields.length; i++) {
         console.log("field type " + i, fields[i].type);
-        if(fields[i].disabled){
+        if (fields[i].disabled) {
           console.log('field is disabled, not scored');
         }
         else if (fields[i].type === "checkbox") {
