@@ -1,8 +1,8 @@
 import {
-  ITEM_EDIT_SUCCESS,
-  ITEM_GET_SUCCESS,
-  ITEM_ADD_SUCCESS,
-  ITEM_REMOVE_SUCCESS,
+  SINGLE_ITEM_EDIT_SUCCESS,
+  SINGLE_ITEM_GET_SUCCESS,
+  SINGLE_ITEM_ADD_SUCCESS,
+  SINGLE_ITEM_REMOVE_SUCCESS,
   Actions
 } from './item.actions';
 
@@ -14,27 +14,27 @@ export function itemReducer(state: IItemResponse, action: Actions): IItemRespons
 
   switch (action.type) {
 
-    case ITEM_ADD_SUCCESS:
+    case SINGLE_ITEM_ADD_SUCCESS:
 
       return Object.assign({}, state, {
-        item: action.payload
+        single_item: action.payload
       });
 
-    case ITEM_EDIT_SUCCESS:
+    case SINGLE_ITEM_EDIT_SUCCESS:
 
       return Object.assign({}, state, {
-        item: action.payload
+        single_item: action.payload
       });
 
-    case ITEM_GET_SUCCESS:
+    case SINGLE_ITEM_GET_SUCCESS:
 
       console.log("ITEM_GET_SUCCESS " + JSON.stringify(action.payload));
 
       return Object.assign({}, state, {
-        item: action.payload
+        single_item: action.payload
       });
 
-    case ITEM_REMOVE_SUCCESS:
+    case SINGLE_ITEM_REMOVE_SUCCESS:
 
       return Object.assign({}, state);
 

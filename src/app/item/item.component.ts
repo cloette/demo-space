@@ -9,9 +9,8 @@ import { IFormResponse } from './../shared/interfaces/form.interface';
 import { IFieldResponse } from './../shared/interfaces/field.interface';
 import { IOptionResponse } from './../shared/interfaces/option.interface';
 
-import { ITEM_ADD, ITEM_EDIT, ITEM_GET, ITEM_REMOVE } from '../store/item/item.actions';
+import { SINGLE_ITEM_ADD, SINGLE_ITEM_EDIT, SINGLE_ITEM_GET, SINGLE_ITEM_REMOVE } from '../store/item/item.actions';
 
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
@@ -109,10 +108,10 @@ export class ItemComponent implements OnInit {
     console.log("Item get payload:");
     console.log(id);
     this.store.dispatch({
-      type: ITEM_GET,
+      type: SINGLE_ITEM_GET,
       payload: id
     });
-    this.store.select('item').subscribe(data => this.item = data);
+    this.store.select('single_item').subscribe(data => this.item = data);
     setTimeout(function () { this.item = this.item["item"]; console.log("item updated", this.item); }, 3000); // wait three seconds for this.item to update
   }
 
@@ -120,7 +119,7 @@ export class ItemComponent implements OnInit {
     console.log("Item put payload:");
     console.log(this.item);
     this.store.dispatch({
-      type: ITEM_EDIT,
+      type: SINGLE_ITEM_EDIT,
       payload: this.item
     });
   }
@@ -129,7 +128,7 @@ export class ItemComponent implements OnInit {
     console.log("Item post payload:");
     console.log(this.item);
     this.store.dispatch({
-      type: ITEM_ADD,
+      type: SINGLE_ITEM_ADD,
       payload: this.item
     });
     this.firstSave = false;
@@ -152,7 +151,7 @@ export class ItemComponent implements OnInit {
     console.log("Item remove payload:");
     console.log(this.item);
     this.store.dispatch({
-      type: ITEM_REMOVE,
+      type: SINGLE_ITEM_REMOVE,
       payload: this.item
     });
     this.firstSave = true;
@@ -193,6 +192,7 @@ export class ItemComponent implements OnInit {
       else {
         this.item.score = (currentPoints / maxPoints) * 100;
       }
+      console.log("end of if fields", this.item.score);
     }
     console.log("score after calcScore", this.item.score);
   }

@@ -11,14 +11,14 @@ import { environment } from '../../environments/environment';
 // all new reducers should be define here
 export interface IAppState {
   form: IFormResponse;
-  item: IItemResponse;
+  single_item: IItemResponse;
   items: IItemResponse[];
 }
 
 // all new reducers should be define here
 export const reducers: ActionReducerMap<IAppState> = {
   form: formReducer,
-  item: itemReducer,
+  single_item: itemReducer,
   items: itemsReducer
 };
 

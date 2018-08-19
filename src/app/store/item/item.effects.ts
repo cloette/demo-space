@@ -7,7 +7,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/observable/of';
 
 import {
-  ITEM_ADD, ITEM_GET, ITEM_EDIT, ITEM_REMOVE,
+  SINGLE_ITEM_ADD, SINGLE_ITEM_GET, SINGLE_ITEM_EDIT, SINGLE_ITEM_REMOVE,
   ItemAdd, ItemAddFail, ItemAddSuccess,
   ItemEdit, ItemEditFail, ItemEditSuccess,
   ItemGet, ItemGetFail, ItemGetSuccess,
@@ -20,7 +20,7 @@ export class ItemEffects {
 
   @Effect()
   addItem$ = this.actions$
-    .ofType(ITEM_ADD)
+    .ofType(SINGLE_ITEM_ADD)
     .switchMap((action: ItemAdd) => {
 
       return this.http.post<IItemResponse>(`/api/item`, action.payload)
@@ -30,7 +30,7 @@ export class ItemEffects {
 
   @Effect()
   editItem$ = this.actions$
-    .ofType(ITEM_EDIT)
+    .ofType(SINGLE_ITEM_EDIT)
     .switchMap((action: ItemEdit) => {
 
       return this.http.put<IItemResponse>(`/api/item`, action.payload)
@@ -40,7 +40,7 @@ export class ItemEffects {
 
   @Effect()
   getItem$ = this.actions$
-    .ofType(ITEM_GET)
+    .ofType(SINGLE_ITEM_GET)
     .switchMap((action: ItemGet) => {
 
       return this.http.get<IItemResponse>(`/api/item/single/${action.payload}`)
@@ -50,7 +50,7 @@ export class ItemEffects {
 
   @Effect()
   removeItem$ = this.actions$
-    .ofType(ITEM_REMOVE)
+    .ofType(SINGLE_ITEM_REMOVE)
     .switchMap((action: ItemRemove) => {
 
       return this.http.delete<IItemResponse>(`/api/item/${action.payload}`)
