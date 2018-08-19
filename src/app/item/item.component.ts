@@ -36,6 +36,9 @@ export class ItemComponent implements OnInit {
     form: this.form,
     formid: ''
   };
+  private maxPoints;
+  private currentPoints;
+  private selectedValues;
 
   constructor(private route: ActivatedRoute, public store: Store<IAppState>) {
     this.route.params.subscribe(params => {
@@ -109,7 +112,7 @@ export class ItemComponent implements OnInit {
       type: SINGLE_ITEM_GET,
       payload: id
     });
-    this.store.select('single_item').subscribe(data => {this.item = data; if(this.item){console.log("there is an item", data, this.item); }});//this.dataReady = true;
+    this.store.select('single_item').subscribe(data => {this.item = data; if(this.item.hasOwnProperty('score')){console.log("there is an item", data, this.item); }});//this.dataReady = true;
   }
 
   put(): void {
@@ -156,9 +159,9 @@ export class ItemComponent implements OnInit {
 
   calcScore(fields: Array<IFieldResponse>): void {
     console.log("calculateScore called", fields);
-    let maxPoints = 0;
-    let currentPoints = 0;
-    let selectedValues = 0;
+    this.maxPoints = 0;
+    this.currentPoints = 0;
+    this.selectedValues = 0;
     if (fields) {
       for (let i = 0; i < fields.length; i++) {
         console.log("field type", fields[i].type);
@@ -167,32 +170,32 @@ export class ItemComponent implements OnInit {
           this.optionArrayCopy = fields[i].options;
           for (let j = 0; j > this.optionArrayCopy.length; j++) {
             if (this.optionArrayCopy[j].value) {
-              selectedValues = selectedValues + 1;
+              this.selectedValues = this.selectedValues + 1;
             }
           }
-          currentPoints = currentPoints + (selectedValues * fields[i].multiplier);
-          maxPoints = maxPoints + (selectedValues * fields[i].multiplier);
+          this.currentPoints = this.currentPoints + (this.selectedValues * fields[i].multiplier);
+          this.maxPoints = this.maxPoints + (this.selectedValues * fields[i].multiplier);
         }
         else if (fields[i].type === "text" || fields[i].type === "switch") {
           console.log("text/switch hit");
           if (fields[i].value) {
-            currentPoints = currentPoints + fields[i].multiplier;
-            maxPoints = maxPoints + fields[i].multiplier;
+            this.currentPoints = this.currentPoints + fields[i].multiplier;
+            this.maxPoints = this.maxPoints + fields[i].multiplier;
           }
         }
         else {
           console.log("else hit");
-          currentPoints = currentPoints + (fields[i].value * fields[i].multiplier);
-          maxPoints = maxPoints + (fields[i].maxValue * fields[i].multiplier);
+          this.currentPoints = this.currentPoints + (fields[i].value * fields[i].multiplier);
+          this.maxPoints = this.maxPoints + (fields[i].maxValue * fields[i].multiplier);
         }
       }
-      if (!maxPoints) {
+      if (!this.maxPoints) {
         console.log("MaxPoints is 0 hit");
         this.item.score = 0;
       }
       else {
         console.log("MaxPoints is not 0 hit");
-        this.item.score = (currentPoints / maxPoints) * 100;
+        this.item.score = (this.currentPoints / this.maxPoints) * 100;
       }
       console.log("end of if fields", this.item.score);
     }
