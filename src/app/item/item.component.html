@@ -71,10 +71,11 @@
   <button mat-raised-button (click)="calcScore(item.form.fields)">
     Calculate score
   </button>
-  <button *ngIf="!firstSave" mat-raised-button (click)="checkReady()">
-    Check Ready
-  </button>
+
   <button mat-raised-button routerLink="/leaderboard" routerLinkActive="active">
     Cancel
   </button>
 </div>
+<button *ngIf="!firstSave" mat-raised-button (click)="checkReady()">
+  Check Ready
+</button>
