@@ -68,10 +68,10 @@
   <button *ngIf="!firstSave" mat-raised-button color="primary" (click)="saveItem()">
     Save Changes
   </button>
-  <button mat-raised-button (click)="calcScore(item.form.fields)">
+  <button *ngIf="!firstSave" mat-raised-button (click)="calcScore(item.form.fields)">
     Calculate score
   </button>
-  <button mat-raised-button (click)="checkReady()">
+  <button *ngIf="!firstSave" mat-raised-button (click)="checkReady()">
     Check Ready
   </button>
   <button mat-raised-button routerLink="/leaderboard" routerLinkActive="active">

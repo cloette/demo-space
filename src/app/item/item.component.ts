@@ -40,7 +40,6 @@ export class ItemComponent implements OnInit {
   constructor(private route: ActivatedRoute, public store: Store<IAppState>) {
     this.route.params.subscribe(params => {
       this.itemID = params['addressid'];
-      console.log(this.itemID);
     });
     this.store.select('form').subscribe(form => { this.form = form; });
     if (!this.form) {
@@ -65,7 +64,7 @@ export class ItemComponent implements OnInit {
       this.item = this.emptyItem;
       this.getItem(this.route.snapshot.params.addressid);
       this.firstSave = false;
-      this.dataReady = true;
+      this.dataReady = false;
     }
     else {
       this.firstSave = true;
@@ -79,7 +78,6 @@ export class ItemComponent implements OnInit {
         this.dataReady = true;
       }
     }
-    console.log(this.form);
   }
 
   public onDataEmitted(data) {
@@ -111,8 +109,7 @@ export class ItemComponent implements OnInit {
       type: SINGLE_ITEM_GET,
       payload: id
     });
-    this.store.select('single_item').subscribe(data => this.item = data);
-    setTimeout(function () { this.item = this.item["item"]; console.log("item updated", this.item); }, 3000); // wait three seconds for this.item to update
+    this.store.select('single_item').subscribe(data => {this.item = data; console.log("item updated", data, this.item); this.dataReady = true;});
   }
 
   put(): void {
