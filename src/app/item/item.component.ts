@@ -208,6 +208,7 @@ export class ItemComponent implements OnInit {
       else {
         console.log("MaxPoints is not 0 hit");
         this.item.score = (this.currentPoints / this.maxPoints) * 100;
+        this.item.score = parseInt(this.item.score.toFixed(0));
       }
       console.log("end of if fields", this.item.score);
     }
