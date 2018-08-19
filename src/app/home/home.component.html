@@ -11,18 +11,22 @@
     <div class="background-block green"></div>
     <div style="min-height: 400px; text-align: right">
       <h1>Explore Use Cases</h1>
-      <p>See screenshots of what Objective Assessor looks like in action.<br /><br />
+      <p>See screenshots of what Objective Assessor looks like in action.
+        <br />
+        <br />
       </p>
       <p style="font-weight: bold; list-style: none; color:white">
         <a href="#">Home Buying</a>&nbsp;&nbsp;
         <a href="#">Game Scorekeeping</a>&nbsp;&nbsp;
-        <a href="#">Negotiation</a></p>
+        <a href="#">Negotiation</a>
+      </p>
     </div>
     <p style="text-align: right">Support Requests | Report a Bug | Objective Assessor is MIT-licensed. Last updated 7.2.2018.</p>
   </div>
   <div *ngIf="auth.isAuthenticated()">
     <h1>
       Thanks for logging in!</h1>
+    <p>This is an early release of the project, and may have bugs. If reloading doesn't solve the problem, please email support.</p>
     <h4>Get started by
       <a style="color: #008171" routerLink="/form" routerLinkActive="active">creating a form</a>.
     </h4>

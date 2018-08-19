@@ -3,6 +3,7 @@ import { IAppState } from '../store/index';
 import { Store } from '@ngrx/store';
 
 import { MatDialog } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 import { Dialog } from './dialog/dialog.component';
 
@@ -47,16 +48,17 @@ export class FormComponent implements OnInit {
     public store: Store<IAppState>,
     public fb: FormBuilder,
     public dialog: MatDialog,
+    public snackBar: MatSnackBar
   ) {
     this.profile = localStorage.getItem('profile');
     this.store.select('form').subscribe(form => { this.form = form; });
-    if (!this.form){
-      if (localStorage.getItem('form')){
+    if (!this.form) {
+      if (localStorage.getItem('form')) {
         const storedForm = localStorage.getItem('form');
         this.form = JSON.parse(storedForm);
       }
     }
-    else{
+    else {
       this.form = this.form;
     }
   }
@@ -80,7 +82,7 @@ export class FormComponent implements OnInit {
     this.makeBlankForm();
   }
 
-  loadFormOptions(): void{
+  loadFormOptions(): void {
     this.firstVisit = true;
     this.dataReady = false;
   }
@@ -160,17 +162,20 @@ export class FormComponent implements OnInit {
   saveForm(): void {
     // Put to /api/form/:id with this.form (contains id)
     console.log("saveForm " + this.formID, this.fields);
-    const savePayload = {id: this.formID, fields: this.fields};
+    const savePayload = { id: this.formID, fields: this.fields };
     this.store.dispatch({
       type: FORM_EDIT,
       payload: savePayload
     })
     localStorage.setItem('form', JSON.stringify(this.form));
+    this.snackBar.open('Form saved!', 'Close', {
+      duration: 3000,
+    });
   }
 
   clearForm(): void {
     console.log("clearForm " + this.formID);
-    const clearPayload = {id: this.formID, fields: []};
+    const clearPayload = { id: this.formID, fields: [] };
     this.store.dispatch({
       type: FORM_EDIT,
       payload: clearPayload
@@ -183,18 +188,24 @@ export class FormComponent implements OnInit {
 
   replaceField(someField: IFieldResponse, index: number): void {
     this.fields[index] = someField;
+    this.snackBar.open('Updated field successfully!', 'Close', {
+      duration: 3000,
+    });
   }
 
   addField(): void {
     if (this.form) {
       this.fields.push(this.newField);
+      this.snackBar.open('Field added!', 'Close', {
+        duration: 3000,
+      });
       console.log("Fields Array", this.fields);
     }
   }
 
   testForm(): void {
     console.log("testing form values");
-    if (this.form){
+    if (this.form) {
       this.formID = this.form["form"]["id"];
       this.fields = this.form["form"]["fields"];
       this.firstVisit = false;
@@ -244,7 +255,7 @@ export class FormComponent implements OnInit {
   ngOnInit() {
     console.log("Form on load", this.form);
     this.testForm();
-    if(!this.fields){
+    if (!this.fields) {
       this.fields = [];
     }
     this.newField = {

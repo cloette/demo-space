@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../store/index';
 
+import {MatSnackBar} from '@angular/material';
+
 import { ActivatedRoute } from '@angular/router';
 
 import { IItemResponse } from './../shared/interfaces/item.interface';
@@ -40,7 +42,7 @@ export class ItemComponent implements OnInit {
   private currentPoints;
   private selectedValues;
 
-  constructor(private route: ActivatedRoute, public store: Store<IAppState>) {
+  constructor(private route: ActivatedRoute, public store: Store<IAppState>, public snackBar: MatSnackBar) {
     this.route.params.subscribe(params => {
       this.itemID = params['addressid'];
     });
@@ -110,6 +112,9 @@ export class ItemComponent implements OnInit {
       type: SINGLE_ITEM_EDIT,
       payload: this.item
     });
+    this.snackBar.open('Item saved!', 'Close', {
+      duration: 3000,
+    });
   }
 
   post(): void {
@@ -120,6 +125,9 @@ export class ItemComponent implements OnInit {
       payload: this.item
     });
     this.firstSave = false;
+    this.snackBar.open('Item added!', 'Close', {
+      duration: 3000,
+    });
   }
 
   getItem(id: string): void {
