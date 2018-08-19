@@ -109,7 +109,7 @@ export class ItemComponent implements OnInit {
       type: SINGLE_ITEM_GET,
       payload: id
     });
-    this.store.select('single_item').subscribe(data => {this.item = data; console.log("item updated", data, this.item); this.dataReady = true;});
+    this.store.select('single_item').subscribe(data => {this.item = data; if(this.item.length === 1){console.log("item updated correctly", data, this.item); this.dataReady = true;});
   }
 
   put(): void {
@@ -160,7 +160,7 @@ export class ItemComponent implements OnInit {
     let currentPoints = 0;
     let selectedValues = 0;
     if (fields) {
-      for (let i = 0; i > fields.length; i++) {
+      for (let i = 0; i < fields.length; i++) {
         console.log("field type", fields[i].type);
         if (fields[i].type === "checkbox") {
           console.log("checkbox hit");

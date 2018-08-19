@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { IAppState } from '../store/index';
 import { Route } from '@angular/router';
 
+import { IItemsResponse } from './../shared/interfaces/items.interface';
 import { IItemResponse } from './../shared/interfaces/item.interface';
 import { IFormResponse } from './../shared/interfaces/form.interface';
 
@@ -30,7 +31,7 @@ export class LeaderboardComponent implements OnInit {
 
   constructor(public store: Store<IAppState>) {
     this.store.select('form').subscribe(form => { this.form = form; });
-    this.store.select('items').subscribe(items => { this.items = items; });
+    this.store.select('items').subscribe(items => { this.items = items.all; });
     if (!this.form) {
       if (localStorage.getItem('form')) {
         const storedForm = localStorage.getItem('form');
@@ -63,7 +64,7 @@ export class LeaderboardComponent implements OnInit {
 
   checkItemsReady(): void {
     console.log("checkItems:", this.items);
-    this.items = this.items["items"];
+    this.items = this.items["items"].all;
     if (this.items) {
       this.sortItems();
       this.warning = null;
@@ -85,7 +86,7 @@ export class LeaderboardComponent implements OnInit {
       payload: this.form["id"]
     });
     this.store.select('items').subscribe(data => {
-      this.items = data;
+      this.items = data.all;
       localStorage.setItem('items', JSON.stringify(data));
       this.checkItemsReady();
     });
