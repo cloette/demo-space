@@ -112,7 +112,7 @@ export class ItemComponent implements OnInit {
       type: SINGLE_ITEM_GET,
       payload: id
     });
-    this.store.select('single_item').subscribe(data => {this.item = data; if(this.item.hasOwnProperty('score')){console.log("there is an item", data, this.item); }});//this.dataReady = true;
+    this.store.select('single_item').subscribe(data => {if(data){this.item = data; if(this.item.hasOwnProperty('score')){console.log("there is an item", data, this.item); this.dataReady = true;}}});
   }
 
   put(): void {
@@ -166,27 +166,27 @@ export class ItemComponent implements OnInit {
       for (let i = 0; i < fields.length; i++) {
         console.log("field type", fields[i].type);
         if (fields[i].type === "checkbox") {
-          console.log("checkbox hit");
           this.optionArrayCopy = fields[i].options;
           for (let j = 0; j > this.optionArrayCopy.length; j++) {
             if (this.optionArrayCopy[j].value) {
               this.selectedValues = this.selectedValues + 1;
             }
           }
-          this.currentPoints = this.currentPoints + (this.selectedValues * fields[i].multiplier);
-          this.maxPoints = this.maxPoints + (this.selectedValues * fields[i].multiplier);
+          this.currentPoints = this.currentPoints + (this.selectedValues * (fields[i].multiplier || 0));
+          this.maxPoints = this.maxPoints + (this.selectedValues * (fields[i].multiplier || 0));
+          console.log("checkbox hit", this.currentPoints, this.maxPoints);
         }
         else if (fields[i].type === "text" || fields[i].type === "switch") {
-          console.log("text/switch hit");
           if (fields[i].value) {
-            this.currentPoints = this.currentPoints + fields[i].multiplier;
-            this.maxPoints = this.maxPoints + fields[i].multiplier;
+            this.currentPoints = this.currentPoints + (fields[i].multiplier || 0);
+            this.maxPoints = this.maxPoints + (fields[i].multiplier || 0);
           }
+          console.log("text/switch hit", this.currentPoints, this.maxPoints);
         }
         else {
-          console.log("else hit");
-          this.currentPoints = this.currentPoints + (fields[i].value * fields[i].multiplier);
-          this.maxPoints = this.maxPoints + (fields[i].maxValue * fields[i].multiplier);
+          this.currentPoints = this.currentPoints + (fields[i].value * (fields[i].multiplier || 0));
+          this.maxPoints = this.maxPoints + (fields[i].maxValue * (fields[i].multiplier || 0));
+          console.log("else hit", this.currentPoints, this.maxPoints);
         }
       }
       if (!this.maxPoints) {
