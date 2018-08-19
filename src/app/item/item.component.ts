@@ -64,10 +64,7 @@ export class ItemComponent implements OnInit {
 
   ngOnInit() {
     if (this.route.snapshot.params.addressid) {
-      this.item = this.emptyItem;
-      this.getItem(this.route.snapshot.params.addressid);
-      this.firstSave = false;
-      this.dataReady = false;
+      this.checkReady();
     }
     else {
       this.firstSave = true;
@@ -94,13 +91,15 @@ export class ItemComponent implements OnInit {
   }
 
   checkReady(): void {
-    console.log("checkReady called");
-    this.getItem(this.route.snapshot.params.addressid);
+    console.log("checkReady called", this.item);
     if (this.formReady && this.item) {
       this.fieldArrayCopy = this.item.form.fields;
       this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
       this.item.form.fields = this.fieldArrayCopy;
       console.log("timeout fields sorted");
+    }
+    else {
+      this.getItem(this.route.snapshot.params.addressid);
     }
   }
 
@@ -133,6 +132,7 @@ export class ItemComponent implements OnInit {
       payload: id
     });
     this.store.select('single_item').subscribe(data => {
+      console.log("store single_item", data);
       if (data) {
         this.item = data;
         /*if (this.item.hasOwnProperty('score')) {
