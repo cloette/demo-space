@@ -1,9 +1,8 @@
-<ul class="topnav" #topnav>
-  <li>
-    <a routerLink="/" routerLinkActive="active" title="Home" class="logobox">
+<div class="logobox"><a routerLink="/" routerLinkActive="active" title="Home">
       <img src="./assets/logo.png" alt="Logo" class="logo" />
-    </a>
-  </li>
+      <div class="title">Objective Assessor</div>
+    </a></div>
+  <ul class="topnav" #topnav>
   <li *ngIf="auth.isAuthenticated()">
     <a routerLink="/leaderboard" routerLinkActive="active" title="Leaderboard">
       <mat-icon>reorder</mat-icon>

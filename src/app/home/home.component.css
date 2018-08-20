@@ -1,6 +1,6 @@
 a {
   cursor: pointer;
-  color:green;
+  color:#669966;
 }
 .padded{
   padding:40px;
@@ -14,11 +14,10 @@ a {
   z-index: -1;
 }
 .calm{
-  background: lightblue; /* For browsers that do not support gradients */
-  background: linear-gradient(to bottom, white, lightblue, white);
+  background: #99cc66;
 }
 .green{
   top: 450px;
-  background: lightblue; /* For browsers that do not support gradients */
-  background: linear-gradient(to bottom, lightblue, #b2f3eb, lightblue);
+  background: #99cc66; /* For browsers that do not support gradients
+  background: linear-gradient(to bottom, #99CC66, #669966, #99CC66); */
 }

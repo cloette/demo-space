@@ -3,14 +3,12 @@ ul.topnav {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #008171;
 }
 
-ul.topnav li {float: left;}
+ul.topnav li {float: right;}
 
 ul.topnav li a {
   display: inline-block;
-  color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -24,34 +22,30 @@ ul.topnav li a {
 .logobox{
   background-color:transparent !important;
   padding: 6px 18px !important;
+  position: absolute;
+  top: 0;
+}
+.title{
+  font-size:22px;
+  color: #000000;
+  margin-left: 10px;
+  vertical-align: 10px;
+  text-decoration: none !important;
+}
+@media screen and (max-width:680px) {
+  .title{
+    display:none;
+  }
+}
+@media screen and (min-width:680px) {
+  .title{
+    display:inline-block;
+  }
+}
+a:-webkit-any-link {
+  text-decoration: none !important;
 }
 
-ul.topnav li a:hover {background-color: #555;}
-ul.topnav li a.active {background-color: #555;}
+ul.topnav li a:hover {background-color: #99cc66;}
+ul.topnav li a.active {background-color: #99cc66;}
 ul.topnav li.icon {display: none;}
-
-/* Traditional Hamburger Menu
-@media screen and (max-width:680px) {
-  ul.topnav li:not(:first-child) {display: none;}
-  ul.topnav li.icon {
-    float: right;
-    display: inline-block;
-  }
-}
-
-@media screen and (max-width:680px) {
-  ul.topnav.responsive {position: relative;}
-  ul.topnav.responsive li.icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  ul.topnav.responsive li {
-    float: none;
-    display: inline;
-  }
-  ul.topnav.responsive li a {
-    display: block;
-    text-align: left;
-  }
-}*/

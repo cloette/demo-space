@@ -6,7 +6,7 @@
       <h3 style="color:#5a5a5a">Objective assessor compares and scores options - so you don't have to!</h3>
       <p>Utilize weighted scoring systems, toggle values on the fly, and see your best options at a glance; anytime, anywhere,
         on any device. </p>
-      <h3 style="color: #008171; cursor:pointer" (click)="auth.login()">Get Started</h3>
+      <h3 style="color: #669966; cursor:pointer" (click)="auth.login()">Get Started</h3>
     </div>
     <div class="background-block green"></div>
     <div style="min-height: 400px; text-align: right">
@@ -16,19 +16,19 @@
         <br />
       </p>
       <p style="font-weight: bold; list-style: none; color:white">
-        <a href="#">Home Buying</a>&nbsp;&nbsp;
-        <a href="#">Game Scorekeeping</a>&nbsp;&nbsp;
-        <a href="#">Negotiation</a>
+        <a style="color: #fff" href="#">Home Buying</a>&nbsp;&nbsp;
+        <a style="color: #fff" href="#">Game Scorekeeping</a>&nbsp;&nbsp;
+        <a style="color: #fff" href="#">Negotiation</a>
       </p>
     </div>
-    <p style="text-align: right">Support Requests | Report a Bug | Objective Assessor is MIT-licensed. Last updated 7.2.2018.</p>
+    <p style="text-align: right"><a href="https://docs.google.com/forms/d/e/1FAIpQLSej2dSOsA2gMeI4V7Uf27ViJhYwCiZGb-Zc-cj1JVxBS7c8VA/viewform?usp=sf_link" target="_blank">Report a Bug</a> | Objective Assessor is MIT-licensed. Built by <a href="https://github.com/cloette" target="_blank">Cloette</a>. Last updated 8.20.2018.</p>
   </div>
   <div *ngIf="auth.isAuthenticated()">
     <h1>
       Thanks for logging in!</h1>
     <p>This is an early release of the project, and may have bugs. If reloading doesn't solve the problem, please email support.</p>
     <h4>Get started by
-      <a style="color: #008171" routerLink="/form" routerLinkActive="active">creating a form</a>.
+      <a style="color: #669966" routerLink="/form" routerLinkActive="active">creating a form</a>.
     </h4>
   </div>
 </div>
