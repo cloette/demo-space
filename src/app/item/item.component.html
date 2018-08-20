@@ -59,8 +59,14 @@
     </div>
   </form>
   <br />
+  <button mat-raised-button routerLink="/leaderboard" routerLinkActive="active">
+    Cancel
+  </button>
   <button *ngIf="!firstSave" mat-raised-button color="warning" (click)="deleteItem()">
     Delete
+  </button>
+  <button mat-raised-button (click)="calcScore(item.form.fields)">
+    Calculate score
   </button>
   <button *ngIf="firstSave" mat-raised-button color="primary" (click)="newItem()">
     Add Item
@@ -68,14 +74,4 @@
   <button *ngIf="!firstSave" mat-raised-button color="primary" (click)="saveItem()">
     Save Changes
   </button>
-  <button mat-raised-button (click)="calcScore(item.form.fields)">
-    Calculate score
-  </button>
-
-  <button mat-raised-button routerLink="/leaderboard" routerLinkActive="active">
-    Cancel
-  </button>
 </div>
-<button *ngIf="!firstSave" mat-raised-button (click)="checkReady()">
-  Check Ready
-</button>

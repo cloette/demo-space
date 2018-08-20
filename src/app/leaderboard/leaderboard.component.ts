@@ -104,6 +104,7 @@ export class LeaderboardComponent implements OnInit {
         this.items.sort(function(a, b){return b.score - a.score});
       }
       else {
+        this.descending = !this.descending;
         this.items.sort(function(a, b){return a.score - b.score});
       }
     }
@@ -111,14 +112,19 @@ export class LeaderboardComponent implements OnInit {
   }
 
   recalculateAllScores(): void {
-    // Right now, you have to click into each item
-    // and re-save to get an updated score if you
-    // disable a field or change a multiplier.
-    // This function should cycle through each item and recalc scores
-    // Also probably should save that to local storage since we're not re-saving each item
-    // Although that could be done
     for (let j=0; j < this.items.length; j++){
+      // Not currently working for changes in the form
+      // this.items[j].form = this.form;
+      // This wouldn't work because it overwrites the item's answers
+      // To actually make it work, need to only update the multiplier,
+      // the value of each choice
+      // (which needs to be separated from the recorded value, and
+      // what if the selected choice is removed as an option?)
+      // Best can do for now is apply disabled and apply multiplier changes
+      // which thankfully is the most common change
+      // This will break if there are additional or fewer questions
       this.items[j].score = this.calcScore(this.items[j]);
+      // update the actual item
     }
     this.sortItems();
     localStorage.setItem('items', JSON.stringify(this.items));
@@ -130,7 +136,7 @@ export class LeaderboardComponent implements OnInit {
     this.selectedValues = 0;
     if (item.form.fields) {
       for (let i = 0; i < item.form.fields.length; i++) {
-        if (item.form.fields[i].disabled) {
+        if (this.form.fields[i].disabled) {
           console.log('field is disabled, not scored');
         }
         else if (item.form.fields[i].type === "checkbox") {
@@ -140,18 +146,18 @@ export class LeaderboardComponent implements OnInit {
               this.selectedValues = this.selectedValues + 1;
             }
           }
-          this.currentPoints = this.currentPoints + (this.selectedValues * (item.form.fields[i].multiplier || 0));
-          this.maxPoints = this.maxPoints + (this.selectedValues * (item.form.fields[i].multiplier || 0));
+          this.currentPoints = this.currentPoints + (this.selectedValues * (this.form.fields[i].multiplier || 0));
+          this.maxPoints = this.maxPoints + (this.selectedValues * (this.form.fields[i].multiplier || 0));
         }
         else if (item.form.fields[i].type === "text" || item.form.fields[i].type === "switch") {
           if (item.form.fields[i].value) {
-            this.currentPoints = this.currentPoints + (item.form.fields[i].multiplier || 0);
-            this.maxPoints = this.maxPoints + (item.form.fields[i].multiplier || 0);
+            this.currentPoints = this.currentPoints + (this.form.fields[i].multiplier || 0);
+            this.maxPoints = this.maxPoints + (this.form.fields[i].multiplier || 0);
           }
         }
         else {
-          this.currentPoints = this.currentPoints + (item.form.fields[i].value * (item.form.fields[i].multiplier || 0));
-          this.maxPoints = this.maxPoints + (item.form.fields[i].maxValue * (item.form.fields[i].multiplier || 0));
+          this.currentPoints = this.currentPoints + (item.form.fields[i].value * (this.form.fields[i].multiplier || 0));
+          this.maxPoints = this.maxPoints + (item.form.fields[i].maxValue * (this.form.fields[i].multiplier || 0));
         }
       }
       if (!this.maxPoints) {
