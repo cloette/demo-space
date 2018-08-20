@@ -23,4 +23,4 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-@import '~@angular/material/prebuilt-themes/purple-green.css';
+@import './custom_theme.css';
