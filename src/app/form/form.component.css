@@ -22,7 +22,10 @@
   background-color: #94b777 !important;
 }
 .greytext{
-  color:#5e5e5e
+  color:#663333;
+}
+.greentext{
+  color:#669966;
 }
 .mat-icon{
   cursor:pointer;

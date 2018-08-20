@@ -54,7 +54,7 @@
             <mat-icon class="greytext" aria-label="Delete" aria-hidden="true" (click)="removeField(i)">delete</mat-icon>
           </td>
           <td class="formIconColumn">
-            <mat-icon style="color:#3e7ca7" aria-label="Field Type" aria-hidden="true" [innerHtml]="getTypeIcon(field.type)"></mat-icon>
+            <mat-icon class="greentext" aria-label="Field Type" aria-hidden="true" [innerHtml]="getTypeIcon(field.type)"></mat-icon>
           </td>
           <td>{{ field.question || "Cannot read field name." }}</td>
           <td class="formIconColumn">
