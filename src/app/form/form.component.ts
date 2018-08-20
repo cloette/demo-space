@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IAppState } from '../store/index';
 import { Store } from '@ngrx/store';
 
-import { MatDialog, MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 import { Dialog } from './dialog/dialog.component';
 
@@ -48,7 +48,6 @@ export class FormComponent implements OnInit {
     public fb: FormBuilder,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
-    public viewContainerRef: ViewContainerRef,
   ) {
     this.profile = localStorage.getItem('profile');
     this.store.select('form').subscribe(form => { this.form = form; });
@@ -168,10 +167,9 @@ export class FormComponent implements OnInit {
       payload: savePayload
     })
     localStorage.setItem('form', JSON.stringify(this.form));
-    let config = new MatSnackBarConfig();
-    config.duration = 4000;
-    config.viewContainerRef = this.viewContainerRef;
-    this.snackBar.open('Form saved!', 'Close', config);
+    this.snackBar.open('Form saved!', 'Close', {
+      duration: 4000
+    });
   }
 
   clearForm(): void {
@@ -189,19 +187,17 @@ export class FormComponent implements OnInit {
 
   replaceField(someField: IFieldResponse, index: number): void {
     this.fields[index] = someField;
-    let config = new MatSnackBarConfig();
-    config.duration = 4000;
-    config.viewContainerRef = this.viewContainerRef;
-    this.snackBar.open('Updated field successfully!', 'Close', config);
+    this.snackBar.open('Updated field successfully!', 'Close', {
+      duration: 4000
+    });
   }
 
   addField(): void {
     if (this.form) {
       this.fields.push(this.newField);
-      let config = new MatSnackBarConfig();
-      config.duration = 4000;
-      config.viewContainerRef = this.viewContainerRef;
-      this.snackBar.open('Field added!', 'Close', config);
+      this.snackBar.open('Field added!', 'Close', {
+        duration: 4000
+      });
       console.log("Fields Array", this.fields);
     }
   }

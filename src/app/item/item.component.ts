@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../store/index';
 
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 import { ActivatedRoute } from '@angular/router';
 
@@ -46,7 +46,6 @@ export class ItemComponent implements OnInit {
     private route: ActivatedRoute,
     public store: Store<IAppState>,
     public snackBar: MatSnackBar,
-    public viewContainerRef: ViewContainerRef
   ) {
     this.route.params.subscribe(params => {
       this.itemID = params['addressid'];
@@ -152,10 +151,9 @@ export class ItemComponent implements OnInit {
     console.log("save Item", this.item);
     this.calcScore(this.item.form.fields);
     setTimeout(this.put(), 10000);
-    let config = new MatSnackBarConfig();
-    config.duration = 4000;
-    config.viewContainerRef = this.viewContainerRef;
-    this.snackBar.open('Item saved!', 'Close', config);
+    this.snackBar.open('Item saved!', 'Close', {
+      duration: 4000
+    });
   }
 
   newItem(): void {
@@ -163,10 +161,9 @@ export class ItemComponent implements OnInit {
     this.item.addressID = encodeURI(this.item.address);
     this.calcScore(this.item.form.fields);
     setTimeout(this.post(), 10000);
-    let config = new MatSnackBarConfig();
-    config.duration = 4000;
-    config.viewContainerRef = this.viewContainerRef;
-    this.snackBar.open('Item added!', 'Close', config);
+    this.snackBar.open('Item added!', 'Close', {
+      duration: 4000
+    });
   }
 
   deleteItem(): void {
@@ -177,10 +174,9 @@ export class ItemComponent implements OnInit {
       payload: this.item
     });
     this.firstSave = true;
-    let config = new MatSnackBarConfig();
-    config.duration = 4000;
-    config.viewContainerRef = this.viewContainerRef;
-    this.snackBar.open('Item removed.', 'Close', config);
+    this.snackBar.open('Item removed.', 'Close', {
+      duration: 4000
+    });
   }
 
   calcScore(fields: Array<IFieldResponse>): void {

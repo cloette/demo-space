@@ -19,6 +19,7 @@ import {
   MatSlideToggleModule,
   MatCheckboxModule,
   MatRadioModule,
+  MatSnackBarModule,
   MatListModule
 } from '@angular/material';
 
@@ -35,6 +36,7 @@ import {
     MatSelectModule,
     MatOptionModule,
     MatInputModule,
+    MatSnackBarModule,
     MatFormFieldModule,
     MatSlideToggleModule,
     MatCheckboxModule,
