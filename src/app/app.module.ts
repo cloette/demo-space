@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GalleryModule } from '@ngx-gallery/core';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -41,6 +42,7 @@ import { AuthService } from './auth/auth.service';
       ItemsEffects
     ]),
     !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 50 }) : [],
+    GalleryModule.forRoot(),
     RouterModule.forRoot(
       routes,
       {
@@ -53,4 +55,4 @@ import { AuthService } from './auth/auth.service';
     AppComponent
   ]
 })
-export class AppModule {}
+export class AppModule { }

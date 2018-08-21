@@ -1843,16 +1843,20 @@ th.mat-header-cell {
   color: rgba(0, 0, 0, .06)
 }
 
+.mat-icon{
+  color: #000000;
+}
+
 .mat-icon.mat-primary {
-  color: #669966
+  color: #669966;
 }
 
 .mat-icon.mat-accent {
-  color: #99CC66
+  color: #99CC66;
 }
 
 .mat-icon.mat-warn {
-  color: #663333
+  color: #663333;
 }
 
 .mat-input-element:disabled {
