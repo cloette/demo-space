@@ -5,17 +5,17 @@
   <ul class="topnav" #topnav>
   <li *ngIf="auth.isAuthenticated()">
     <a routerLink="/leaderboard" routerLinkActive="active" title="Leaderboard">
-      <mat-icon>reorder</mat-icon>
+      <mat-icon style="color:black">reorder</mat-icon>
     </a>
   </li>
   <li *ngIf="auth.isAuthenticated()">
     <a routerLink="/item" routerLinkActive="active" title="New Item">
-      <mat-icon>add</mat-icon>
+      <mat-icon style="color:black">add</mat-icon>
     </a>
   </li>
   <li *ngIf="auth.isAuthenticated()">
     <a routerLink="/form" routerLinkActive="active" title="Form">
-      <mat-icon>settings</mat-icon>
+      <mat-icon style="color:black">settings</mat-icon>
     </a>
   </li>
   <li *ngIf="!auth.isAuthenticated()">
