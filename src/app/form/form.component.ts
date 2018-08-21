@@ -216,6 +216,7 @@ export class FormComponent implements OnInit {
     console.log(someField);
     let dialogRef = this.dialog.open(Dialog, {
       width: '400px',
+      height: '55vh',
       data: {
         order: someField.order,
         type: someField.type,
