@@ -1,6 +1,12 @@
+@import './custom_theme.css';
+
 /* You can add global styles to this file, and also import other style files */
 body {
   background-color: #f8f8f8;
+}
+
+p{
+  color: #000;
 }
 
 .loader {
@@ -23,4 +29,27 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-@import './custom_theme.css';
+.mat-dialog-container {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.mat-dialog-container > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-dialog-content {
+  max-height: inherit !important;
+}
+
+.mat-dialog-actions {
+  display: block !important;
+  flex-grow: inherit;
+  flex-shrink: inherit;
+  padding: 12px 0 0 !important;
+}
+
+.mat-dialog-actions:last-child {
+  margin-bottom: 0 !important;
+}
