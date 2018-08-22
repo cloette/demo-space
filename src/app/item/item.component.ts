@@ -192,13 +192,16 @@ export class ItemComponent implements OnInit {
         }
         else if (fields[i].type === "checkbox") {
           this.optionArrayCopy = fields[i].options;
-          for (let j = 0; j > this.optionArrayCopy.length; j++) {
+          for (let j = 0; j < this.optionArrayCopy.length; j++) {
             if (this.optionArrayCopy[j].value) {
+              console.log("option array hit");
+              // seems like this isn't being hit
               this.selectedValues = this.selectedValues + 1;
             }
+            // each option to check has a max value of one point
+            this.maxPoints = this.maxPoints + (fields[i].multiplier || 0);
           }
           this.currentPoints = this.currentPoints + (this.selectedValues * (fields[i].multiplier || 0));
-          this.maxPoints = this.maxPoints + (this.selectedValues * (fields[i].multiplier || 0));
           console.log("checkbox hit", this.currentPoints, this.maxPoints, "value", this.selectedValues, "multi", fields[i].multiplier);
         }
         else if (fields[i].type === "text" || fields[i].type === "switch") {
