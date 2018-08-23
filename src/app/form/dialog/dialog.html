@@ -55,22 +55,22 @@
     <mat-form-field>
       <h4>Maximum Value</h4>
       <input matInput type="number" [(ngModel)]="maxValue" name="maxValue">
-      <mat-hint align="start">What's the highest possible score for this field? (before multiplier is applied?)</mat-hint>
+      <mat-hint align="start">What's the highest possible score for this field?</mat-hint>
     </mat-form-field>
     <mat-form-field>
       <h4>Default Value</h4>
       <input matInput type="number" [(ngModel)]="value" name="value">
-      <mat-hint align="start">What's the default value for this field? (before multiplier is applied?)</mat-hint>
+      <mat-hint align="start">What's the default value for this field?</mat-hint>
     </mat-form-field>
     <mat-form-field>
       <h4>Multiplier</h4>
       <input matInput type="number" [(ngModel)]="multiplier" name="multiplier">
-      <mat-hint align="start">How important is this, relative to other items? (field score is multiplied by this number - defaults to 1)</mat-hint>
+      <mat-hint align="start">How important is this? (Field score is multiplied by this number)</mat-hint>
     </mat-form-field>
     <h4>Disable this field?</h4>
     <mat-slide-toggle [(ngModel)]="disabled" name="disabled"></mat-slide-toggle>
     <mat-hint align="start">
-      <br />By default, fields are enabled. Disabled fields are not counted in the scoring process.</mat-hint>
+      <br />By default, fields are enabled. Disabled fields are not scored.</mat-hint>
   </form>
 
   <p>Please note: you must still save the form after saving the field.</p>

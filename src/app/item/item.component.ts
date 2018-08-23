@@ -144,6 +144,7 @@ export class ItemComponent implements OnInit {
         this.item = data['single_item'];
         console.log("valid item!", this.item);
         this.dataReady = true;
+        this.noItemError = false;
       }
       else if(data && data.toString()){
         // got a failure msg
@@ -208,6 +209,13 @@ export class ItemComponent implements OnInit {
           }
           this.currentPoints = this.currentPoints + (this.selectedValues * (fields[i].multiplier || 0));
           console.log("checkbox hit", this.currentPoints, this.maxPoints, "value", this.selectedValues, "multi", fields[i].multiplier);
+        }
+        else if (fields[i].type === "text" ) {
+          if (fields[i].value) {
+            this.currentPoints = this.currentPoints + (fields[i].multiplier || 0);
+            this.maxPoints = this.maxPoints + (fields[i].multiplier || 0);
+          }
+          console.log("text/switch hit", this.currentPoints, this.maxPoints, "multi", fields[i].multiplier);
         }
         else if (fields[i].type === "text" || fields[i].type === "switch") {
           if (fields[i].value) {
