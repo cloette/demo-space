@@ -12,10 +12,17 @@
   </mat-list>
 </div>
 
-<!-- tie this to async later -
-<div *ngIf="!dataReady">
-  <app-ui-loader [visible]="true"></app-ui-loader>
-</div> -->
+<div *ngIf="formReady && noItemError">
+  <mat-list>
+    <mat-list-item>
+      <mat-icon style="color: #663333" mat-list-icon>warning</mat-icon>
+      <h4 style="font-weight:bold" mat-line>No item found.</h4>
+      <p mat-line>Uh-oh! Looks like this item was deleted.
+        <a style="color: 669966" routerLink="/item" routerLinkActive="active">Make a new one here.</a>
+      </p>
+    </mat-list-item>
+  </mat-list>
+</div>
 
 <div *ngIf="dataReady && formReady">
   <form class="form" onsubmit="saveItem()">

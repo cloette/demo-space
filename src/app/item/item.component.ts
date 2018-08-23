@@ -31,6 +31,7 @@ export class ItemComponent implements OnInit {
   public firstSave: boolean = false;
   public fieldArrayCopy: Array<IFieldResponse>;
   public optionArrayCopy: Array<IOptionResponse>;
+  public noItemError: boolean = false;
   private emptyItem = {
     address: 'Item Display Name',
     addressID: undefined,
@@ -143,6 +144,10 @@ export class ItemComponent implements OnInit {
         this.item = data['single_item'];
         console.log("valid item!", this.item);
         this.dataReady = true;
+      }
+      else if(data && data.toString()){
+        // got a failure msg
+        this.noItemError = true;
       }
     });
   }
