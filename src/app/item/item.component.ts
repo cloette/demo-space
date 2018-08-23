@@ -177,7 +177,7 @@ export class ItemComponent implements OnInit {
     console.log(this.item);
     this.store.dispatch({
       type: SINGLE_ITEM_REMOVE,
-      payload: this.item
+      payload: this.item.addressID
     });
     this.firstSave = true;
     this.snackBar.open('Item removed.', 'Close', {

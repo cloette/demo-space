@@ -42,7 +42,9 @@ export function itemReducer(state: IItemResponse, action: Actions): IItemRespons
 
       console.log("SINGLE_ITEM_REMOVE_SUCCESS");
 
-      return Object.assign({}, state);
+      return Object.assign({}, state, {
+        single_item: null
+      });
 
     default:
       return state;

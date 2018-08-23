@@ -135,11 +135,11 @@ formRouter.put("/item", (request: Request, response: Response) => {
 });
 
 // Returns one item
-formRouter.get("/item/single/:addressid", (request: Request, response: Response) => {
+formRouter.get("/item", (request: Request, response: Response) => {
 
   let res;
 
-  Item.find({ address: request.params.addressid }, function (err, items) {
+  Item.find({ address: request.body.addressid }, function (err, items) {
     if (err) return console.error(err);
     res = items[0];
     console.log("GET item response " + JSON.stringify(items[0]));
@@ -162,7 +162,7 @@ formRouter.get("/item/all/:formid", (request: Request, response: Response) => {
 });
 
 // Deletes an item
-formRouter.delete("/item/single/:addressid", (request: Request, response: Response) => {
+formRouter.delete("/item/:addressid", (request: Request, response: Response) => {
 
   let item = new Item();
 

@@ -43,7 +43,7 @@ export class ItemEffects {
     .ofType(SINGLE_ITEM_GET)
     .switchMap((action: ItemGet) => {
 
-      return this.http.get<IItemResponse>(`/api/item/single/${action.payload}`)
+      return this.http.get<IItemResponse>(`/api/item`, action.payload)
         .catch((error) => Observable.of(new ItemGetFail(error)))
         .map((response: any) => new ItemGetSuccess(response));
     });
@@ -53,7 +53,7 @@ export class ItemEffects {
     .ofType(SINGLE_ITEM_REMOVE)
     .switchMap((action: ItemRemove) => {
 
-      return this.http.delete<IItemResponse>(`/api/item/single/${action.payload}`)
+      return this.http.delete<IItemResponse>(`/api/item/${action.payload}`)
         .catch((error) => Observable.of(new ItemRemoveFail(error)))
         .map((response: any) => new ItemRemoveSuccess(response));
 
