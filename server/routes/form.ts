@@ -162,11 +162,11 @@ formRouter.get("/item/all/:formid", (request: Request, response: Response) => {
 });
 
 // Deletes an item
-formRouter.delete("/item/:addressid", (request: Request, response: Response) => {
+formRouter.delete("/item/single/:addressid", (request: Request, response: Response) => {
 
   let item = new Item();
 
-  Item.findOneAndDelete({ addressID: request.params.addressid }, function (err, items) {
+  Item.findOneAndDelete({ address: request.params.addressid }, function (err, items) {
     if (err) return console.error(err);
   });
 

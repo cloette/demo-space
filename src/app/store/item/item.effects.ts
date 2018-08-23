@@ -53,7 +53,7 @@ export class ItemEffects {
     .ofType(SINGLE_ITEM_REMOVE)
     .switchMap((action: ItemRemove) => {
 
-      return this.http.delete<IItemResponse>(`/api/item/${action.payload}`)
+      return this.http.delete<IItemResponse>(`/api/item/single/${action.payload}`)
         .catch((error) => Observable.of(new ItemRemoveFail(error)))
         .map((response: any) => new ItemRemoveSuccess(response));
 
