@@ -200,6 +200,17 @@ export class FormComponent implements OnInit {
       });
       console.log("Fields Array", this.fields);
     }
+    // reset newField
+    this.newField = {
+      order: 1,
+      type: 'text',
+      question: 'Enter a question',
+      options: null,
+      multiplier: 0,
+      maxValue: 0,
+      disabled: false,
+      value: 0
+    };
   }
 
   testForm(): void {

@@ -3,10 +3,10 @@
 <div *ngIf="!formReady">
   <mat-list>
     <mat-list-item>
-      <mat-icon style="color: #f49500" mat-list-icon>warning</mat-icon>
+      <mat-icon style="color: #663333" mat-list-icon>warning</mat-icon>
       <h4 style="font-weight:bold" mat-line>No form found.</h4>
       <p mat-line>Uh-oh! Looks like you haven't made a form yet.
-        <a style="color: green" routerLink="/form" routerLinkActive="active">Make a form here.</a>
+        <a style="color: 669966" routerLink="/form" routerLinkActive="active">Make a form here.</a>
       </p>
     </mat-list-item>
   </mat-list>
@@ -39,7 +39,8 @@
       <div *ngIf="field.type === 'checkbox' && !field.disabled">
         <p>{{ field.question }}</p>
         <div class="column-layout">
-          <mat-checkbox *ngFor="let optionC of field.options" name="checkboxfield" [(ngModel)]="optionC.value" [ngModelOptions]="{standalone: true}">{{ optionC.helperText }}</mat-checkbox>
+          <mat-checkbox *ngFor="let optionC of field.options" name="checkboxfield" [(ngModel)]="optionC.value" [ngModelOptions]="{standalone: true}">{{
+            optionC.helperText }}</mat-checkbox>
         </div>
       </div>
       <div *ngIf="field.type === 'switch' && !field.disabled">
