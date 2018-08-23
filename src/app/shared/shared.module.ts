@@ -16,6 +16,7 @@ import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
 import { LoaderComponent } from './loader/loader.component';
+import { FooterComponent } from './footer/footer.component';
 
 import { AuthService } from './../auth/auth.service';
 
@@ -24,7 +25,8 @@ import { AuthService } from './../auth/auth.service';
     TopNavigationComponent,
     CardComponent,
     LoaderComponent,
-    InputComponent
+    InputComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { AuthService } from './../auth/auth.service';
     TopNavigationComponent,
     LoaderComponent,
     CardComponent,
-    InputComponent
+    InputComponent,
+    FooterComponent
   ]
 })
 export class SharedModule {}
