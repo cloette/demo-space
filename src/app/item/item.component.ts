@@ -142,11 +142,13 @@ export class ItemComponent implements OnInit {
       console.log("store single_item", data);
       if (data && data.toString() && data['single_item'].toString()) {
         this.item = data['single_item'];
-        console.log("valid item!", this.item);
-        this.dataReady = true;
-        this.noItemError = false;
+        if (this.item.hasOwnProperty("fields")) {
+          console.log("valid item!", this.item);
+          this.dataReady = true;
+          this.noItemError = false;
+        }
       }
-      else if(data && data.toString()){
+      else if (data && data.toString()) {
         // got a failure msg
         this.noItemError = true;
       }
@@ -210,7 +212,7 @@ export class ItemComponent implements OnInit {
           this.currentPoints = this.currentPoints + (this.selectedValues * (fields[i].multiplier || 0));
           console.log("checkbox hit", this.currentPoints, this.maxPoints, "value", this.selectedValues, "multi", fields[i].multiplier);
         }
-        else if (fields[i].type === "text" ) {
+        else if (fields[i].type === "text") {
           if (fields[i].value) {
             this.currentPoints = this.currentPoints + (fields[i].multiplier || 0);
             this.maxPoints = this.maxPoints + (fields[i].multiplier || 0);
