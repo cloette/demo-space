@@ -121,11 +121,9 @@ formRouter.post("/item", (request: Request, response: Response) => {
 });
 
 // Updates an item
-formRouter.put("/item/:payload", (request: Request, response: Response) => {
+formRouter.put("/item", (request: Request, response: Response) => {
 
-  let item = request.params.payload;
-
-  Item.update({ addressid: request.params.payload.addressid }, { $set: { form: request.params.payload.form, formid: request.params.payload.formid, score: request.params.payload.score } }, function (err) {
+  Item.update({ addressid: request.body.addressid }, { $set: { form: request.body.form, formid: request.body.formid, score: request.body.score } }, function (err) {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });
@@ -135,7 +133,7 @@ formRouter.put("/item/:payload", (request: Request, response: Response) => {
 });
 
 // Returns one item
-formRouter.get("/item", (request: Request, response: Response) => {
+formRouter.get("/item/:addressid", (request: Request, response: Response) => {
 
   let res;
 
