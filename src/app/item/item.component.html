@@ -9,7 +9,8 @@
     <mat-list-item>
       <mat-icon style="color: #663333" mat-list-icon>warning</mat-icon>
       <h4 style="font-weight:bold" mat-line>No form found.</h4>
-      <p mat-line>Uh-oh! Looks like you haven't made a form yet. <a style="color: #669966" routerLink="/form" routerLinkActive="active">Make a form here.</a>
+      <p mat-line>Uh-oh! Looks like you haven't made a form yet. <a style="color: #669966" routerLink="/form" routerLinkActive="active">Make
+          a form here.</a>
       </p>
     </mat-list-item>
   </mat-list>
@@ -20,7 +21,8 @@
     <mat-list-item>
       <mat-icon style="color: #663333" mat-list-icon>warning</mat-icon>
       <h4 style="font-weight:bold" mat-line>No item found.</h4>
-      <p mat-line>Uh-oh! Looks like this item was deleted. <a style="color: 669966" routerLink="/item" routerLinkActive="active">Make a new one here.</a> If you believe the item still exists, try refreshing the page.
+      <p mat-line>Uh-oh! Looks like this item was deleted. <a style="color: 669966" routerLink="/item" routerLinkActive="active">Make
+          a new one here.</a> If you believe the item still exists, try refreshing the page.
       </p>
     </mat-list-item>
   </mat-list>
@@ -84,4 +86,10 @@
   <button *ngIf="!firstSave" mat-raised-button color="primary" (click)="saveItem()">
     Save Changes
   </button>
+  <br /><br />
+  <button *ngIf="!firstSave" mat-raised-button color="warning" (click)="replaceForm()">
+    Replace contents to use updated form
+  </button>
+  <p><i>Use this button if you've made changes to your form since adding the item. Your current data (other than the item
+      reference id) will disappear.</i></p>
 </div>

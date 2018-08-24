@@ -246,4 +246,8 @@ export class ItemComponent implements OnInit {
     console.log("score after calcScore", this.item.score);
   }
 
+  replaceForm(): void {
+    this.item.form = this.form;
+  }
+
 }
