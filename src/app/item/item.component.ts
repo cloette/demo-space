@@ -173,15 +173,15 @@ export class ItemComponent implements OnInit {
 
   deleteItem(): void {
     console.log("Item remove payload:");
-    console.log(this.item);
+    console.log(this.item.addressID);
     this.store.dispatch({
       type: SINGLE_ITEM_REMOVE,
       payload: this.item.addressID
     });
-    this.firstSave = true;
     this.snackBar.open('Item removed.', 'Close', {
       duration: 4000
     });
+    this.noItemError = true;
   }
 
   calcScore(fields: Array<IFieldResponse>): void {

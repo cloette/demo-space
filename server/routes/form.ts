@@ -164,7 +164,7 @@ formRouter.delete("/item/:addressid", (request: Request, response: Response) => 
 
   let item = new Item();
 
-  Item.findOneAndDelete({ address: request.params.addressid }, function (err, items) {
+  Item.find({ address: request.params.addressid }).remove( function (err, items) {
     if (err) return console.error(err);
   });
 
