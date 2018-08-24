@@ -141,13 +141,8 @@ export class ItemComponent implements OnInit {
     this.store.select('single_item').subscribe(data => {
       console.log("store single_item", data);
       if (data && data.toString() && data.hasOwnProperty('single_item') && data['single_item'].toString()) {
-        if(data['single_item'].hasOwnProperty('single_item')){
-          this.item = data['single_item']['single_item'];
-        }
-        else{
-          this.item = data['single_item'];
-        }
-        if (this.item.hasOwnProperty("fields")) {
+        this.item = data['single_item'];
+        if (this.item.hasOwnProperty("form")) {
           console.log("valid item!", this.item);
           this.dataReady = true;
           this.noItemError = false;
