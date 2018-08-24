@@ -31,7 +31,7 @@ export class ItemComponent implements OnInit {
   public firstSave: boolean = false;
   public fieldArrayCopy: Array<IFieldResponse>;
   public optionArrayCopy: Array<IOptionResponse>;
-  public noItemError: boolean = false;
+  public noItemError: boolean = true;
   private emptyItem = {
     address: 'Item Display Name',
     addressID: undefined,
@@ -74,6 +74,7 @@ export class ItemComponent implements OnInit {
       this.checkReady();
     }
     else {
+      this.noItemError = false;
       this.firstSave = true;
       if (this.formReady) {
         this.item = this.emptyItem;
@@ -147,10 +148,6 @@ export class ItemComponent implements OnInit {
           this.dataReady = true;
           this.noItemError = false;
         }
-      }
-      else if (data && data.toString()) {
-        // got a failure msg
-        this.noItemError = true;
       }
     });
   }
