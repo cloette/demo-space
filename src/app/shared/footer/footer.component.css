@@ -7,6 +7,13 @@
   z-index:5;
   padding: 0 16px;
 }
-.footer-wrapper .a{
+.footer-wrapper a{
+  cursor: pointer;
   color: #669966;
+}
+.footer-space{
+  padding: 0 16px;
+}
+.footer-space p{
+  color:#f8f8f8;
 }
