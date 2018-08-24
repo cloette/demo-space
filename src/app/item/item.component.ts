@@ -103,7 +103,7 @@ export class ItemComponent implements OnInit {
       this.fieldArrayCopy = this.item.form.fields;
       this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
       this.item.form.fields = this.fieldArrayCopy;
-      console.log("timeout fields sorted");
+      console.log("fields sorted");
     }
     else {
       this.getItem(this.route.snapshot.params.addressid);
@@ -141,7 +141,12 @@ export class ItemComponent implements OnInit {
     this.store.select('single_item').subscribe(data => {
       console.log("store single_item", data);
       if (data && data.toString() && data.hasOwnProperty('single_item') && data['single_item'].toString()) {
-        this.item = data['single_item'];
+        if(data['single_item'].hasOwnProperty('single_item')){
+          this.item = data['single_item']['single_item'];
+        }
+        else{
+          this.item = data['single_item'];
+        }
         if (this.item.hasOwnProperty("fields")) {
           console.log("valid item!", this.item);
           this.dataReady = true;

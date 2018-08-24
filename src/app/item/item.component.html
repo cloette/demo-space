@@ -1,5 +1,9 @@
 <h2>Item</h2>
 
+<button mat-raised-button (click)="checkReady()">
+  Refresh
+</button>
+
 <div *ngIf="!formReady">
   <mat-list>
     <mat-list-item>
