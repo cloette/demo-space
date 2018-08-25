@@ -179,6 +179,8 @@ export class FormComponent implements OnInit {
       type: FORM_EDIT,
       payload: clearPayload
     })
+    this.form.fields = [];
+    localStorage.setItem('form', JSON.stringify(this.form));
   }
 
   removeField(index: number): void {
