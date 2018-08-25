@@ -28,7 +28,7 @@
   </mat-list>
 </div>
 
-<div *ngIf="dataReady && formReady">
+<div *ngIf="dataReady && formReady && !noItemError">
   <form class="form" onsubmit="saveItem()">
     <mat-form-field>
       <input matInput name="address" [placeholder]="'Item Reference Name:'" [(ngModel)]="item.address" [ngModelOptions]="{standalone: true}">
