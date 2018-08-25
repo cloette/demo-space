@@ -5,21 +5,25 @@ a {
 .padded{
   padding:40px;
 }
-.background-block{
+.green{
   position: absolute;
-  top: 0;
-  right: 0;
-  height: 180px;
+  top: 460px;
+  left: 0px;
+  right:0px;
   width: 100%;
   z-index: -1;
-}
-.calm{
-  background: #99cc66;
-}
-.green{
-  top: 480px;
   background: #99cc66; /* For browsers that do not support gradients
   background: linear-gradient(to bottom, #99CC66, #669966, #99CC66); */
+}
+@media screen and (max-width:680px) {
+  .green{
+    height: 220px;
+  }
+}
+@media screen and (min-width:680px) {
+  .green{
+    height: 150px;
+  }
 }
 .use-case-imgs{
   display: inline-block;
@@ -27,9 +31,11 @@ a {
   margin-top:60px;
 }
 .use-case-imgs img{
-  max-width: 250px;
+  width: 80%;
+  max-width: 280px;
   height: auto;
-  border: solid 16px #669966;
-  border-radius: 10px;
+  border: solid 10px #669966;
+  border-radius: 7px;
   margin: 10px;
 }
+

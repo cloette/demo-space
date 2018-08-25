@@ -79,7 +79,7 @@ export class Dialog implements OnInit {
         this.options.splice(0, 1); // Remove dummy value
       }
     }
-    if(this.type = "switch"){
+    if(this.type === 'switch'){
       this.value = false;
     }
     this.data = {

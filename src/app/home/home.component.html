@@ -1,33 +1,35 @@
 <div class="padded">
   <div *ngIf="!auth.isAuthenticated()">
     <div class="background-block"></div>
-    <div style="max-width:380px; min-height: 400px">
+    <div style="max-width:380px;height:340px">
       <h1>Tough decision?</h1>
       <h3 style="color:#5a5a5a">Objective assessor compares and scores options - so you don't have to!</h3>
       <p>Utilize weighted scoring systems, toggle values on the fly, and see your best options at a glance; anytime, anywhere,
         on any device. </p>
       <h3 style="color: #669966; cursor:pointer" (click)="auth.login()">Get Started</h3>
     </div>
-    <div class="background-block green"></div>
-    <div style="min-height: 400px; text-align: right">
+    <div class="green"></div>
+    <div style="padding: 16px 0; text-align: right">
       <h1>Explore Use Cases</h1>
       <p>See screenshots of what Objective Assessor looks like in action.</p>
-      <div class="use-case-imgs">
-        <img src="./../../assets/House1.JPG" alt="Sample Form - House Hunting Use Case" />
-        <img src="./../../assets/house2.JPG" alt="Sample Leaderboard - House Hunting Use Case" />
-        <img src="./../../assets/house3.JPG" alt="Sample Item - House Hunting Use Case" />
-        <img src="./../../assets/editfield.JPG" alt="Sample Field - Form creation" />
-        <img src="./../../assets/game1.JPG" alt="Sample Form - Game Use Case" />
-        <img src="./../../assets/Game2.JPG" alt="Sample Leaderboard - Game Use Case" />
-      </div>
+    </div>
+    <div class="use-case-imgs">
+      <img src="./../../assets/House1.JPG" alt="Sample Form - House Hunting Use Case" />
+      <img src="./../../assets/house2.JPG" alt="Sample Leaderboard - House Hunting Use Case" />
+      <img src="./../../assets/house3.JPG" alt="Sample Item - House Hunting Use Case" />
+      <img src="./../../assets/editfield.JPG" alt="Sample Field - Form creation" />
+      <img src="./../../assets/game1.JPG" alt="Sample Form - Game Use Case" />
+      <img src="./../../assets/Game2.JPG" alt="Sample Leaderboard - Game Use Case" />
+    </div>
+
+    <div *ngIf="auth.isAuthenticated()">
+      <h1>
+        Thanks for logging in!</h1>
+      <p>This is an early release of the project, and may have bugs. If reloading doesn't solve the problem, please email
+        support.
+      </p>
+      <h4>Get started by
+        <a style="color: #669966" routerLink="/form" routerLinkActive="active">creating a form</a>.
+      </h4>
     </div>
   </div>
-  <div *ngIf="auth.isAuthenticated()">
-    <h1>
-      Thanks for logging in!</h1>
-    <p>This is an early release of the project, and may have bugs. If reloading doesn't solve the problem, please email support.</p>
-    <h4>Get started by
-      <a style="color: #669966" routerLink="/form" routerLinkActive="active">creating a form</a>.
-    </h4>
-  </div>
-</div>
