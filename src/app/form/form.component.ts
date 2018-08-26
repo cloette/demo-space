@@ -39,13 +39,8 @@ export class FormComponent implements OnInit {
   public profile;
   public newField: IFieldResponse;
 
-  public id = new FormControl;
-  public sid = new FormControl;
-  public newFieldForm: FormGroup;
-
   constructor(
     public store: Store<IAppState>,
-    public fb: FormBuilder,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
   ) {
@@ -70,13 +65,12 @@ export class FormComponent implements OnInit {
   }
 
   updateFormID(): void {
-    this.getForm(this.id.value);
+    this.getForm(this.formID);
     this.firstVisit = false;
   }
   makeSpecificForm(): void {
     // Post to /api/form/:id with supplied id
     // or the user's id
-    this.formID = this.sid.value;
     console.log("make specific form " + this.formID);
     this.makeBlankForm();
   }
