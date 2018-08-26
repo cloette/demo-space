@@ -28,7 +28,7 @@ export class ItemComponent implements OnInit {
   @Input() public itemID: string = "";
   @Input() public item: IItemResponse;
   public form: IFormResponse;
-  public oldForm: IFormResponse = {id: 'id', fields: []};
+  public oldForm: IFormResponse = { id: 'id', fields: [] };
   public showOldForm: boolean = false;
   public firstSave: boolean = false;
   public fieldArrayCopy: Array<IFieldResponse>;
@@ -143,12 +143,16 @@ export class ItemComponent implements OnInit {
     });
     this.store.select('single_item').subscribe(data => {
       console.log("store single_item", data);
-      if (data && data.toString() && data.hasOwnProperty('single_item') && data['single_item'].toString()) {
-        this.item = data['single_item'];
-        if (this.item.hasOwnProperty("form")) {
-          console.log("valid item!", this.item);
-          this.dataReady = true;
-          this.noItemError = false;
+      if (data) {
+        if (data.toString()) {
+          if (data.hasOwnProperty('single_item') && data['single_item'].toString()) {
+            this.item = data['single_item'];
+            if (this.item.hasOwnProperty("form")) {
+              console.log("valid item!", this.item);
+              this.dataReady = true;
+              this.noItemError = false;
+            }
+          }
         }
       }
     });

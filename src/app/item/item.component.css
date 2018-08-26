@@ -9,4 +9,6 @@
 }
 .bordered{
   border:1px solid #999999;
+  max-width: 440px;
+  padding: 10px 10px 0 10px;
 }

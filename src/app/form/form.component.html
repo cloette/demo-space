@@ -36,7 +36,7 @@
       <p style="font-size: 12px;line-height: 1.4em;">This field defaults to your profile ID if left blank.</p>
     </form>
   </div>
-  <div *ngIf="!noSuchForm">
+  <div *ngIf="noSuchForm">
     <mat-list>
       <mat-list-item>
         <mat-icon style="color: #663333" mat-list-icon>warning</mat-icon>
