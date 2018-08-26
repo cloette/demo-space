@@ -13,11 +13,21 @@ export function itemsReducer(state: IItemResponse[] = [], action: Actions): IIte
 
     case ITEMS_GET_SUCCESS:
       console.log("ITEMS_GET_SUCCESS", JSON.stringify(action.payload));
-      return Object.assign({}, state, {
-        items: action.payload
-      });
+      if (action.payload instanceof Array) {
+        return Object.assign({}, state, {
+          items: action.payload
+        });
+      }
+      else {
+        return Object.assign({}, state, {
+          items: false
+        });
+      }
+
 
     default:
-      return state;
+      return Object.assign({}, state, {
+        items: false
+      });
   }
 }
