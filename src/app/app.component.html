@@ -5,7 +5,8 @@
   </div>
   <div class="mobile-container" *ngIf="auth.isAuthenticated()">
     <app-ui-top-navigation></app-ui-top-navigation>
-    <router-outlet><app-home></app-home></router-outlet>
+    <router-outlet></router-outlet>
+    <app-home></app-home>
   </div>
   <app-footer></app-footer>
 </div>
