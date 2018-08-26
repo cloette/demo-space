@@ -128,6 +128,7 @@ export class FormComponent implements OnInit {
     console.log("Form get payload");
     if (id === undefined || id === null || id === '') {
       console.log(this.profile);
+      this.formID = this.profile;
       this.store.dispatch({
         type: FORM_GET,
         payload: this.profile
