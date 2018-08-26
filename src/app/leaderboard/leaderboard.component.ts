@@ -139,18 +139,17 @@ export class LeaderboardComponent implements OnInit {
     this.selectedValues = 0;
     if (item.form.fields) {
       for (let i = 0; i < item.form.fields.length; i++) {
-        if (this.form.fields[i].disabled) {
-          console.log('field is disabled, not scored');
+        if (this.form.fields[i].disabled || item.form.fields[i].disabled) {
         }
         else if (item.form.fields[i].type === "checkbox") {
           this.optionArrayCopy = item.form.fields[i].options;
-          for (let j = 0; j > this.optionArrayCopy.length; j++) {
+          for (let j = 0; j < this.optionArrayCopy.length; j++) {
             if (this.optionArrayCopy[j].value) {
               this.selectedValues = this.selectedValues + 1;
             }
+            this.maxPoints = this.maxPoints + (this.form.fields[i].multiplier || 0);
           }
           this.currentPoints = this.currentPoints + (this.selectedValues * (this.form.fields[i].multiplier || 0));
-          this.maxPoints = this.maxPoints + (this.selectedValues * (this.form.fields[i].multiplier || 0));
         }
         else if (item.form.fields[i].type === "text" || item.form.fields[i].type === "switch") {
           if (item.form.fields[i].value) {
@@ -159,8 +158,8 @@ export class LeaderboardComponent implements OnInit {
           }
         }
         else {
-          this.currentPoints = this.currentPoints + (item.form.fields[i].value * (this.form.fields[i].multiplier || 0));
-          this.maxPoints = this.maxPoints + (item.form.fields[i].maxValue * (this.form.fields[i].multiplier || 0));
+          this.currentPoints = this.currentPoints + (this.form.fields[i].value * (this.form.fields[i].multiplier || 0));
+          this.maxPoints = this.maxPoints + (this.form.fields[i].maxValue * (this.form.fields[i].multiplier || 0));
         }
       }
       if (!this.maxPoints) {

@@ -36,9 +36,15 @@
       <div *ngIf="field.type === 'text' && !field.disabled">
         <p>{{ field.question }}</p>
         <mat-form-field>
-          <textarea matInput name="textfield" [placeholder]="field.value" [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}"></textarea>
+          <textarea matInput name="textfield" [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}"></textarea>
         </mat-form-field>
       </div>
+      <div *ngIf="field.type === 'number' && !field.disabled">
+          <p>{{ field.question }}</p>
+          <mat-form-field>
+           <input type="number" matInput [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}" />
+          </mat-form-field>
+        </div>
       <div *ngIf="field.type === 'radio' && !field.disabled">
         <p>{{ field.question }}</p>
         <p style="color:#999999">Selected: {{ field.value }}</p>

@@ -21,6 +21,7 @@ export class Dialog implements OnInit {
 
   types = [
     { value: 'text', viewValue: 'Text Field' },
+    { value: 'number', viewValue: 'Number Field' },
     { value: 'radio', viewValue: 'Radio Options' },
     { value: 'checkbox', viewValue: 'Checkbox' },
     { value: 'switch', viewValue: 'Toggle' },
@@ -48,7 +49,7 @@ export class Dialog implements OnInit {
   }
 
   needsOptions(): boolean {
-    if (this.type === 'text' || this.type === 'switch') {
+    if (this.type === 'text' || this.type === 'switch' || this.type === 'number') {
       return false;
     }
     else {

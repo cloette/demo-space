@@ -90,6 +90,9 @@ export class FormComponent implements OnInit {
     if (fieldType === "text") {
       return 'title';
     }
+    else if (fieldType === "number") {
+      return 'looks_one';
+    }
     else if (fieldType === "radio") {
       return 'radio_button_checked';
     }
