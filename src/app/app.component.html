@@ -1,12 +1,12 @@
-<div class="main">
-  <div *ngIf="!auth.isAuthenticated()">
-    <app-ui-top-navigation></app-ui-top-navigation>
-    <app-home></app-home>
-  </div>
-  <div class="mobile-container" *ngIf="auth.isAuthenticated()">
-    <app-ui-top-navigation></app-ui-top-navigation>
+<div class="main" *ngIf="!auth.isAuthenticated()">
+  <app-ui-top-navigation></app-ui-top-navigation>
+  <app-home></app-home>
+  <app-footer></app-footer>
+</div>
+<div class="main" *ngIf="auth.isAuthenticated()">
+  <app-ui-top-navigation></app-ui-top-navigation>
+  <div class="mobile-container">
     <router-outlet></router-outlet>
-    <app-home></app-home>
   </div>
   <app-footer></app-footer>
 </div>
