@@ -38,6 +38,7 @@ export class FormComponent implements OnInit {
   public fields;
   public profile;
   public newField: IFieldResponse;
+  public noSuchForm: boolean = false;
 
   public id = new FormControl('');
   public sid = new FormControl('');
@@ -149,9 +150,16 @@ export class FormComponent implements OnInit {
     }
     this.firstVisit = false;
     this.store.select('form').subscribe(form => {
-      this.form = form;
-      localStorage.setItem('form', JSON.stringify(form));
-      this.testForm();
+      if (form) {
+        this.form = form;
+        localStorage.setItem('form', JSON.stringify(form));
+        this.testForm();
+      }
+      else {
+        this.noSuchForm = true;
+        this.dataReady = false;
+        this.firstVisit = true;
+      }
     });
     // formID and fields need to update here. Somehow.
     //setTimeout(this.testForm(), 3000); // wait three seconds for this.form to update

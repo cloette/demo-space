@@ -90,8 +90,10 @@ export class LeaderboardComponent implements OnInit {
       payload: this.form["id"]
     });
     this.store.select('items').subscribe(data => {
-      this.items = data;
-      localStorage.setItem('items', JSON.stringify(data));
+      if (data) {
+        this.items = data;
+        localStorage.setItem('items', JSON.stringify(data));
+      }
       this.checkItemsReady();
     });
   }
@@ -102,18 +104,18 @@ export class LeaderboardComponent implements OnInit {
     if (this.items.length > 1) {
       if (this.descending) {
         this.descending = !this.descending;
-        this.items.sort(function(a, b){return b.score - a.score});
+        this.items.sort(function (a, b) { return b.score - a.score });
       }
       else {
         this.descending = !this.descending;
-        this.items.sort(function(a, b){return a.score - b.score});
+        this.items.sort(function (a, b) { return a.score - b.score });
       }
     }
     this.dataReady = true;
   }
 
   recalculateAllScores(): void {
-    for (let j=0; j < this.items.length; j++){
+    for (let j = 0; j < this.items.length; j++) {
       // Not currently working for changes in the form
       // this.items[j].form = this.form;
       // This wouldn't work because it overwrites the item's answers

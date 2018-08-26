@@ -36,6 +36,16 @@
       <p style="font-size: 12px;line-height: 1.4em;">This field defaults to your profile ID if left blank.</p>
     </form>
   </div>
+  <div *ngIf="!noSuchForm">
+    <mat-list>
+      <mat-list-item>
+        <mat-icon style="color: #663333" mat-list-icon>warning</mat-icon>
+        <h4 style="font-weight:bold" mat-line>No form found.</h4>
+        <p mat-line>Uh-oh! We can't find that form in the database. Check the spelling and capitalization. Or, make a new
+          form with the button above.</p>
+      </mat-list-item>
+    </mat-list>
+  </div>
 </div>
 
 <div *ngIf="!firstVisit">
