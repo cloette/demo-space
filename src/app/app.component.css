@@ -15,7 +15,11 @@ h4{
 h1{
   font-size:60;
 }
-::ng-deep .mat-line, .mat-list-text{
+::ng-deep
+.mat-line, .mat-list-text{
   word-wrap: break-word !important;
   white-space: pre-wrap !important;
+}
+.mat-radio-label-content, .mat-checkbox-label{
+  white-space: normal !important;
 }
