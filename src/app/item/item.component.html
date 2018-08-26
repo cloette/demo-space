@@ -77,11 +77,11 @@
       </i></p>
     <ul *ngFor="let ofield of oldForm.fields">
       <li>
-        {{ ofield.question }}<br />
-        Value: {{ofield.value}}<br />
-        Options: <br />
-        <span *ngFor="let oOption of ofield.options">{{ oOption.helperText}}, {{ oOption.value}} <br /></span>
-      </li>
+        {{ ofield.question }}<br /> Value: {{ofield.value}}<br />
+        <span *ngIf="ofield.type === 'checkbox' || ofield.type === 'select' || ofield.type === 'radio'">
+          Options: <br />
+          <span *ngFor="let oOption of ofield.options">{{ oOption.helperText}}, {{ oOption.value}} <br /></span>
+        </span></li>
     </ul>
   </div>
   <br />
