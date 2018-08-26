@@ -77,7 +77,6 @@ export class FormComponent implements OnInit {
     // Post to /api/form/:id with supplied id
     // or the user's id
     this.formID = id;
-    console.log("make specific form " + id);
     this.makeBlankForm();
   }
 
@@ -114,8 +113,6 @@ export class FormComponent implements OnInit {
     // Post to /api/form/:id with supplied id
     // or the user's id
     if (this.formID === undefined) {
-      console.log("Form new payload:");
-      console.log(this.profile);
       this.store.dispatch({
         type: FORM_ADD,
         payload: this.profile
@@ -123,8 +120,6 @@ export class FormComponent implements OnInit {
       this.getForm(this.profile);
     }
     else {
-      console.log("Form new payload:");
-      console.log(this.formID);
       this.store.dispatch({
         type: FORM_ADD,
         payload: this.formID
@@ -134,9 +129,7 @@ export class FormComponent implements OnInit {
   }
 
   getForm(id: any): void {
-    console.log("Form get payload");
     if (id === undefined || id === null || id === '') {
-      console.log(this.profile);
       this.store.dispatch({
         type: FORM_GET,
         payload: this.profile
@@ -145,7 +138,6 @@ export class FormComponent implements OnInit {
     else {
       this.formID = id;
       // get request with id
-      console.log(this.formID);
       this.store.dispatch({
         type: FORM_GET,
         payload: id
@@ -170,7 +162,6 @@ export class FormComponent implements OnInit {
 
   saveForm(): void {
     // Put to /api/form/:id with this.form (contains id)
-    console.log("saveForm " + this.formID, this.fields);
     const savePayload = { id: this.formID, fields: this.fields };
     localStorage.setItem('form', JSON.stringify(savePayload));
     this.store.dispatch({
@@ -184,7 +175,6 @@ export class FormComponent implements OnInit {
   }
 
   clearForm(): void {
-    console.log("clearForm " + this.formID);
     const clearPayload = { id: this.formID, fields: [] };
     this.store.dispatch({
       type: FORM_EDIT,
@@ -211,7 +201,6 @@ export class FormComponent implements OnInit {
       this.snackBar.open('Field added!', 'Close', {
         duration: 4000
       });
-      console.log("Fields Array", this.fields);
     }
     // reset newField
     this.newField = {
@@ -227,9 +216,7 @@ export class FormComponent implements OnInit {
   }
 
   testForm(): void {
-    console.log("testing form values");
     if (this.form) {
-      console.log("testform if statement");
       this.formID = this.form["form"]["id"];
       this.fields = this.form["form"]["fields"];
       this.firstVisit = false;
@@ -238,7 +225,6 @@ export class FormComponent implements OnInit {
   }
 
   openDialog(someField: IFieldResponse, index: number, newField: boolean): void {
-    console.log(someField);
     let dialogRef = this.dialog.open(Dialog, {
       width: '400px',
       height: '70vh',
@@ -255,11 +241,9 @@ export class FormComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!result) {
-        console.log("Dialog closed without saving. Do nothing.")
       }
       else if (!newField) {
         if (!result.result) {
-          console.log("Dialog closed without saving. Do nothing.")
         }
         else {
           this.replaceField(result.result, index);
@@ -267,7 +251,6 @@ export class FormComponent implements OnInit {
       }
       else {
         if (!result.result) {
-          console.log("Dialog closed without saving. Do nothing.")
         }
         else {
           this.newField = result.result;
@@ -278,7 +261,6 @@ export class FormComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Form on load", this.form);
     this.testForm();
     if (!this.fields) {
       this.fields = [];

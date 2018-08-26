@@ -67,7 +67,6 @@ export class LeaderboardComponent implements OnInit {
   }
 
   checkItemsReady(): void {
-    console.log("checkItems:", this.items);
     this.items = this.items["items"];
     if (this.items) {
       this.sortItems();
@@ -83,8 +82,6 @@ export class LeaderboardComponent implements OnInit {
   getItems(): void {
     // Get request /api/item/all with this.form.id
     // sort the response in descending order, flippable
-    console.log("Items get payload:");
-    console.log(this.form.id);
     this.store.dispatch({
       type: ITEMS_GET,
       payload: this.form["id"]
@@ -99,7 +96,6 @@ export class LeaderboardComponent implements OnInit {
   }
 
   sortItems(): void {
-    console.log("Sorting items", this.items);
     // the > 1 prevents this from throwing an error on the individual item page
     if (this.items.length > 1) {
       if (this.descending) {

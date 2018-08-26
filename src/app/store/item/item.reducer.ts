@@ -16,15 +16,11 @@ export function itemReducer(state: IItemResponse, action: Actions): IItemRespons
 
     case SINGLE_ITEM_ADD_SUCCESS:
 
-      console.log("SINGLE_ITEM_ADD_SUCCESS " + JSON.stringify(action.payload));
-
       return Object.assign({}, state, {
         single_item: action.payload
       });
 
     case SINGLE_ITEM_EDIT_SUCCESS:
-
-      console.log("SINGLE_ITEM_EDIT_SUCCESS " + JSON.stringify(action.payload));
 
       return Object.assign({}, state, {
         single_item: action.payload
@@ -32,15 +28,11 @@ export function itemReducer(state: IItemResponse, action: Actions): IItemRespons
 
     case SINGLE_ITEM_GET_SUCCESS:
 
-      console.log("SINGLE_ITEM_GET_SUCCESS " + JSON.stringify(action.payload));
-
       return Object.assign({}, state, {
         single_item: action.payload
       });
 
     case SINGLE_ITEM_REMOVE_SUCCESS:
-
-      console.log("SINGLE_ITEM_REMOVE_SUCCESS");
 
       return Object.assign({}, state, {
         single_item: null

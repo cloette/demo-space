@@ -24,7 +24,7 @@ let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function callback() {
-  console.log('Connected to database.')
+  console.log('Connected to database! :)')
 });
 
 if (app.get("env") === "production") {
