@@ -39,9 +39,8 @@ export class FormComponent implements OnInit {
   public profile;
   public newField: IFieldResponse;
 
-  public id = new FormControl;
-  public sid = new FormControl;
-  public newFieldForm: FormGroup;
+  public id = new FormControl('');
+  public sid = new FormControl('');
 
   constructor(
     public store: Store<IAppState>,
@@ -69,15 +68,15 @@ export class FormComponent implements OnInit {
     this.showSpecificFormField = !this.showSpecificFormField;
   }
 
-  updateFormID(): void {
-    this.getForm(this.id.value);
+  updateFormID(id: any): void {
+    this.getForm(id);
     this.firstVisit = false;
   }
-  makeSpecificForm(): void {
+  makeSpecificForm(id: any): void {
     // Post to /api/form/:id with supplied id
     // or the user's id
-    this.formID = this.sid.value;
-    console.log("make specific form " + this.formID);
+    this.formID = id;
+    console.log("make specific form " + id);
     this.makeBlankForm();
   }
 
