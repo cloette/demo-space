@@ -17,9 +17,9 @@
   <br />
   <br />
   <div *ngIf="showFormIDField">
-    <form class="form-horizontal">
+    <form class="form">
       <mat-form-field style="margin-right: 20px;">
-        <input matInput type="text" name="getSForm" placeholder="Enter an ID here" [formControl]="getSpecificForm" />
+        <input type="text" matInput placeholder="Enter an ID here" [formControl]="id" />
       </mat-form-field>
       <button type="button" mat-raised-button (click)="updateFormID()">Fetch form</button>
       <br />
@@ -27,9 +27,9 @@
     </form>
   </div>
   <div *ngIf="showSpecificFormField">
-    <form class="form-horizontal">
+    <form class="form">
       <mat-form-field style="margin-right: 20px;">
-        <input matInput type="text" name="createSForm" placeholder="Enter an ID here" [formControl]="newSpecificForm" />
+        <input type="text" matInput placeholder="Enter an ID here" [formControl]="sid" />
       </mat-form-field>
       <button type="button" mat-raised-button (click)="makeSpecificForm()">Create form</button>
       <br />
@@ -40,7 +40,6 @@
 
 <div *ngIf="!firstVisit">
   <div *ngIf="dataReady">
-    <h3>ID: {{ formID }}</h3>
     <div class="floating-button">
       <button type="button" mat-fab (click)="openDialog(newField,9,true)">
         <!-- Displays add field form -->
@@ -65,19 +64,18 @@
         </tr>
       </div>
     </table>
-    <br /><br />
-    <button type="button" mat-raised-button (click)="loadFormOptions()">
-      Cancel
-    </button>
-    <button type="button" mat-raised-button color="primary" (click)="saveForm()">
-      Save Changes
-    </button>
-    <br /><br />
   </div>
   <div *ngIf="!dataReady">
     <app-ui-loader [visible]="true"></app-ui-loader>
   </div>
   <br />
+  <button type="button" mat-raised-button (click)="loadFormOptions()">
+    Cancel
+  </button>
+  <button type="button" mat-raised-button color="primary" (click)="saveForm()">
+    Save Changes
+  </button>
+  <br /><br />
   <button type="button" mat-raised-button color="warn" (click)="clearForm()">
     Start Over (Blank Form)
   </button>

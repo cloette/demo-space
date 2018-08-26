@@ -9,6 +9,8 @@ import { Dialog } from './dialog/dialog.component';
 import { IFormResponse } from './../shared/interfaces/form.interface';
 import { IFieldResponse } from './../shared/interfaces/field.interface';
 
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+
 import { FORM_ADD, FORM_EDIT, FORM_GET } from '../store/form/form.actions';
 
 import 'rxjs/add/operator/catch';
@@ -31,17 +33,19 @@ export class FormComponent implements OnInit {
   public showFormIDField: boolean = false;
   public showSpecificFormField: boolean = false;
   public dataReady: boolean = false;
-  public formID: string = "";
+  public formID: string = undefined;
   public form: IFormResponse;
   public fields;
   public profile;
   public newField: IFieldResponse;
 
-  public newSpecificForm;
-  public getSpecificForm;
+  public id = new FormControl;
+  public sid = new FormControl;
+  public newFieldForm: FormGroup;
 
   constructor(
     public store: Store<IAppState>,
+    public fb: FormBuilder,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
   ) {
@@ -66,12 +70,13 @@ export class FormComponent implements OnInit {
   }
 
   updateFormID(): void {
-    this.getForm(this.formID);
+    this.getForm(this.id.value);
     this.firstVisit = false;
   }
   makeSpecificForm(): void {
     // Post to /api/form/:id with supplied id
     // or the user's id
+    this.formID = this.sid.value;
     console.log("make specific form " + this.formID);
     this.makeBlankForm();
   }
@@ -129,7 +134,6 @@ export class FormComponent implements OnInit {
     console.log("Form get payload");
     if (id === undefined || id === null || id === '') {
       console.log(this.profile);
-      this.formID = this.profile;
       this.store.dispatch({
         type: FORM_GET,
         payload: this.profile
