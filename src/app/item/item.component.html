@@ -9,7 +9,8 @@
     <mat-list-item>
       <mat-icon style="color: #663333" mat-list-icon>warning</mat-icon>
       <h4 style="font-weight:bold" mat-line>No form found.</h4>
-      <p mat-line>Uh-oh! Looks like you haven't made a form yet. <a style="color: #669966" routerLink="/form" routerLinkActive="active">Make a form here.</a>
+      <p mat-line>Uh-oh! Looks like you haven't made a form yet. <a style="color: #669966" routerLink="/form" routerLinkActive="active">Make
+          a form here.</a>
       </p>
     </mat-list-item>
   </mat-list>
@@ -20,7 +21,8 @@
     <mat-list-item>
       <mat-icon style="color: #663333" mat-list-icon>warning</mat-icon>
       <h4 style="font-weight:bold" mat-line>No item found.</h4>
-      <p mat-line>Uh-oh! Looks like this item was deleted. <a style="color: 669966" routerLink="/item" routerLinkActive="active">Make a new one here.</a> If you believe the item still exists, try refreshing the page.
+      <p mat-line>Uh-oh! Looks like this item was deleted. <a style="color: 669966" routerLink="/item" routerLinkActive="active">Make
+          a new one here.</a> If you believe the item still exists, try refreshing the page.
       </p>
     </mat-list-item>
   </mat-list>
@@ -68,6 +70,20 @@
       </div>
     </div>
   </form>
+  <div class="bordered" *ngIf="showOldForm">
+    <h3>Old item contents:</h3>
+    <p><i>
+        This is for reference only. Once you click save, only the new content entered above will be tied to this item.
+      </i></p>
+    <ul *ngFor="let ofield of oldForm.fields">
+      <li>
+        {{ ofield.question }}<br />
+        Value: {{ofield.value}}<br />
+        Options: <br />
+        <span *ngFor="let oOption of ofield.options">{{ oOption.helperText}}, {{ oOption.value}} <br /></span>
+      </li>
+    </ul>
+  </div>
   <br />
   <button mat-raised-button routerLink="/leaderboard" routerLinkActive="active">
     Cancel
@@ -85,9 +101,10 @@
     Save Changes
   </button>
   <br /><br />
-  <button *ngIf="!firstSave" mat-raised-button style="background-color: #663333; color:white" (click)="replaceForm()">
-    Replace contents to use updated form
-  </button>
-  <p style="color:#999999; font-size:10px;"><i>Use this button if you've made changes to your form since adding the item. Your current data (other than the item
-      reference id) will disappear.</i></p>
+  <div class="bordered" *ngIf="showOldForm">
+    <button *ngIf="!firstSave" mat-raised-button style="background-color: #663333; color:white" (click)="replaceForm()">
+      Replace contents to use updated form
+    </button>
+    <p style="color:#999999; font-size:10px;"><i>Use this button if you've made changes to your form since adding the item.</i></p>
+  </div>
 </div>

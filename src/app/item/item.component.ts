@@ -28,6 +28,8 @@ export class ItemComponent implements OnInit {
   @Input() public itemID: string = "";
   @Input() public item: IItemResponse;
   public form: IFormResponse;
+  public oldForm: IFormResponse = {id: 'id', fields: []};
+  public showOldForm: boolean = false;
   public firstSave: boolean = false;
   public fieldArrayCopy: Array<IFieldResponse>;
   public optionArrayCopy: Array<IOptionResponse>;
@@ -244,6 +246,8 @@ export class ItemComponent implements OnInit {
   }
 
   replaceForm(): void {
+    this.oldForm = this.item.form;
+    this.showOldForm = true;
     this.item.form = this.form;
   }
 

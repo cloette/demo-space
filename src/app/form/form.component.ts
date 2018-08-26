@@ -153,7 +153,7 @@ export class FormComponent implements OnInit {
       localStorage.setItem('form', JSON.stringify(form));
     });
     // formID and fields need to update here. Somehow.
-    setTimeout(this.testForm(), 3000); // wait three seconds for this.form to update
+    this.testForm();//setTimeout(this.testForm(), 3000); // wait three seconds for this.form to update
   }
 
   saveForm(): void {
@@ -217,6 +217,7 @@ export class FormComponent implements OnInit {
   testForm(): void {
     console.log("testing form values");
     if (this.form) {
+      console.log("testform if statement");
       this.formID = this.form["form"]["id"];
       this.fields = this.form["form"]["fields"];
       this.firstVisit = false;
