@@ -101,7 +101,7 @@
     Save Changes
   </button>
   <br /><br />
-  <div class="bordered" *ngIf="showOldForm">
+  <div class="bordered" *ngIf="!showOldForm">
     <button *ngIf="!firstSave" mat-raised-button style="background-color: #663333; color:white" (click)="replaceForm()">
       Replace contents to use updated form
     </button>
