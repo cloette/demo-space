@@ -9,8 +9,6 @@ import { Dialog } from './dialog/dialog.component';
 import { IFormResponse } from './../shared/interfaces/form.interface';
 import { IFieldResponse } from './../shared/interfaces/field.interface';
 
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-
 import { FORM_ADD, FORM_EDIT, FORM_GET } from '../store/form/form.actions';
 
 import 'rxjs/add/operator/catch';
@@ -33,11 +31,14 @@ export class FormComponent implements OnInit {
   public showFormIDField: boolean = false;
   public showSpecificFormField: boolean = false;
   public dataReady: boolean = false;
-  public formID: string = undefined;
+  public formID: string = "";
   public form: IFormResponse;
   public fields;
   public profile;
   public newField: IFieldResponse;
+
+  public newSpecificForm;
+  public getSpecificForm;
 
   constructor(
     public store: Store<IAppState>,
