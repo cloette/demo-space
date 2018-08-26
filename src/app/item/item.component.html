@@ -72,7 +72,7 @@
   <button mat-raised-button routerLink="/leaderboard" routerLinkActive="active">
     Cancel
   </button>
-  <button *ngIf="!firstSave" mat-raised-button color="warning" (click)="deleteItem()">
+  <button *ngIf="!firstSave" mat-raised-button style="background-color: #663333; color: white" (click)="deleteItem()">
     Delete
   </button>
   <button mat-raised-button (click)="calcScore(item.form.fields)">
@@ -85,9 +85,9 @@
     Save Changes
   </button>
   <br /><br />
-  <button *ngIf="!firstSave" mat-raised-button color="warning" (click)="replaceForm()">
+  <button *ngIf="!firstSave" mat-raised-button style="background-color: #663333; color:white" (click)="replaceForm()">
     Replace contents to use updated form
   </button>
-  <p><i>Use this button if you've made changes to your form since adding the item. Your current data (other than the item
+  <p style="color:#999999; font-size:10px;"><i>Use this button if you've made changes to your form since adding the item. Your current data (other than the item
       reference id) will disappear.</i></p>
 </div>

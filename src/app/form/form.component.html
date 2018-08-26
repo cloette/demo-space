@@ -40,7 +40,7 @@
 
 <div *ngIf="!firstVisit">
   <div *ngIf="dataReady">
-    <h3>{{ formId }}</h3>
+    <h3>ID: {{ form.id }}</h3>
     <div class="floating-button">
       <button type="button" mat-fab (click)="openDialog(newField,9,true)">
         <!-- Displays add field form -->
@@ -65,18 +65,19 @@
         </tr>
       </div>
     </table>
+    <br /><br />
+    <button type="button" mat-raised-button (click)="loadFormOptions()">
+      Cancel
+    </button>
+    <button type="button" mat-raised-button color="primary" (click)="saveForm()">
+      Save Changes
+    </button>
+    <br /><br />
   </div>
   <div *ngIf="!dataReady">
     <app-ui-loader [visible]="true"></app-ui-loader>
   </div>
   <br />
-  <button type="button" mat-raised-button (click)="loadFormOptions()">
-    Cancel
-  </button>
-  <button type="button" mat-raised-button color="primary" (click)="saveForm()">
-    Save Changes
-  </button>
-  <br /><br />
   <button type="button" mat-raised-button color="warn" (click)="clearForm()">
     Start Over (Blank Form)
   </button>

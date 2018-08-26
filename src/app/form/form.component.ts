@@ -162,11 +162,11 @@ export class FormComponent implements OnInit {
     // Put to /api/form/:id with this.form (contains id)
     console.log("saveForm " + this.formID, this.fields);
     const savePayload = { id: this.formID, fields: this.fields };
+    localStorage.setItem('form', JSON.stringify(savePayload));
     this.store.dispatch({
       type: FORM_EDIT,
       payload: savePayload
     })
-    localStorage.setItem('form', JSON.stringify(this.form));
     this.snackBar.open('Form saved!', 'Close', {
       duration: 4000
     });
