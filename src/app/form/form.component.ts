@@ -151,11 +151,10 @@ export class FormComponent implements OnInit {
     this.store.select('form').subscribe(form => {
       this.form = form;
       localStorage.setItem('form', JSON.stringify(form));
+      this.testForm();
     });
     // formID and fields need to update here. Somehow.
-    this.testForm();//
-    setTimeout(this.testForm(), 3000); // wait three seconds for this.form to update
-    setTimeout(this.testForm(), 4000);
+    //setTimeout(this.testForm(), 3000); // wait three seconds for this.form to update
   }
 
   saveForm(): void {
