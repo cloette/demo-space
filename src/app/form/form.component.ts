@@ -154,7 +154,6 @@ export class FormComponent implements OnInit {
     });
     // formID and fields need to update here. Somehow.
     setTimeout(this.testForm(), 3000); // wait three seconds for this.form to update
-    this.dataReady = true;
   }
 
   saveForm(): void {
@@ -169,6 +168,7 @@ export class FormComponent implements OnInit {
     this.snackBar.open('Form saved!', 'Close', {
       duration: 4000
     });
+    setTimeout(this.getForm(this.formID), 3000);
   }
 
   clearForm(): void {
