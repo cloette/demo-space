@@ -4,6 +4,7 @@ import { CallbackComponent } from './callback/callback.component';
 
 export const routes: Route[] = [
   { path: '', pathMatch: 'full', component: HomeComponent},
+  { path: '/', pathMatch: 'full', component: HomeComponent},
   { path: 'callback', pathMatch: 'full', component: CallbackComponent },
   { loadChildren: 'app/form/form.module#FormModule', path: 'form' },
   { loadChildren: 'app/item/item.module#ItemModule', path: 'item' },

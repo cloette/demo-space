@@ -1,5 +1,5 @@
-<div class="padded">
-  <div *ngIf="!auth.isAuthenticated()">
+<div *ngIf="!auth.isAuthenticated()">
+  <div class="padded">
     <div class="background-block"></div>
     <div style="max-width:380px;height:340px">
       <h1>Tough decision?</h1>
@@ -21,15 +21,17 @@
       <img src="./../../assets/game1.JPG" alt="Sample Form - Game Use Case" />
       <img src="./../../assets/Game2.JPG" alt="Sample Leaderboard - Game Use Case" />
     </div>
-
-    <div *ngIf="auth.isAuthenticated()">
-      <h1>
-        Thanks for logging in!</h1>
-      <p>This is an early release of the project, and may have bugs. If reloading doesn't solve the problem, please email
-        support.
-      </p>
-      <h4>Get started by
-        <a style="color: #669966" routerLink="/form" routerLinkActive="active">creating a form</a>.
-      </h4>
-    </div>
   </div>
+</div>
+
+<div *ngIf="auth.isAuthenticated()">
+  <div class="padded">
+    <h1>
+      Thanks for logging in!</h1>
+    <p>This is an early release of the project, and may have bugs. If reloading doesn't solve the problem, please <a href="https://docs.google.com/forms/d/e/1FAIpQLSej2dSOsA2gMeI4V7Uf27ViJhYwCiZGb-Zc-cj1JVxBS7c8VA/viewform?usp=sf_link" target="_blank">log the bug</a>.
+    </p>
+    <h4>Get started by
+      <a style="color: #669966" routerLink="/form" routerLinkActive="active">creating a form</a>.
+    </h4>
+  </div>
+</div>
