@@ -74,8 +74,8 @@ export class Dialog implements OnInit {
   }
 
   save(): void {
-    if(this.options){
-      if (this.options[0].helperText === "Example Option"){
+    if(this.needsOptions()){
+      if (this.options && this.options[0].helperText === "Example Option"){
         this.options.splice(0, 1); // Remove dummy value
       }
     }
