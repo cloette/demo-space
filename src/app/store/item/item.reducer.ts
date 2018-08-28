@@ -16,15 +16,11 @@ export function itemReducer(state: IItemResponse, action: Actions): IItemRespons
 
     case SINGLE_ITEM_ADD_SUCCESS:
 
-      return Object.assign({}, state, {
-        single_item: action.payload
-      });
+      return state;
 
     case SINGLE_ITEM_EDIT_SUCCESS:
 
-      return Object.assign({}, state, {
-        single_item: action.payload
-      });
+      return state;
 
     case SINGLE_ITEM_GET_SUCCESS:
 
@@ -34,9 +30,7 @@ export function itemReducer(state: IItemResponse, action: Actions): IItemRespons
 
     case SINGLE_ITEM_REMOVE_SUCCESS:
 
-      return Object.assign({}, state, {
-        single_item: null
-      });
+      return state;
 
     default:
       return state;
