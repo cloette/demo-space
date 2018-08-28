@@ -62,15 +62,11 @@ export class Dialog implements OnInit {
   }
 
   addOption(): void {
-    console.log("adding option to " + this.options);
     this.options.push({ helperText: this.optionsHelperText, value: this.optionsValue });
-    console.log("Options Array", this.options);
   }
 
   removeOption(index: number): void {
-    console.log("removing option");
     this.options.splice(index, 1);
-    console.log("Options Array", this.options);
   }
 
   save(): void {
@@ -92,7 +88,6 @@ export class Dialog implements OnInit {
       disabled: this.disabled,
       value: this.value
     };
-    console.log("saved field" + JSON.stringify(this.data));
     this.dialogRef.close({ result: this.data });
   }
 

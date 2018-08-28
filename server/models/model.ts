@@ -3,9 +3,6 @@ var Schema = mongoose.Schema;
 
 // a database validation function
 var nameValidation = function(val) {
-	console.log("Inside name validation");
-	console.log(val);
-
 	if (val=="") return false; // if it's an empty string, return false
 	else return true;
 }

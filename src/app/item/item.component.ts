@@ -101,12 +101,10 @@ export class ItemComponent implements OnInit {
   }
 
   checkReady(): void {
-    console.log("checkReady called", this.item);
     if (this.formReady && this.item) {
       this.fieldArrayCopy = this.item.form.fields;
       this.fieldArrayCopy.sort(function (a, b) { return a.order - b.order });
       this.item.form.fields = this.fieldArrayCopy;
-      console.log("fields sorted");
     }
     else {
       this.getItem(this.route.snapshot.params.addressid);
@@ -114,8 +112,6 @@ export class ItemComponent implements OnInit {
   }
 
   put(): void {
-    console.log("Item put payload:");
-    console.log(this.item);
     this.store.dispatch({
       type: SINGLE_ITEM_EDIT,
       payload: this.item
@@ -123,8 +119,6 @@ export class ItemComponent implements OnInit {
   }
 
   post(): void {
-    console.log("Item post payload:");
-    console.log(this.item);
     this.store.dispatch({
       type: SINGLE_ITEM_ADD,
       payload: this.item
@@ -135,19 +129,15 @@ export class ItemComponent implements OnInit {
   getItem(id: string): void {
     // Get request /api/item/:addressid with itemID
     // this.item = response; this.form = this.item.form;
-    console.log("Item get payload:");
-    console.log(id);
     this.store.dispatch({
       type: SINGLE_ITEM_GET,
       payload: id
     });
     this.store.select('single_item').subscribe(data => {
-      console.log("store single_item", data);
       if (data['single_item']) {
         if (data['single_item'].toString()) {
           this.item = data['single_item'];
           if (this.item.hasOwnProperty("form")) {
-            console.log("valid item!", this.item);
             this.dataReady = true;
             this.noItemError = false;
           }
@@ -157,7 +147,6 @@ export class ItemComponent implements OnInit {
   }
 
   saveItem(): void {
-    console.log("save Item", this.item);
     this.calcScore(this.item.form.fields);
     setTimeout(this.put(), 10000);
     this.snackBar.open('Item saved!', 'Close', {
@@ -166,7 +155,6 @@ export class ItemComponent implements OnInit {
   }
 
   newItem(): void {
-    console.log("new Item", this.item);
     this.item.addressID = encodeURI(this.item.address);
     this.calcScore(this.item.form.fields);
     setTimeout(this.post(), 10000);
@@ -176,8 +164,6 @@ export class ItemComponent implements OnInit {
   }
 
   deleteItem(): void {
-    console.log("Item remove payload:");
-    console.log(this.item.addressID);
     this.store.dispatch({
       type: SINGLE_ITEM_REMOVE,
       payload: this.item.addressID
@@ -189,21 +175,17 @@ export class ItemComponent implements OnInit {
   }
 
   calcScore(fields: Array<IFieldResponse>): void {
-    console.log("calculateScore called", fields);
     this.maxPoints = 0;
     this.currentPoints = 0;
     this.selectedValues = 0;
     if (fields) {
       for (let i = 0; i < fields.length; i++) {
-        console.log("field type " + i, fields[i].type);
         if (fields[i].disabled) {
-          console.log('field is disabled, not scored');
         }
         else if (fields[i].type === "checkbox") {
           this.optionArrayCopy = fields[i].options;
           for (let j = 0; j < this.optionArrayCopy.length; j++) {
             if (this.optionArrayCopy[j].value) {
-              console.log("option array hit");
               // seems like this isn't being hit
               this.selectedValues = this.selectedValues + 1;
             }
@@ -211,33 +193,26 @@ export class ItemComponent implements OnInit {
             this.maxPoints = this.maxPoints + (fields[i].multiplier || 0);
           }
           this.currentPoints = this.currentPoints + (this.selectedValues * (fields[i].multiplier || 0));
-          console.log("checkbox hit", this.currentPoints, this.maxPoints, "value", this.selectedValues, "multi", fields[i].multiplier);
         }
         else if (fields[i].type === "text" || fields[i].type === "switch") {
           if (fields[i].value) {
             this.currentPoints = this.currentPoints + (fields[i].multiplier || 0);
             this.maxPoints = this.maxPoints + (fields[i].multiplier || 0);
           }
-          console.log("text/switch hit", this.currentPoints, this.maxPoints, "multi", fields[i].multiplier);
         }
         else {
           this.currentPoints = this.currentPoints + (fields[i].value * (fields[i].multiplier || 0));
           this.maxPoints = this.maxPoints + (fields[i].maxValue * (fields[i].multiplier || 0));
-          console.log("else hit", this.currentPoints, this.maxPoints, "value", fields[i].value);
         }
       }
       if (!this.maxPoints) {
-        console.log("MaxPoints is 0 hit");
         this.item.score = 0;
       }
       else {
-        console.log("MaxPoints is not 0 hit");
         this.item.score = (this.currentPoints / this.maxPoints) * 100;
         this.item.score = parseInt(this.item.score.toFixed(0));
       }
-      console.log("end of if fields", this.item.score);
     }
-    console.log("score after calcScore", this.item.score);
   }
 
   replaceForm(): void {

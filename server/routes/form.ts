@@ -53,8 +53,6 @@ formRouter.post("/field", (request: Request, response: Response) => {
 // Make the initial Form
 formRouter.post("/form/:formid", (request: Request, response: Response) => {
 
-  console.log("POST form " + JSON.stringify(request.params.formid));
-
   var form = new Form(
     {
       id: request.params.formid,
@@ -72,11 +70,8 @@ formRouter.post("/form/:formid", (request: Request, response: Response) => {
 // Returns the form
 formRouter.get("/form/:id", (request: Request, response: Response) => {
 
-  console.log("GET form " + JSON.stringify(request.params.id));
-
   Form.find({ id: request.params.id }, function (err, items) {
     if (err) return console.error(err);
-    console.log("items returned: " + JSON.stringify(items));
     response.json(items[0]);
   });
 });
@@ -91,8 +86,6 @@ formRouter.put("/form", (request: Request, response: Response) => {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });
-
-  console.log("PUT form " + JSON.stringify(request.body));
 
 });
 
@@ -116,8 +109,6 @@ formRouter.post("/item", (request: Request, response: Response) => {
     response.json({ message: "Success!" });
   });
 
-  console.log("POST item " + JSON.stringify(request.body));
-
 });
 
 // Updates an item
@@ -127,8 +118,6 @@ formRouter.put("/item", (request: Request, response: Response) => {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });
-
-  console.log("PUT item " + JSON.stringify(request.body));
 
 });
 
@@ -140,11 +129,9 @@ formRouter.get("/item/:addressid", (request: Request, response: Response) => {
   Item.find({ address: request.params.addressid }, function (err, items) {
     if (err) return console.error(err);
     res = items[0];
-    console.log("GET item response " + JSON.stringify(items[0]));
     return response.json(res);
   });
 
-  console.log("GET item " + JSON.stringify(request.params.addressid));
 });
 
 // Returns all Items
@@ -167,8 +154,6 @@ formRouter.delete("/item/:addressid", (request: Request, response: Response) => 
   Item.find({ address: request.params.addressid }).remove( function (err, items) {
     if (err) return console.error(err);
   });
-
-  console.log("DELETED item " + JSON.stringify(request.params.addressid));
 
 });
 
