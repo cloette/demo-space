@@ -158,7 +158,7 @@ export class ItemComponent implements OnInit {
 
   saveItem(): void {
     console.log("save Item", this.item);
-    this.calcScore(this.item.form.fields);
+    this.calcScore(this.item.form);
     setTimeout(this.put(), 10000);
     this.snackBar.open('Item saved!', 'Close', {
       duration: 4000
@@ -168,7 +168,7 @@ export class ItemComponent implements OnInit {
   newItem(): void {
     console.log("new Item", this.item);
     this.item.addressID = encodeURI(this.item.address);
-    this.calcScore(this.item.form.fields);
+    this.calcScore(this.item.form);
     setTimeout(this.post(), 10000);
     this.snackBar.open('Item added!', 'Close', {
       duration: 4000
@@ -188,8 +188,15 @@ export class ItemComponent implements OnInit {
     this.noItemError = true;
   }
 
-  calcScore(fields: Array<IFieldResponse>): void {
-    console.log("calculateScore called", fields);
+  calcScore(form: IFormResponse): void {
+    console.log("calculateScore called", form);
+    let fields;
+    if (form.hasOwnProperty("fields")) {
+      fields = form.fields;
+    }
+    else {
+      fields = false;
+    }
     this.maxPoints = 0;
     this.currentPoints = 0;
     this.selectedValues = 0;

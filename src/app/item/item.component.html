@@ -96,7 +96,7 @@
   <button *ngIf="!firstSave" mat-raised-button style="background-color: #663333; color: white" (click)="deleteItem()">
     Delete
   </button>
-  <button mat-raised-button (click)="calcScore(item.form.fields)">
+  <button mat-raised-button (click)="calcScore(item.form)">
     Calculate score
   </button>
   <button *ngIf="firstSave" mat-raised-button color="primary" (click)="newItem()">
