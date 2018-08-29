@@ -232,6 +232,7 @@ export class FormComponent implements OnInit {
       console.log("testform if statement");
       this.formID = this.form["form"]["id"];
       this.fields = this.form["form"]["fields"];
+      this.sortFields();
       this.firstVisit = false;
       this.dataReady = true;
     }
@@ -275,6 +276,13 @@ export class FormComponent implements OnInit {
         }
       }
     });
+  }
+
+  sortFields(): void {
+    // the > 1 prevents this from throwing an error on the individual item page
+    if (this.form.fields.length > 1) {
+      this.form.fields.sort(function (a, b) { return a.order - b.order });
+    }
   }
 
   ngOnInit() {
