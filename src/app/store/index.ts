@@ -22,12 +22,8 @@ export const reducers: ActionReducerMap<IAppState> = {
   items: itemsReducer
 };
 
-// console.log all actions
 export function logger(reducer: ActionReducer<IAppState>): ActionReducer<any, any> {
   return function(state: IAppState, action: any): IAppState {
-    console.log('state', state);
-    console.log('action', action);
-
     return reducer(state, action);
   };
 }

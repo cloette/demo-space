@@ -29,7 +29,6 @@ export class AuthService {
         this.router.navigate(['/']);
       } else if (err) {
         this.router.navigate(['/']);
-        console.log(err);
       }
     });
   }
@@ -45,12 +44,7 @@ export class AuthService {
   public getProfile(): any {
     var accessToken = localStorage.getItem('access_token');
 
-    if (!accessToken) {
-      console.log('Access Token must exist to fetch profile');
-    }
-
     this.auth0.client.userInfo(accessToken, function (err, profile) {
-      console.log("Access token exists");
       if (profile) {
         localStorage.setItem('profile', profile.sub);
       }
