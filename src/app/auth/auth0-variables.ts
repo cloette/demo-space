@@ -5,7 +5,7 @@ interface AuthConfig {
 }
 
 export const AUTH_CONFIG: AuthConfig = {
-  clientID: 'ctJuqNswO9qObIWVp9fRiiQF4Rine7Vr',
-  domain: 'flat-dream-9347.auth0.com',
-  callbackURL: 'https://objective-assessor.herokuapp.com'
+  clientID: '11Lc1USJZ9v7S5Jib28bbd7j2TiMcgiD',
+  domain: 'app90438451.auth0.com',
+  callbackURL: 'https://objective-assessor-dev.herokuapp.com/'
 };

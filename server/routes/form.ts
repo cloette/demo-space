@@ -5,51 +5,6 @@ import { Option, Field, Form, Item } from "./../models/model";
 
 const formRouter: Router = Router();
 
-const check = {
-  message: "Hello World! Great to see you!"
-};
-
-formRouter.get("/hello", (request: Request, response: Response) => {
-
-  response.json(check);
-});
-
-/*/ Make a new option
-formRouter.post("/option", (request: Request, response: Response) => {
-
-  var option = new Option({
-    helperText: request.body.helperText,
-    value: request.body.value
-  });
-
-  option.save(function (err) {
-    if (err) return console.error(err);
-    response.json({ message: "Success!" });
-  });
-
-});
-
-// Make a new field
-formRouter.post("/field", (request: Request, response: Response) => {
-
-  var field = new Field({
-    order: request.body.order,
-    type: request.body.type,
-    question: request.body.question,
-    options: request.body.options,
-    multiplier: request.body.multiplier,
-    value: request.body.value,
-    maxValue: request.body.maxValue,
-    disabled: false
-  });
-
-  field.save(function (err) {
-    if (err) return console.error(err);
-    response.json({ message: "Success!" });
-  });
-
-});*/
-
 // Make the initial Form
 formRouter.post("/form/:formid", (request: Request, response: Response) => {
 
@@ -114,7 +69,7 @@ formRouter.post("/item", (request: Request, response: Response) => {
 // Updates an item
 formRouter.put("/item", (request: Request, response: Response) => {
 
-  Item.update({ addressid: request.body.addressid }, { $set: { form: request.body.form, formid: request.body.formid, score: request.body.score } }, function (err) {
+  Item.update({ address: request.body.address }, { $set: { form: request.body.form, score: request.body.score } }, function (err) {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });

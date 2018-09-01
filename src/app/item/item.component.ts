@@ -181,6 +181,7 @@ export class ItemComponent implements OnInit {
     if (fields) {
       for (let i = 0; i < fields.length; i++) {
         if (fields[i].disabled) {
+          //Skip
         }
         else if (fields[i].type === "checkbox") {
           this.optionArrayCopy = fields[i].options;
@@ -205,7 +206,7 @@ export class ItemComponent implements OnInit {
           this.maxPoints = this.maxPoints + (fields[i].maxValue * (fields[i].multiplier || 0));
         }
       }
-      if (!this.maxPoints) {
+      if (!this.maxPoints || this.maxPoints === 0) {
         this.item.score = 0;
       }
       else {
