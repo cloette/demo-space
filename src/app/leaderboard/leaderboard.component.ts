@@ -111,19 +111,13 @@ export class LeaderboardComponent implements OnInit {
   }
 
   recalculateAllScores(): void {
+    console.log(this.form);
     for (let j = 0; j < this.items.length; j++) {
-      // Not currently working for changes in the form
-      // this.items[j].form = this.form;
-      // This wouldn't work because it overwrites the item's answers
-      // To actually make it work, need to only update the multiplier,
-      // the value of each choice
-      // (which needs to be separated from the recorded value, and
-      // what if the selected choice is removed as an option?)
-      // Best can do for now is apply disabled and apply multiplier changes
-      // which thankfully is the most common change
+      // [!] This doesn't fully work
+      // It works in cases of: changed multipliers or disabled/enabled fields
+      // which thankfully are the most common changes
       // This will break if there are additional or fewer questions
       this.items[j].score = this.calcScore(this.items[j]);
-      // update the actual item
     }
     this.sortItems();
     localStorage.setItem('items', JSON.stringify(this.items));
@@ -135,7 +129,8 @@ export class LeaderboardComponent implements OnInit {
     this.selectedValues = 0;
     if (item.form.fields) {
       for (let i = 0; i < item.form.fields.length; i++) {
-        if (this.form.fields[i].disabled || item.form.fields[i].disabled) {
+        if (this.form.fields[i].disabled) {
+          // Skip
         }
         else if (item.form.fields[i].type === "checkbox") {
           this.optionArrayCopy = item.form.fields[i].options;
@@ -154,11 +149,11 @@ export class LeaderboardComponent implements OnInit {
           }
         }
         else {
-          this.currentPoints = this.currentPoints + (this.form.fields[i].value * (this.form.fields[i].multiplier || 0));
-          this.maxPoints = this.maxPoints + (this.form.fields[i].maxValue * (this.form.fields[i].multiplier || 0));
+          this.currentPoints = this.currentPoints + (item.form.fields[i].value * (this.form.fields[i].multiplier || 0));
+          this.maxPoints = this.maxPoints + (item.form.fields[i].maxValue * (this.form.fields[i].multiplier || 0));
         }
       }
-      if (!this.maxPoints) {
+      if (!this.maxPoints || this.maxPoints === 0) {
         item.score = 0;
       }
       else {
