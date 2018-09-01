@@ -69,7 +69,7 @@ formRouter.post("/item", (request: Request, response: Response) => {
 // Updates an item
 formRouter.put("/item", (request: Request, response: Response) => {
 
-  Item.update({ addressID: request.body.addressid }, { $set: { form: request.body.form, formid: request.body.formid, score: request.body.score } }, function (err) {
+  Item.update({ address: request.body.address }, { $set: { form: request.body.form, score: request.body.score } }, function (err) {
     if (err) return console.error(err);
     response.json({ message: "Success!" });
   });
