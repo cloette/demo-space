@@ -263,8 +263,8 @@ export class FormComponent implements OnInit {
 
   sortFields(): void {
     // the > 1 prevents this from throwing an error on the individual item page
-    if (this.form.fields.length > 1) {
-      this.form.fields.sort(function (a, b) { return a.order - b.order });
+    if (this.fields.length > 1) {
+      this.fields.sort(function (a, b) { return a.order - b.order });
     }
   }
 
